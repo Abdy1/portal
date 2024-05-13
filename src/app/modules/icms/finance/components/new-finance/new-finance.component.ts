@@ -40,39 +40,6 @@ export class NewFinanceComponent implements OnInit {
   public selectedTeam;
   public selectedSubProcess;
 
-
-  generateCaseId(): void {
-    this.timeService.getDate().subscribe(
-      (response: any) => {
-        const dateParts = response.time.split('/'); 
-        const year = dateParts[2];
-        const month = dateParts[0].padStart(2, "0");
-        const day = dateParts[1].padStart(2, "0");
-        this.financeService.getSize().subscribe(
-          (response: any) => {
-            if (response == 0) {
-              this.caseId = "0001/" + month + "/" + day + "/" + year;
-            }
-            else {
-              this.financeService.findFinanceById(response).subscribe(
-                (response: any) => {
-                  if (response.caseId.slice(-4) === year) {
-                    const lastCaseId = parseInt(response.caseId.slice(0, 4));
-                    const nextCaseId = (lastCaseId + 1).toString().padStart(4, "0");
-                    this.caseId = nextCaseId + "/" + month + "/" + day + "/" + year;
-                  } else {
-                    this.caseId = "0001/" + month + "/" + day + "/" + year;
-                  }
-                }
-              )
-            }
-          }
-        )
-      }
-    )
-  }
-
-
   constructor(
     private timeService: TimeService,
     private primengConfig: PrimeNGConfig,
@@ -106,6 +73,37 @@ export class NewFinanceComponent implements OnInit {
     this.getCategories();
     this.getStatus();
 
+  }
+
+  generateCaseId(): void {
+    this.timeService.getDate().subscribe(
+      (response: any) => {
+        const dateParts = response.time.split('/');
+        const year = dateParts[2];
+        const month = dateParts[0].padStart(2, "0");
+        const day = dateParts[1].padStart(2, "0");
+        this.financeService.getSize().subscribe(
+          (response: any) => {
+            if (response == 0) {
+              this.caseId = "0001/" + month + "/" + day + "/" + year;
+            }
+            else {
+              this.financeService.findFinanceById(response).subscribe(
+                (response: any) => {
+                  if (response.caseId.slice(-4) === year) {
+                    const lastCaseId = parseInt(response.caseId.slice(0, 4));
+                    const nextCaseId = (lastCaseId + 1).toString().padStart(4, "0");
+                    this.caseId = nextCaseId + "/" + month + "/" + day + "/" + year;
+                  } else {
+                    this.caseId = "0001/" + month + "/" + day + "/" + year;
+                  }
+                }
+              )
+            }
+          }
+        )
+      }
+    )
   }
 
   getFinance(id: number) {
@@ -180,15 +178,16 @@ export class NewFinanceComponent implements OnInit {
         ...form.value,
         financeDate: this.formatDate(this.Finance.financeDate), // Convert date to string
         financeStatus: this.selectedstatus ,// Attach the status
-        team: this.selectedTeam
+        subProcess: this.selectedSubProcess
       };
+      console.log("rrrr", formValueWithDate);
       
       if (this.update) {
         let updatedValue = {
           ...this.Finance, 
           financeDate: this.formatDate(this.Finance.financeDate), // Convert date to string
           financeStatus: this.selectedstatus, // Attach the status
-          team: this.selectedTeam
+          subProcess: this.selectedSubProcess
         }        
         this.financeService.updateFinance(updatedValue).subscribe(
           response => {
