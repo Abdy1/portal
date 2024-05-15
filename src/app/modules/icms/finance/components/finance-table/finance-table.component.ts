@@ -83,8 +83,26 @@ export class FinanceTableComponent implements OnDestroy {
       );
     }
     else if (roles.indexOf("ROLE_ICMS_FINANCE_IC") !== -1) {
-      this.financeService.getFinanceForBranch(this.teamId).subscribe(
-        (response: FinanceModel[]) => {                                       
+      this.financeService.getFinanceForICMSFINANCEIC(this.subProcessId).subscribe(
+        (response: FinanceModel[]) => {  
+          console.log("qqq", response);
+                                               
+          this.FinanceList = response.map(finance => ({
+            ...finance,
+            daysPastDue: this.daysPastDue(finance.actionPlanDueDate)
+          }));
+        },
+        (error: HttpErrorResponse) => {
+          // Handle error
+        }
+      );
+    }
+
+    else if (roles.indexOf("ROLE_ICMS_FINANCE_OWNER") !== -1) {
+      this.financeService.getFinanceForICMSFINANCEIC(this.subProcessId).subscribe(
+        (response: FinanceModel[]) => {  
+          console.log("qqq", response);
+                                               
           this.FinanceList = response.map(finance => ({
             ...finance,
             daysPastDue: this.daysPastDue(finance.actionPlanDueDate)

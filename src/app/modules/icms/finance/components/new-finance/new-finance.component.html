@@ -58,15 +58,14 @@
       </div>
       <div class="flex-auto" *ngIf="!update">
         <label for="accountNumber" class="block mb-2"> Account Number </label>
-        <p-inputNumber
-          [(ngModel)]="Finance.accountNumber"
-          inputId="accountNumber"
-          [useGrouping]="false"
-          [style]="{ width: '30vw', height: '45px' }"
-          (keydown)="limitInput($event)"
+        <input
+          pInputText
+          id="accountNumber"
+          ngModel
           name="accountNumber"
-          [required]="true"
-        ></p-inputNumber>
+          [style]="{ width: '30vw', height: '45px' }"
+          pattern="^(\d{13}|PL\d{5}|ETB\d{13})$"
+        />
     </div>
     
       <div class="flex-auto" *ngIf="!update">
@@ -107,9 +106,9 @@
       </div>
 
       <div class="flex-auto" [hidden]="true">
-        <label for="alphabetic" class=" block mb-2"> Team</label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" [(ngModel)]="selectedTeam"
-          name="team" [readonly]=true [style]="{'width':'30vw','height':'45px'}"  minlength="3" />
+        <label for="alphabetic" class=" block mb-2"> Team/Subprocess</label>
+        <input pInputText pKeyFilter="alpha" id="alphabetic" [(ngModel)]="selectedSubProcess"
+          name="selectedSubProcess" [readonly]=true [style]="{'width':'30vw','height':'45px'}"  minlength="3" />
       </div>
       <div class="flex-auto" [hidden]="true">
         <label for="alphabetic" class="block mb-2"> District</label>
