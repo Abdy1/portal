@@ -87,10 +87,10 @@
           Irregularity
           <p-sortIcon field="irregularity"></p-sortIcon>
         </th>
-        <!-- <th pSortableColumn="amountInvolved">
-          Amount
+        <th pSortableColumn="amountInvolved">
+          Amount Involved
           <p-sortIcon field="amountInvolved"></p-sortIcon>
-        </th> -->
+        </th>
         <th pSortableColumn="customerName">
           Customer Name
           <p-sortIcon field="customerName"></p-sortIcon>
@@ -121,17 +121,18 @@
         <td>{{ trade?.allCategory?.name }}</td>
         <td>{{ trade?.allSubCategory?.name }}</td>
         <td>{{ trade?.tradeType?.name }}</td>
-        <td
-          pTooltip="{{ trade?.irregularity?.name }}"
-          tooltipPosition="top"
-          styleClass="custom-tooltip"
-        >
-          <div class="w-64 overflow-hidden overflow-ellipsis">
+        <td class="w-64 overflow-hidden overflow-ellipsis">
+          <ng-container
+            *ngIf="trade?.irregularity?.name !== 'Other'; else otherIBlock"
+          >
             {{ trade?.irregularity?.name }}
-          </div>
+          </ng-container>
+          <ng-template #otherIBlock>
+            {{ trade?.otherIrregularity }}
+          </ng-template>
         </td>
 
-        <!-- <td>{{ trade?.amountInvolved }}</td> -->
+        <td>{{ trade?.amountInvolved }}</td>
         <td>{{ trade?.customerName }}</td>
         <td>{{ trade?.responsiblePerson }}</td>
         <td>{{ trade?.actionPlanDueDate }}</td>
