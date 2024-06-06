@@ -106,15 +106,14 @@ export class NewTradeComponent implements OnInit {
         const year = dateParts[2];
         const month = dateParts[0].padStart(2, "0");
         const day = dateParts[1].padStart(2, "0");
-        console.log(response)
+
         this.tradeService.getSize().subscribe(
           (response: any) => {
             if (response == 0) {
               this.caseId = "0001/" + month + "/" + day + "/" + year;
-              console.log(this.caseId);
             }
             else {
-              console.log(response)
+       
               this.tradeService.findTradeById(response).subscribe(
                 (response: any) => {
                   if (response.caseId.slice(-4) === year) {
@@ -124,7 +123,6 @@ export class NewTradeComponent implements OnInit {
                   } else {
                     this.caseId = "0001/" + month + "/" + day + "/" + year;
                   }
-                  console.log(response.caseId);
                 }
               )
             }
@@ -160,7 +158,6 @@ export class NewTradeComponent implements OnInit {
     this.tradeService.getStatuses().subscribe(
       (response: TradeStatusModel[]) => {
         this.statuses = response;
-        console.log("eee", response);
         
         this.selectedstatus = this.statuses.find(status => status.name === "Open");
       },
@@ -241,7 +238,6 @@ export class NewTradeComponent implements OnInit {
         team: this.selectedTeam
       };
 
-      console.log("rrrr", formValueWithDate);
       
 
       if (this.update) {
