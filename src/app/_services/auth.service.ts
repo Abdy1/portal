@@ -122,6 +122,9 @@ export class AuthService {
     "ROLE_AMS_MEMBER": 'default_dashboard',
     "ROLE_AMS_AUDITEE": 'default_dashboard',
     "ROLE_CIST_ADMIN": 'default_dashboard',
+    "ROLE_CC_USER_DELIQUENT":'cc_dashboard',
+    "ROLE_CC_USER":'cc_dashboard',
+    "ROLE_CC_ADMIN":'cc_dashboard'
     // Add more roles and routes as needed
   };
 
@@ -137,14 +140,14 @@ export class AuthService {
     const employee = await this.emsService.getEmployeeById(resp?.user?.id).toPromise();
   
     // AUDIT MANAGEMENT HAVE A REQUIREMENT TO PERSIST THEIR USER INFORMATOIN SEPARATELY
-    const userhaveAMS = resp?.user?.roles?.find(obj => obj.name.includes("AMS"))
-  //   if (userhaveAMS){
-  //   const auditStaff = await this.auditStaffService.getAuditStaffByEmployeeId("" + resp?.user?.id,resp?.accessToken).toPromise();
+    const userhaveAMS = resp?.user?.roles?.find(obj => obj.name.includes("AMS") && !obj.name.includes("ROLE_AMS_ADMIN") )
+    if (userhaveAMS){
+    const auditStaff = await this.auditStaffService.getAuditStaffByEmployeeId("" + resp?.user?.id,resp?.accessToken).toPromise();
  
-  //   localStorage.setItem('auditStaff', JSON.stringify(auditStaff))
+    localStorage.setItem('auditStaff', JSON.stringify(auditStaff))
 
-  //   localStorage.setItem("ams_ip", "http://localhost:8099")
-  // }
+    localStorage.setItem("ams_ip", "http://localhost:8099")
+  }
 
 
     localStorage.setItem('gender', employee?.gender);
@@ -185,8 +188,8 @@ export class AuthService {
       }
     }
 
-    localStorage.setItem('subProcessId', employee?.subProcess.id.toString());
-    localStorage.setItem('processId', employee?.process.id.toString());
+    localStorage.setItem('subProcessId', employee?.subProcess?.id.toString());
+    localStorage.setItem('processId', employee?.process?.id.toString());
     let branchId = 'default';
     if (employee?.branch != null) {
       branchId = employee.branch.id.toString();

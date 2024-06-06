@@ -37,6 +37,8 @@ export class TradeTableComponent implements OnDestroy {
   subProcessId: number = Number(localStorage.getItem('subProcessId'));
   teamId: number = JSON.parse(localStorage.getItem("team")).id;
 
+
+
   currentDate: Date;
 
   private subscriptions: Subscription[] = [];
@@ -65,47 +67,6 @@ export class TradeTableComponent implements OnDestroy {
       cond = localStorage.getItem('role_' + index);
     }
   }
-
-
-
-  // public getTradeList(roles: string[]): void {
-
-  //   if (roles.indexOf("ROLE_ICMS_ADMIN") !== -1) {
-  //     this.tradeService.getAllTrade().subscribe(
-  //       (response: TradeModel[]) => {
-  //         console.log(";;;",response);
-  //         //this.TradeList = response;
-  //         this.TradeList = response.map(trade => ({
-  //           ...trade,
-  //           daysPastDue: this.daysPastDue(trade.actionPlanDueDate)
-  //         }));          
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         // Handle error
-  //       }
-  //     );
-  //   }
-  //   else if (roles.indexOf("ROLE_ICMS_TRADE_IC") !== -1) {
-  //     this.tradeService.getTradeForDistrict(this.subProcessId).subscribe(
-  //       (response: TradeModel[]) => {  
-  //         console.log("PPP",response);
-
-  //         //this.TradeList = response;
-                                               
-  //         this.TradeList = response.map(trade => ({
-  //           ...trade,
-  //           daysPastDue: this.daysPastDue(trade.actionPlanDueDate)
-  //         }));
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         // Handle error
-  //       }
-  //     );
-  //   }
-    
-
-  // }
-
 
   public getTradeList(roles: string[]): void {
     let tradeObservable;
