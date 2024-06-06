@@ -1,13 +1,10 @@
 <p-toast position="top-right"></p-toast>
+<p-confirmDialog header="Confirmation" width="425"></p-confirmDialog>
 <div class="flex justify-between mb-3">
   <div class="flex">
     <span class="p-input-icon-left ml-auto">
-      <input
-        pInputText
-        type="text"
-        (input)="dt.filterGlobal($any($event.target)?.value, 'contains')"
-        placeholder="Search here"
-      />
+      <input pInputText type="text" (input)="dt.filterGlobal($any($event.target)?.value, 'contains')"
+        placeholder="Search here" />
     </span>
   </div>
 </div>
@@ -18,29 +15,14 @@
       <h5 class="text-2xl font-bold text-blue-600 my-3 pl-4">Trade Table</h5>
     </div>
     <div class="flex">
-      <button
-        type="button"
-        pButton
-        pRipple
-        (click)="exportExcel()"
-        class="p-button text-blue-600 text-white m-2 p-2"
-        pTooltip="XLS"
-        tooltipPosition="bottom"
-      >
+      <button type="button" pButton pRipple (click)="exportExcel()" class="p-button text-blue-600 text-white m-2 p-2"
+        pTooltip="XLS" tooltipPosition="bottom">
         Download as excel
       </button>
     </div>
   </div>
-  <p-table
-    #dt
-    [columns]="cols"
-    [value]="TradeList"
-    [exportHeader]="'customExportHeader'"
-    selectionMode="single"
-    dataKey="id"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [rows]="5"
-    [globalFilterFields]="[
+  <p-table #dt [columns]="cols" [value]="TradeList" [exportHeader]="'customExportHeader'" selectionMode="single"
+    dataKey="id" [tableStyle]="{ 'min-width': '50rem' }" [rows]="5" [globalFilterFields]="[
       'tradeDate',
       'caseId',
       'tradeNumber',
@@ -51,12 +33,8 @@
       'customerName',
       'responsiblePerson',
       'tradeStatus.name'
-    ]"
-    [rowsPerPageOptions]="[5, 10, 15, 20]"
-    [paginator]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [showCurrentPageReport]="true"
-  >
+    ]" [rowsPerPageOptions]="[5, 10, 15, 20]" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="id">ID</th>
@@ -104,8 +82,8 @@
           Action Plan Due Date<p-sortIcon></p-sortIcon>
         </th>
         <th scope="col" pSortableColumn="">Past Due</th>
-        
-     
+
+
         <th pSortableColumn="tradeStatus.name">
           Status
           <p-sortIcon field="tradeStatus.name"></p-sortIcon>
@@ -123,9 +101,7 @@
         <td>{{ trade?.allSubCategory?.name }}</td>
         <td>{{ trade?.tradeType?.name }}</td>
         <td class="w-64 overflow-hidden overflow-ellipsis">
-          <ng-container
-            *ngIf="trade?.irregularity?.name !== 'Other'; else otherIBlock"
-          >
+          <ng-container *ngIf="trade?.irregularity?.name !== 'Other'; else otherIBlock">
             {{ trade?.irregularity?.name }}
           </ng-container>
           <ng-template #otherIBlock>
@@ -137,8 +113,7 @@
         <td>{{ trade?.customerName }}</td>
         <td>{{ trade?.responsiblePerson }}</td>
         <td>{{ trade?.actionPlanDueDate }}</td>
-        <td
-          [ngClass]="{
+        <td [ngClass]="{
             red:
               trade?.tradeStatus.name === 'Open' &&
               daysPastDue(trade?.actionPlanDueDate) <= 0,
@@ -148,70 +123,50 @@
             closed:
             trade?.tradeStatus.name === 'Closed' &&
               !trade?.actionPlanDueDate
-          }"
-        >
-          <ng-container
-            *ngIf="
+          }">
+          <ng-container *ngIf="
               trade?.tradeStatus?.name === 'Open' &&
               trade?.actionPlanDueDate !== null;
               else closedStatus
-            "
-          >
-            <ng-container
-              *ngIf="
+            ">
+            <ng-container *ngIf="
                 daysPastDue(trade?.actionPlanDueDate) <= 0;
                 else otherText
-              "
-            >
+              ">
               {{ absoluteValue(daysPastDue(trade?.actionPlanDueDate)) }} days past due
             </ng-container>
             <ng-template #otherText> </ng-template>
           </ng-container>
           <ng-template #closedStatus>
-            <span
-              *ngIf="trade?.actionPlanDueDate"
-              [ngClass]="{
+            <span *ngIf="trade?.actionPlanDueDate" [ngClass]="{
                 red: trade?.tradeStatus?.name === 'Closed'
-              }"
-            >
+              }">
               Closed!
             </span>
           </ng-template>
         </td>
 
 
-          <td>{{ trade?.tradeStatus?.name }}</td>
-          <td >
-            <div
-              class="flex gap-2 mr-2"
-              *ngIf="
+        <td>{{ trade?.tradeStatus?.name }}</td>
+        <td>
+          <div class="flex gap-2 mr-2" *ngIf="
                 this.roles.includes('ROLE_ICMS_TRADE_OWNER') &&
                 !trade?.actionTaken &&
                 trade?.tradeStatus?.name === 'Open'
-              "
-            >
-              <button
-                pButton
-                (click)="approveActionPlan(trade)"
-                [ngClass]="{ updateBlue: true }"
-                class="p-button-sm w-24 h-10 p-2"
-                label="Take action"
-              ></button>
-            </div>
-            <div
-              class="flex gap-2"
+              ">
+            <button pButton (click)="approveActionPlan(trade)" [ngClass]="{ updateBlue: true }"
+              class="p-button-sm w-24 h-10 p-2" label="Take action"></button>
+          </div>
+          <div class="flex gap-2" >
+            <button pButton (click)="updateTrade(trade?.id)" [ngClass]="{ updateBlue: true }"
+              class="p-button-sm w-20 h-10 p-2" label="Update"
               *ngIf="this.roles.includes('ROLE_ICMS_TRADE_IC')"
-            >
-              <button
-                pButton
-                (click)="updateTrade(trade?.id)"
-                [ngClass]="{ updateBlue: true }"
-                class="p-button-sm w-20 h-10 p-2"
-                label="Update"
               ></button>
-            </div>
-          </td>
-        </tr>
+            <button *ngIf="this.roles.includes('ROLE_ICMS_ADMIN')" pButton (click)="deleteTrade(trade?.id)"
+              [ngClass]="{ updateBlue: true }"  class="p-button-sm w-20 h-10 p-2" label="Delete"></button>
+          </div>
+        </td>
+      </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
