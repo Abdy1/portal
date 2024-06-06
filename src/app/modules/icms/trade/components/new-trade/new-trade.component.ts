@@ -114,6 +114,7 @@ export class NewTradeComponent implements OnInit {
               console.log(this.caseId);
             }
             else {
+              console.log(response)
               this.tradeService.findTradeById(response).subscribe(
                 (response: any) => {
                   if (response.caseId.slice(-4) === year) {
