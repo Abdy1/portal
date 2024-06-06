@@ -111,11 +111,14 @@ export class NewTradeComponent implements OnInit {
           (response: any) => {
             if (response == 0) {
               this.caseId = "0001/" + month + "/" + day + "/" + year;
+              console.log(this.caseId);
             }
             else {
        
               this.tradeService.findTradeById(response).subscribe(
+              
                 (response: any) => {
+                
                   if (response.caseId.slice(-4) === year) {
                     const lastCaseId = parseInt(response.caseId.slice(0, 4));
                     const nextCaseId = (lastCaseId + 1).toString().padStart(4, "0");
