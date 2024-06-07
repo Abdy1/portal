@@ -69,6 +69,7 @@ export class DefaultLayoutComponent {
 
   // Define a configuration object for roles
   private roleConfig = {
+    "ROLE_ICMS_BRANCH_IC": { navItems: navItemsICMSBranch, dashboardRoute: "cc_dashboard" },
     "ROLE_SUPER_ADMIN": { navItems: navItemsAdmin, dashboardRoute: "default_dashboard" },
     "ROLE_SUPERVISOR": { navItems: navItemSupervisor, dashboardRoute: "default_dashboard" },
     "ROLE_EMS_ADMIN": { navItems: navItemsEMSAdmin, dashboardRoute: "default_dashboard" },
@@ -79,7 +80,6 @@ export class DefaultLayoutComponent {
     "ROLE_ICMS_ADMIN": { navItems: navItemsICMSAdmin, dashboardRoute: "icms_dashboard" },
     "ROLE_ICMS_DISTRICT_IC": { navItems: navItemsICMSDistrict, dashboardRoute: "icms_dashboard/district" },
     "ROLE_ICMS_DISTRICT_DIRECTOR": { navItems: navItemsICMSDistrictDirector, dashboardRoute: "icms_dashboard/district" },
-    "ROLE_ICMS_BRANCH_IC": { navItems: navItemsICMSBranch, dashboardRoute: "icms_dashboard/branch" },
     "ROLE_SMS_ADMIN": { navItems: navItemsSMSAdmin, dashboardRoute: "sms_dashboard" },
     "ROLE_ICMS_PROVISION": { navItems: navItemsICMSProvision, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_BRANCH_MANAGER": { navItems: navItemsICMSBranchManager, dashboardRoute: "default_dashboard" },
@@ -107,7 +107,7 @@ export class DefaultLayoutComponent {
     "ROLE_AMS_ADMIN": { navItems: navItemsAMSAdmin, dashboardRoute: "default_dashboard" },
     "ROLE_AMS_DIRECTOR": { navItems: navItemsAMSDirector, dashboardRoute: "default_dashboard" },
     "ROLE_AMS_AUDITOR": { navItems: navItemsAMSAuditor, dashboardRoute: "default_dashboard" },
-    "ROLE_AMS_DIRECTOR_AUDITEE": { navItems: navItemsAdmin, dashboardRoute: "default_dashboard" }, // This role also includes a supervisor check
+    "ROLE_AMS_DIRECTOR_AUDITEE": { navItems: navItemsAdmin, dashboardRoute: "default_dashboard" }, 
     "ROLE_AMS_MANAGER": { navItems: navItemsAMSManager, dashboardRoute: "default_dashboard" },
     "ROLE_AMS_TEAM_LEADER": { navItems: navItemsAMSTeamLeader, dashboardRoute: "default_dashboard" },
     "ROLE_AMS_MEMBER": { navItems: navItemsAMSMember, dashboardRoute: "default_dashboard" },
@@ -142,6 +142,7 @@ export class DefaultLayoutComponent {
             // Push only config.navItems to the this.navItems array
             this.navItems.push(config.navItems);
             this.dashboardRoute = config.dashboardRoute;
+            
           }
         }
       }
