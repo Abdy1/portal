@@ -16,7 +16,7 @@ export class TradeModel {
     referenceNumber: string; 
     irregularity: string; 
     otherIrregularity: string; 
-    // amountInvolved: string; 
+    amountInvolved: string; 
     customerName: string; 
     responsiblePerson: string; 
     tradeStatus: TradeStatusModel;

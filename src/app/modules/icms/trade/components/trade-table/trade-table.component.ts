@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy } from '@angular/core';
 import { TradeService } from '../../service/trade-services.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { TradeModel } from '../../models/trade-model';
@@ -48,7 +48,9 @@ export class TradeTableComponent implements OnDestroy {
     private messageService: MessageService,
     private timeService: TimeService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private confirmationService: ConfirmationService
+
   ) { }
 
   ngOnInit() {
@@ -67,7 +69,6 @@ export class TradeTableComponent implements OnDestroy {
       cond = localStorage.getItem('role_' + index);
     }
   }
-
 
   public getTradeList(roles: string[]): void {
     let tradeObservable;
@@ -109,12 +110,13 @@ export class TradeTableComponent implements OnDestroy {
       caseId: obj.caseId,
       referenceNumber:obj.referenceNumber,
       customerName: obj.customerName,
+      'Amount' : obj.amountInvolved,
       'allSubCategory.allcategory.name': obj.allSubCategory && obj.allSubCategory.allcategory ? obj.allSubCategory.allcategory.name : null,
       'allSubCategory.name': obj.allSubCategory ? obj.allSubCategory.name : null,
       'tradeType.name': obj.tradeType ? obj.tradeType.name : null,
       otherIrregularity: obj.otherIrregularity,              
       'irregularity.name': obj.irregularity ? obj.irregularity.name : null,
-      amount: parseFloat(obj.amount) || 0,
+      amountInvolved: parseFloat(obj.amountInvolved) || 0,
       responsiblePerson: obj.responsiblePerson,
       actionPlanDueDate: formattedActionPlanDueDate,
       'tradeStatus.name': obj.tradeStatus ? obj.tradeStatus.name : null,
@@ -168,6 +170,43 @@ export class TradeTableComponent implements OnDestroy {
       subscription.unsubscribe();
     }
   }
+
+
+  deleteTrade(id: number): void {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete this record?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.tradeService.deleteTrade(id).subscribe(
+          (response: void) => {
+            this.getTradeList(this.roles);
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: "Deleted Trade successfully"
+            });
+            setTimeout(() => {
+            }, 1000);
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error);
+          }
+        );
+      },
+      reject: (type: ConfirmEventType) => {
+        if (type === ConfirmEventType.REJECT) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'You have rejected'
+          });
+        }
+      }
+    });
+  }
+  
+
   exportExcel() {
     import('xlsx').then((xlsx) => {
       const data = this.tradeListDisplay.map((plan, index) => (
@@ -177,10 +216,12 @@ export class TradeTableComponent implements OnDestroy {
         'Case ID': plan.caseId,
         'Reference Number':plan.referenceNumber,
         'Customer Name': plan.customerName,
+
         Category: plan['allSubCategory.allcategory.name'],
         'Trade Type': plan['tradeType.name'],
         'Sub Category': plan['allSubCategory.name'],
-        Irregularity: plan['irregularity.name'] === 'Other' ? plan['otherIrregularity'] : plan['irregularity.name'],        
+        Irregularity: plan['irregularity.name'] === 'Other' ? plan['otherIrregularity'] : plan['irregularity.name'], 
+        'Amount' : plan.amountInvolved,       
         'Responsible Person': plan.responsiblePerson,
         'Action Plan Due Date': plan.actionPlanDueDate,
         'Status': plan['tradeStatus.name'],
