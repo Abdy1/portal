@@ -250,7 +250,6 @@ export const navItemsICMSBranch = createNavItem(
   'Internal Control',
   '/ICMS',
   [
-    createNavItem('Dashboard', 'icms_dashboard/branch'),
     createNavItem(
       'CIPM',
       '/ICMS/CIPM',
