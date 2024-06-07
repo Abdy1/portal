@@ -11,7 +11,7 @@
 
     <c-header-nav class="d-none d-lg-flex me-auto">
       <c-nav-item>
-        <a cNavLink routerLink="/cc_dashboard" routerLinkActive="active">
+        <a cNavLink routerLinkActive="active">
           Home
         </a>
       </c-nav-item>
@@ -21,7 +21,7 @@
       <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
     </c-header-nav>
   </c-container>
-  <!-- <c-header-divider></c-header-divider> -->
+  <c-header-divider></c-header-divider>
   <c-container [fluid]="true">
     <c-breadcrumb-router class="ms-2"></c-breadcrumb-router>
   </c-container>
@@ -77,13 +77,6 @@
       overflow: 'scroll'
     }"
   >
-    <!--
-    <p-accordion>
-      <p-accordionTab *ngFor="let role of roles" [header]="role.module.name"> -->
-    <!-- <div class="manual" id="manual" [class.hidden]="role.module.name !== 'Sanction List'">
-          <ng-container *ngIf="role.module.name === 'Sanction List'">
-            <div class="page" id="page1"> -->
-    <!-- Add the content of the Compliance Check user manual here -->
     <h2>Introduction</h2>
     <p>
       The Compliance Check system is a powerful tool that helps users ensure
@@ -183,14 +176,5 @@
       [style]="{ 'margin-top': '20px', padding: '10px' }"
       (click)="downloadPDF()"
     ></button>
-    <!--
-
-          </ng-container>
-
-        </div> -->
-    <!--
-      </p-accordionTab>
-
-    </p-accordion> -->
   </p-dialog>
 </ng-template>

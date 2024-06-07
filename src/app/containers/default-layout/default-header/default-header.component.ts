@@ -165,20 +165,6 @@ export class DefaultHeaderComponent extends HeaderComponent {
     const defaultAvatarPath = `./assets/img/${defaultAvatar}`;
 
     const employeeId = Number(localStorage.getItem('employeeId'));
-    //console.log(`Fetching avatar image for employee ${employeeId}...`);
-
-    // this.employeeService.getAvatarImage(employeeId).subscribe(
-    //   (response: any) => {
-    //     const blob = new Blob([response], { type: 'image/jpeg' });
-    //     const url = URL.createObjectURL(blob);
-    //     this.imageData = this.sanitizer.bypassSecurityTrustUrl(url);
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     if (error) {
-    //       this.imageData = defaultAvatarPath;
-    //     }
-    //   }
-    // );
   }
 }
 
