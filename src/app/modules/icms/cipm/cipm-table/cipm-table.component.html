@@ -230,7 +230,8 @@
             }}
           </ng-template>
         </td>
-        <td *ngIf="this.roles.includes('ROLE_ICMS_BRANCH_IC')">
+        <td *ngIf="this.roles.includes('ROLE_ICMS_BRANCH_IC') ||
+        this.roles.includes('ROLE_ICMS_IFB')">
           <button
             pButton
             (click)="updateCIPMs(cipms?.id)"
