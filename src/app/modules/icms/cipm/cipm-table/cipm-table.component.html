@@ -145,7 +145,8 @@
           pSortableColumn="Action"
           *ngIf="
             this.roles.includes('ROLE_ICMS_BRANCH_IC') ||
-            this.roles.includes('ROLE_ICMS_BRANCH_MANAGER')
+            this.roles.includes('ROLE_ICMS_BRANCH_MANAGER') ||
+            this.roles.includes('ROLE_ICMS_IFB')
           "
         >
           Actions
@@ -230,8 +231,7 @@
             }}
           </ng-template>
         </td>
-        <td *ngIf="this.roles.includes('ROLE_ICMS_BRANCH_IC') ||
-        this.roles.includes('ROLE_ICMS_IFB')">
+        <td *ngIf="this.roles.includes('ROLE_ICMS_BRANCH_IC') || this.roles.includes('ROLE_ICMS_IFB')">
           <button
             pButton
             (click)="updateCIPMs(cipms?.id)"
@@ -240,6 +240,7 @@
             label="Update"
           ></button>
         </td>
+        
         <td
           *ngIf="
             this.roles.includes('ROLE_ICMS_BRANCH_MANAGER') &&

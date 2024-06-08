@@ -66,7 +66,7 @@ export class CIPMTableComponent {
       { field: 'referenceNumber', header: 'Reference number' },
       { field: 'insuredName', header: 'Insured name' },
       { field: 'bbranch', header: 'Branch' },
-      { field: 'insuranceCompany', header: 'Insurance Company' },
+      { field: 'insuranceCompanyName', header: 'Insurance Company' },
       { field: 'insuranceDistrict', header: 'District' },
       { field: 'insuranceBranch', header: 'Insurance Branch' },
       { field: 'status.name', header: 'Status' },
@@ -237,7 +237,7 @@ private formatCIPMData(obj: any): any {
         insuranceExpireDate: formattedInsuranceExpireDate,
         daysLeftToExpire: obj.insuranceExpireDate ? this.calculateDaysLeftToExpire(obj.insuranceExpireDate) : null,
         bbranch: obj.bbranch,
-        insuranceComapanyName: obj.insuranceComapanyName,
+        insuranceCompanyName: obj.insuranceCompanyName,
         insuranceDistrict: obj.insuranceDistrict,
         insuranceBranch: obj.insuranceBranch
     };
