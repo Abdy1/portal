@@ -18,7 +18,7 @@ export class ProductTypeService {
       })
     };
      //this.apiServiceUrl = localStorage.getItem('url_4');
-      this.apiServiceUrl = "http://localhost:8084"
+     this.apiServiceUrl = localStorage.getItem('url_4');
 
   }
   constructor(private http: HttpClient) { }
