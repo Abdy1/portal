@@ -17,7 +17,7 @@ export class StatusService {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       })
     };
-    this.apiServiceUrl = "http://localhost:8084";
+    this.apiServiceUrl = localStorage.getItem('url_4');
   }
   constructor(private http: HttpClient) { }
 
