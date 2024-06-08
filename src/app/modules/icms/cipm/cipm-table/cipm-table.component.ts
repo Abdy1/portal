@@ -355,7 +355,7 @@ export class CIPMTableComponent {
         'Reference number': plan.referenceNumber,
         'Insured name': plan.insuredName,
         'Branch':plan.bbranch,
-        'Insurance Company':plan.insuranceComapanyName,
+        'Insurance Company':plan.insuranceCompanyName,
         'District':plan.insuranceDistrict,
         'Insurance Branch':plan.insuranceBranch,
         'Status': plan['status.name'],
