@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -31,6 +32,7 @@ export class EmployeeService {
 
     this.apiServiceUrl = localStorage.getItem('url_1');
     this.emsAPIBaseUrl = "http://10.1.125.58:8082";
+    // this.emsAPIBaseUrl = "http://localhost:8082";
     // prodip
   }
 
@@ -50,6 +52,11 @@ export class EmployeeService {
   getEmployeesByName(name: string): Observable<any> {
     this.init();
     return this.http.get<any>(`${this.emsAPIBaseUrl}/ems/api/getEmployeeByName/${name}`, this.httpOptions)
+  }
+
+  getSupervisorsByName(name: string): Observable<any> {
+    this.init();
+    return this.http.get<any>(`${this.emsAPIBaseUrl}/ems/api/getSupervisorByName/${name}`, this.httpOptions)
   }
 
   getBranchByName(name: string): Observable<any> {
@@ -115,13 +122,13 @@ export class EmployeeService {
   }
   public addEmployee(employee: FormData): Observable<any>{
     this.init();
-    return this.http.post<any>(`${this.apiServiceUrl}/employee/add`, employee, this.formDataOptions)
+    return this.http.post<any>(`${this.emsAPIBaseUrl}/ems/api/addEmployee`, employee, this.formDataOptions)
   }
  
   public updateEmployee(data: FormData): Observable<any> {
     this.init();
 
-    return this.http.put(`${this.emsAPIBaseUrl}/ems/api/updateEmployee`, data, this.formDataOptions)
+    return this.http.put(`${this.emsAPIBaseUrl}/ems/api/updateEmployee`, data, this.httpOptions)
   }
   public deleteEmployee(employeeId: number): Observable<any>{
     this.init();

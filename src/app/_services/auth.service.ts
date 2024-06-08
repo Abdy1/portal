@@ -84,32 +84,40 @@ export class AuthService {
       );
   }
 
- roleRouteMapping = {
+   roleRouteMapping = {
     "ROLE_SUPER_ADMIN": 'default_dashboard',
+    "ROLE_SUPERVISOR": 'default_dashboard',
     "ROLE_EMS_ADMIN": 'default_dashboard',
     "ROLE_EMS_USER": 'cc_dashboard',
+    "ROLE_CC_ADMIN": 'cc_dashboard',
+    "ROLE_CC_USER": 'cc_dashboard',
+    "ROLE_CC_USER_DELIQUENT": 'cc_dashboard',
     "ROLE_ICMS_ADMIN": 'icms_dashboard',
     "ROLE_ICMS_DISTRICT_IC": 'icms_dashboard/district',
+    "ROLE_ICMS_DISTRICT_DIRECTOR": 'icms_dashboard/district',
     "ROLE_ICMS_BRANCH_IC": 'icms_dashboard/branch',
-    "ROLE_ICMS_IFB": 'default_dashboard',
     "ROLE_SMS_ADMIN": 'sms_dashboard',
     "ROLE_ICMS_PROVISION": 'default_dashboard',
     "ROLE_ICMS_BRANCH_MANAGER": 'default_dashboard',
     "ROLE_ICMS_BANKING_OPERATION": 'default_dashboard',
+    "ROLE_ICMS_IFB": 'default_dashboard',
     "ROLE_ICMS_FINANCE_IC": 'default_dashboard',
     "ROLE_ICMS_FINANCE_OWNER": 'default_dashboard',
     "ROLE_ICMS_TRADE_IC": 'default_dashboard',
     "ROLE_ICMS_TRADE_OWNER": 'default_dashboard',
+    "ROLE_ICMS_PROCUREMENT_IC": 'default_dashboard',
+    "ROLE_ICMS_PROCUREMENT_OWNER": 'default_dashboard',
     "ROLE_ICMS_SHARE_IC": 'default_dashboard',
     "ROLE_ICMS_SHARE_OWNER": 'default_dashboard',
-    "ROLE_ICMS_DISTRICT_DIRECTOR": 'icms_dashboard/district',
     "ROLE_SASV_ADMIN": 'default_dashboard',
+    "ROLE_SASV_USER": 'default_dashboard',
+    "ROLE_CAO_ADMIN": 'default_dashboard',
+    "ROLE_CAO_MANAGER": 'default_dashboard',
+    "ROLE_CAO_USER": 'default_dashboard',
     "ROLE_MEMO_ADMIN": 'default_dashboard',
     "ROLE_MEMO_USER": 'default_dashboard',
     "ROLE_ECX_ADMIN": 'default_dashboard',
     "ROLE_ECX_USER": 'default_dashboard',
-    "ROLE_CAO_ADMIN": 'default_dashboard',
-    "ROLE_CAO_USER": 'default_dashboard',
     "ROLE_CMS_ADMIN": 'cms_dashboard',
     "ROLE_CMS_USER": 'default_dashboard',
     "ROLE_AMS_ADMIN": 'default_dashboard',
@@ -121,8 +129,12 @@ export class AuthService {
     "ROLE_AMS_MEMBER": 'default_dashboard',
     "ROLE_AMS_AUDITEE": 'default_dashboard',
     "ROLE_CIST_ADMIN": 'default_dashboard',
-    // Add more roles and routes as needed
-  };
+    "ROLE_SEARCH": 'default_dashboard',
+    "ROLE_DELINQUENT": 'default_dashboard',
+    "ROLE_WEEKLY_CHECK": 'default_dashboard',
+    "ROLE_COMPLIANCE_CHECK_MENU": 'default_dashboard'
+};
+
 
 
 
@@ -134,16 +146,16 @@ export class AuthService {
 
 
     const employee = await this.emsService.getEmployeeById(resp?.user?.id).toPromise();
+  
+    // AUDIT MANAGEMENT HAVE A REQUIREMENT TO PERSIST THEIR USER INFORMATOIN SEPARATELY
+    const userhaveAMS = resp?.user?.roles?.find(obj => obj.name.includes("AMS") && !obj.name.includes("ROLE_AMS_ADMIN") )
+    if (userhaveAMS){
+    const auditStaff = await this.auditStaffService.getAuditStaffByEmployeeId("" + resp?.user?.id,resp?.accessToken).toPromise();
+ 
+    localStorage.setItem('auditStaff', JSON.stringify(auditStaff))
 
-    //AUDIT MANAGEMENT HAVE A REQUIREMENT TO PERSIST THEIR USER INFORMATOIN SEPARATELY
-    // const auditStaff = await this.auditStaffService.getAuditStaffByEmployeeId("" + resp?.user?.id,resp?.accessToken).toPromise();
-    // const userhaveAMS = resp?.user?.roles?.find(obj => obj.name.includes("AMS"))
-    // if (userhaveAMS) {
-      // localStorage.setItem('auditStaff', JSON.stringify(auditStaff))
-    // }
-
-    localStorage.setItem("ams_ip", "http://10.1.125.58:8099")
-
+    localStorage.setItem("ams_ip", "http://localhost:8099")
+  }
 
 
     localStorage.setItem('gender', employee?.gender);
@@ -184,8 +196,8 @@ export class AuthService {
       }
     }
 
-    localStorage.setItem('subProcessId', employee?.subProcess.id.toString());
-    localStorage.setItem('processId', employee?.process.id.toString());
+    localStorage.setItem('subProcessId', employee?.subProcess?.id.toString());
+    localStorage.setItem('processId', employee?.process?.id.toString());
     let branchId = 'default';
     if (employee?.branch != null) {
       branchId = employee.branch.id.toString();
@@ -196,16 +208,14 @@ export class AuthService {
 
    const role = resp?.user?.roles[0]?.name;
 
-  if (role) {
-    // Check if the user's role is in the mapping
-    if (this.checkModule(resp?.user, role.split("_")[1]) && role in this.roleRouteMapping) {
-      // If it is, navigate to the corresponding route
-      await this.router.navigate([this.roleRouteMapping[role]]);
-    } else {
-      // If it's not, navigate to the default dashboard
-      await this.router.navigate(['default_dashboard']);
-    }
-  }
+   if (role) {
+       if (this.checkModule(resp?.user, role.split("_")[1]) && role in this.roleRouteMapping) {
+           await this.router.navigate([this.roleRouteMapping[role]]);
+       } else {
+           await this.router.navigate(['default_dashboard']);
+       }
+   } 
+   
   }
 
 
@@ -222,10 +232,10 @@ export class AuthService {
     return false;
   }
 
-  checkModule(user: any, moduleCode: string): boolean {
+  checkModule(user: any, moduleCode: string): boolean {    
     if (user?.roles?.length > 0) {
       for (const role of user.roles) {
-        if (role.name.split("_")[1] == moduleCode && role.name.includes("ADMIN")) {
+        if (role.name.split("_")[1] == moduleCode) {
           return true;
         }
       }

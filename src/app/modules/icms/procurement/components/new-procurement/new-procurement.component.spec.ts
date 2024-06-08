@@ -1,20 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from '../../../icons/icon-subset';
-import { EMSComponent } from './ems-upload.component';
 
-describe('FormControlsComponent', () => {
-  let component: EMSComponent;
-  let fixture: ComponentFixture<EMSComponent>;
+import { AccordionModule, CardModule, GridModule } from '@coreui/angular';
+import { IconSetService } from '@coreui/icons-angular';
+import { iconSubset } from '../../../../../icons/icon-subset';
+import { NewProcurementComponent  } from './new-procurement.component';
+
+describe('NewShareComponent', () => {
+  let component: NewProcurementComponent ;
+  let fixture: ComponentFixture<NewProcurementComponent >;
   let iconSetService: IconSetService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EMSComponent],
-      imports: [CardModule, GridModule, FormsModule, FormModule, ButtonModule, RouterTestingModule],
+      declarations: [NewProcurementComponent ],
+      imports: [AccordionModule, NoopAnimationsModule, CardModule, GridModule, RouterTestingModule],
       providers: [IconSetService]
     })
       .compileComponents();
@@ -24,7 +25,7 @@ describe('FormControlsComponent', () => {
     iconSetService = TestBed.inject(IconSetService);
     iconSetService.icons = { ...iconSubset };
 
-    fixture = TestBed.createComponent(EMSComponent);
+    fixture = TestBed.createComponent(NewProcurementComponent );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
