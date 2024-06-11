@@ -57,10 +57,14 @@ export class AnnualPlanService {
     this.init();
     return this.http.post(`${this.apiServiceUrl}/ams/annualPlan/update`, annualPlan, this.httpOptions)
   }
+  public registerAnnualPlan(annualPlan: AnnualPlanDTO): Observable<any> {
+    this.init();
+    return this.http.post(`${this.apiServiceUrl}/ams/annualPlan/register`, annualPlan, this.httpOptions)
+  }
 
   public approveAnnualPlan(id: number): Observable<any> {
     this.init();
-    return this.http.post(`${this.apiServiceUrl}/ams/annualPlan/approve/${id}`, this.httpOptions)
+    return this.http.post(`${this.apiServiceUrl}/ams/annualPlan/approve/${id}`,{}, this.httpOptions)
   }
 
 

@@ -32,6 +32,7 @@ export const navItemsAdmin = createNavItem(
   [
     createNavItem('Assign Role', '/user/assignRole'),
     createNavItem('Update User', '/user/updateUser'),
+    createNavItem('Add Employee', '/ems/addEmployee'),
   ],
   'cil-settings'
 );
@@ -46,6 +47,7 @@ export const navItemsSuperAdmin = createNavItem(
       [
         createNavItem('Add Module', '/module/addModule'),
         createNavItem('View Modules', '/module/viewModule'),
+      
       ]
     ),
     // Add more children as needed
@@ -85,7 +87,7 @@ export const navItemsAMSManager = createNavItem(
       'Setting',
       '/ams',
       [
-        createNavItem('Audit universe', '/ams/audit-universe'),
+        // createNavItem('Audit universe', '/ams/audit-universe'),
         createNavItem('Audit object', '/ams/audit-object'),
         createNavItem('Risk item', '/ams/risk-item'),
       ],

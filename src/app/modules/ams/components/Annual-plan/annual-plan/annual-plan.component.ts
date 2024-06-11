@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AnnualPlanService } from 'src/app/modules/ams/services/annual-plan/annual-plan.service';
 import { AnnualPlanDTO } from 'src/app/modules/ams/models/annualPlan';
 import { NewAnnualPlanComponent } from '../new-annual-plan/newAnnualPlan.component';
@@ -10,6 +10,11 @@ import * as FileSaver from 'file-saver';
 import { NewAuditScheduleComponent } from '../../Audit-schedule/new-audit-schedule/newAuditSchedule.component';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { AuditUniverseService } from '../../../services/auidit-universe/audit-universe.service';
+import { RiskLevelDTO } from '../../../models/RiskLevel';
+import { NewRiskLevel } from '../../Audit-universe/new-risk-level/newRiskLevel.component';
+import { RiskScoreComponent } from '../risk-score/risk-score.component';
+import { RistScoreDTO } from '../../../models/RiskScoreDTO';
 
 
 interface Column {
@@ -35,6 +40,7 @@ export class AnnualPlanComponent {
 
   public dropdownOptions = this.getYears();
   public selectedDropdown: string;
+  riskScoreDialogRef: DynamicDialogRef;
 
   public annualInfo: AnnualPlanDTO;
   selectedAnnualInfo: AnnualPlanDTO;
@@ -42,6 +48,9 @@ export class AnnualPlanComponent {
   exportColumns!: ExportColumn[];
   cols!: Column[];
 
+  public riskLevel:RiskLevelDTO[] = [];
+  riskLevelNonEmpty:boolean;
+  savedRiskScores: RistScoreDTO[] = []
 
   private subscriptions: Subscription[] = [];
 
@@ -50,7 +59,9 @@ export class AnnualPlanComponent {
     private dialogService: DialogService,
     private messageService: MessageService,
     private datePipe: DatePipe,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private auditUniverseService:AuditUniverseService,
+    private cdref: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -70,8 +81,12 @@ export class AnnualPlanComponent {
       title: col.header,
       dataKey: col.field,
     }));
+    this.getRiskLevel();
   }
 
+  ngAfterContentChecked() {
+    this.cdref.detectChanges();
+  }
   getAnnualPlans(): void {
     this.subscriptions.push(
       this.annualPlanService.getAnnualPlans().subscribe(
@@ -206,17 +221,29 @@ export class AnnualPlanComponent {
     });
   }
 
+  show(annualPlan:AnnualPlanDTO) {
+    this.riskScoreDialogRef = this.dialogService.open(RiskScoreComponent, {
+      header: 'Risk score',
+      width: '60%',
+      data: { annualPlanInfo: annualPlan },
+    });
+    this.riskScoreDialogRef.onClose.subscribe((savedRiskScores) => {
+      if (savedRiskScores) {
+        this.savedRiskScores = savedRiskScores;
+        this.cdref.detectChanges();
+      }
+    });
+  }
+
   approveAnnualPlan(addDivForm: number): void {
 
-  
 
-  
     this.subscriptions.push(
       this.annualPlanService
         .approveAnnualPlan(addDivForm)
         .subscribe(
           (response: any) => {
-
+            this.getAnnualPlans();
           },
           (error: HttpErrorResponse) => {
             console.log(error);
@@ -231,7 +258,51 @@ export class AnnualPlanComponent {
     const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => `${startYear + i}/${startYear + i + 1}`);
     return years;
   }
+  updateRiskLevel(riskLevel:RiskLevelDTO): void {
+    
+    const ref = this.dialogService.open(NewRiskLevel, {
+      header: 'Create Risk Level',
+      draggable: true,
+      width: '60%',
+      data: { riskLevel },
+      contentStyle: { 'min-height': 'auto', overflow: 'auto' },
+      baseZIndex: 10000,
+    });
 
+    ref.onClose.subscribe((response: any) => {
+      if (response.status) {
+        this.getRiskLevel();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: response.message,
+        });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Failed',
+          detail: response.message,
+        });
+      }
+    });
+  }
+  getRiskLevel(): void {
+    this.subscriptions.push(
+      this.auditUniverseService.getRiskLevel().subscribe(
+        (response: any) => {
+          this.riskLevel = response.result;   
+          console.log(this.riskLevel);
+          this.riskLevelNonEmpty = response.status;
+          
+      
+
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      )
+    );
+  }
   ngOnDestroy() {
     for (const subscription of this.subscriptions) {
       subscription.unsubscribe();
