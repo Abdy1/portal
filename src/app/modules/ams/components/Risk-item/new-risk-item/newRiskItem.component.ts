@@ -50,7 +50,7 @@ export class NewRiskItemComponent implements OnDestroy {
       this.auditTypeService.getAuditTypes().subscribe(
       (response: any) => {
         this.auditTypes = response.result.map(
-          (auditType: AuditType) => auditType.name
+          (auditType: AuditType) => auditType
         );
       },
       (error: HttpErrorResponse) => {
@@ -70,6 +70,7 @@ export class NewRiskItemComponent implements OnDestroy {
   addRiskItem(addDivForm: NgForm): void {
  
     addDivForm.value.createdUser = localStorage.getItem('id')
+    
 
     this.subscriptions.push(
       this.riskItemService

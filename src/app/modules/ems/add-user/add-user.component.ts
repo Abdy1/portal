@@ -17,6 +17,7 @@ import { ADUserService } from 'src/app/services/sso-services/ad-user.service';
 import Fuse from 'fuse.js'
 import { Process } from 'src/app/models/sso-models/process';
 import { Employee } from '../../ams/models/employee';
+import { UserService } from 'src/app/services/sso-services/user.service';
 
 
 @Component({
@@ -109,7 +110,8 @@ export class AddUser implements OnInit {
     private moduleService: ModuleService,
     private roleService: RoleService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private userService:UserService
   ) { }
 
   ngOnInit() {
@@ -310,61 +312,77 @@ export class AddUser implements OnInit {
   public addUser(): void {
     this.employeeService.addEmployee(this.addUserForm.value).subscribe(
       (response: any) => {
+        this.addToSso()
+        if (response && response.employeeId) {
+          // Successful response (Assuming response contains employeeId)
+          
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Employee Added Successfully!'
+          });
+          setTimeout(() => {
+            this.router.navigate(['ems/addEmployee']);
+          }, 1500);
+        }
+        //  else {
+        //   // Error response (Assuming response is a string message)
+        //   let errorMessage = response || 'An error occurred.';
+        //   this.messageService.add({
+        //     severity: 'error',
+        //     summary: 'Error',
+        //     detail: errorMessage
+        //   });
+        // }
+      },
+      (error) => {
+        console.log(error.error)
+        // Handle other errors (e.g., network issues)
+        let errorMessage = 'An unexpected error occurred.';
+        if (error.error ) {
+          errorMessage = error.error;
+        }
         this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: "Employee Added Successfully!"
+          severity: 'error',
+          summary: 'Error',
+          detail: errorMessage
         });
-        setTimeout(() => {
-          this.router.navigate(['ems/addEmployee']);
-        }, 1500);
-
-        // handle response
-
-
-        // this.searchedJob = response;
-
       }
-    )
-    // let time: string;
-    // let roles: any[];
-    // this.timeService.getDateTime().toPromise().then((dateTime) => {
-    //   time = dateTime;
-    //   return this.roleService.getRolesForModules(addUserForm.value.modules).toPromise();
-    // }).then((moduleRoles) => {
-    //   roles = moduleRoles;
-    //   const filteredRoles = roles.filter(role => role.name.includes("ADMIN"));
-    //   const formData = new FormData();
-
-    //   formData.append('username', addUserForm.value.adUserName);
-    //   formData.append('active', 'true');
-    //   formData.append('createdAt', time);
-    //   formData.append('updatedAt', time);
-    //   formData.append('id', addUserForm.value.employeeId);
-
-    //   if (this.selectedFiles1) {
-    //     formData.append('employeeImage', this.selectedFiles1);
-    //     this.selectedFiles1 = undefined;
-    //   }
-
-    //   if (this.selectedFiles2) {
-    //     formData.append('signatureImage', this.selectedFiles2);
-    //     this.selectedFiles2 = undefined;
-    //   }
-      
-
-    //   // formData.append('roles', new Blob([JSON.stringify(this.selectedRole)], { type: 'application/json' }));
-   
-    //   // return this.userService.addUser(formData).toPromise();
-    // }).then((response: any) => {
-    //   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is created.' });
-    //   // setTimeout(() => { this.router.navigate(['viewAdmins']); }, 1000);
-    // }).catch((errors: HttpErrorResponse) => {
-    //   this.messageService.add({ severity: 'error', summary: 'Error', detail: errors.error.message });
-    // });
+    );
   }
-
   
+  public addToSso(): void {
+    // Create FormData object to send user data
+    const formData = new FormData();
+
+    // Append user data to FormData
+    formData.append('username','');
+    formData.append('active', 'true');
+    formData.append('id', this.addUserForm.value.employeeId);
+
+    // Append images if available
+    if (this.selectedFiles1) {
+        formData.append('employeeImage', this.selectedFiles1);
+        this.selectedFiles1 = undefined;
+    }
+
+    if (this.selectedFiles2) {
+        formData.append('signatureImage', this.selectedFiles2);
+        this.selectedFiles2 = undefined;
+    }
+
+    // Send FormData to userService to add user
+    this.userService.addUser(formData).toPromise().then((response: any) => {
+        // If user added successfully, show success message
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is created.' });
+        setTimeout(() => { window.location.reload()}, 1000);
+    }).catch((errors: HttpErrorResponse) => {
+        // If an error occurred, show error message
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: errors.error.message });
+    });
+}
+
+
 
   getJob(event: any) {
 

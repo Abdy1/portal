@@ -57,4 +57,9 @@ export class AuditObjectService {
     this.init();
     return this.http.post(`${this.apiServiceUrl}/ams/auditObject/update`, auditObject, this.httpOptions)
   }
+
+  public approveAuditObject(id: number): Observable<any> {
+    this.init();
+    return this.http.post(`${this.apiServiceUrl}/ams/auditObject/approve/${id}`,{}, this.httpOptions)
+  }
 }

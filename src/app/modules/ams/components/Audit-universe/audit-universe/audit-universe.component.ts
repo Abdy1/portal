@@ -182,33 +182,33 @@ export class AuditUniverseComponent implements OnDestroy {
     });
   }
 
-  createNewRiskLevel(): void {
+  // createNewRiskLevel(): void {
     
-    const ref = this.dialogService.open(NewRiskLevel, {
-      header: 'Create Risk Level',
-      draggable: true,
-      width: '60%',
-      contentStyle: { 'min-height': 'auto', overflow: 'auto' },
-      baseZIndex: 10000,
-    });
+  //   const ref = this.dialogService.open(NewRiskLevel, {
+  //     header: 'Create Risk Level',
+  //     draggable: true,
+  //     width: '60%',
+  //     contentStyle: { 'min-height': 'auto', overflow: 'auto' },
+  //     baseZIndex: 10000,
+  //   });
 
-    ref.onClose.subscribe((response: any) => {
-      if (response.status) {
-        this.getRiskLevel();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: response.message,
-        });
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Failed',
-          detail: response.message,
-        });
-      }
-    });
-  }
+  //   ref.onClose.subscribe((response: any) => {
+  //     if (response.status) {
+  //       this.getRiskLevel();
+  //       this.messageService.add({
+  //         severity: 'success',
+  //         summary: 'Success',
+  //         detail: response.message,
+  //       });
+  //     } else {
+  //       this.messageService.add({
+  //         severity: 'error',
+  //         summary: 'Failed',
+  //         detail: response.message,
+  //       });
+  //     }
+  //   });
+  // }
 
   updateRiskLevel(riskLevel:RiskLevelDTO): void {
     
