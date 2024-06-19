@@ -26,8 +26,8 @@ export class EMSService {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       })
     };
-    // this.apiServiceUrl = localStorage.getItem('url_2');
-    this.apiServiceUrl = "http://localhost:8082";
+    this.apiServiceUrl = localStorage.getItem('url_2');
+    // this.apiServiceUrl = "http://localhost:8082";
   }
   constructor(private http: HttpClient) { }
 
