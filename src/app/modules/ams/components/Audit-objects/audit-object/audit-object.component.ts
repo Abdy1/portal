@@ -32,6 +32,8 @@ export class AuditObjectComponent {
 
   public annualPlans: AnnualPlanDTO[] = [];
   public auditObject: AuditObjectDTO[] = [];
+  private roles = JSON.parse(localStorage.getItem("allRoles"));
+  public isDirector:boolean;
 
   public auditObjectInfo: AuditObjectDTO;
   selectedAuditObjectInfo: AuditObjectDTO;
@@ -51,6 +53,7 @@ export class AuditObjectComponent {
 
   ngOnInit() {
     this.getAuditObjects();
+    this.isDirector = this.roles.some(obj => obj.name === "ROLE_AMS_DIRECTOR");
     this.cols = [
       { field: 'id', header: 'ID' },
       { field: 'name', header: 'Name' },

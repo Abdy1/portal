@@ -29,6 +29,11 @@ const routes: Routes = [
           import('./modules/cc/dashboard/dashboard.module').then((m) => m.CCDashboardModule)
       },
       {
+        path: 'ems_dashboard',
+        loadChildren: () =>
+          import('./modules/ems/dashboard/dashboard.module').then((m) => m.EMSDashboardModule)
+      },
+      {
         path: 'icms_dashboard',
         loadChildren: () =>
           import('./modules/icms/dashboard/dashboard.module').then((m) => m.ICMSDashboardModule)

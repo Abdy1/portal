@@ -55,6 +55,7 @@ export class AuthService {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
+
     }
     return throwError(
       'Something bad happened; please try again later.');
@@ -85,8 +86,9 @@ export class AuthService {
   }
 
    roleRouteMapping = {
-    "ROLE_SUPER_ADMIN": 'default_dashboard',
+    "ROLE_SUPER_ADMIN": 'ems_dashboard',
     "ROLE_SUPERVISOR": 'default_dashboard',
+    "ROLE_SYSTEM_ADMIN": 'ems_dashboard',
     "ROLE_EMS_ADMIN": 'default_dashboard',
     "ROLE_EMS_USER": 'cc_dashboard',
     "ROLE_CC_ADMIN": 'cc_dashboard',
@@ -143,9 +145,9 @@ export class AuthService {
   // After login save token and other values(if any) in localStorage
   async setUser(resp: JwtResponse) {
 
+   console.log(resp)
 
-
-    const employee = await this.emsService.getEmployeeById(resp?.user?.id).toPromise();
+    const employee = await this.emsService.getEmployeeByIdWithAccess(resp?.user?.id,resp?.accessToken).toPromise();
   
     // AUDIT MANAGEMENT HAVE A REQUIREMENT TO PERSIST THEIR USER INFORMATOIN SEPARATELY
     const userhaveAMS = resp?.user?.roles?.find(obj => obj.name.includes("AMS") && !obj.name.includes("ROLE_AMS_ADMIN") )

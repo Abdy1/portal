@@ -1,0 +1,38 @@
+<form [formGroup]="addBranchForm" (ngSubmit)="addBranch()">
+  <div class="flex flex-wrap gap-2 mb-4">
+    <div class="flex-auto">
+      <label for="alphabetic" class="block mb-2"> Branch ID: </label>
+      <input type="text" pInputText id="branchId" formControlName="id" [style]="{'width':'30vw','height':'45px'}"
+        required pattern="^[a-zA-Z0-9]*$" />
+    </div>
+    <div class="flex-auto">
+      <label for="alphabetic" class="block mb-2"> Branch Name: </label>
+      <input type="text" pInputText id="name" formControlName="name" [style]="{'width':'30vw','height':'45px'}" required
+         />
+    </div>
+
+  </div>
+
+  <div class="flex flex-wrap gap-2 mb-4">
+    <div class="flex-auto">
+      <label for="alphabetic" class="block mb-2"> Mnemonic: </label>
+      <input type="text" pInputText id="location" formControlName="location" [style]="{'width':'30vw','height':'45px'}"
+        required />
+    </div>
+    <div class="flex-auto">
+      <label for="alphabetic" class="block mb-2"> Location: </label>
+      <input type="text" pInputText id="mnemonic" formControlName="mnemonic" [style]="{'width':'30vw','height':'45px'}"
+        required  />
+    </div>
+
+
+  </div>
+
+
+  <div class="button-container">
+    <div class="spacer"></div>
+    <p-toast></p-toast>
+    <p-button [disabled]="addBranchForm.invalid" label="Search" class="submit-button" label="Create Branch"
+      type="submit" />
+  </div>
+</form>
