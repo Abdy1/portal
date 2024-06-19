@@ -26,8 +26,8 @@ export class EMSService {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       })
     };
-    this.apiServiceUrl = localStorage.getItem('url_2');
-    // this.apiServiceUrl = "http://localhost:8082";
+    // this.apiServiceUrl = localStorage.getItem('url_2');
+    this.apiServiceUrl = "http://10.1.125.58:8082";
   }
   constructor(private http: HttpClient) { }
 
@@ -74,7 +74,6 @@ export class EMSService {
     return this.http.get<any>(`${this.apiServiceUrl}/ems/api/getEmployeeByName/${fullname}`, this.httpOptions2)
 
   }
-
 
 
   getEmployeesOfVicePresidents(): Observable<any> {
