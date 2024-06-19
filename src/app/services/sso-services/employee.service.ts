@@ -31,8 +31,8 @@ export class EmployeeService {
     }
 
     this.apiServiceUrl = localStorage.getItem('url_1');
-    this.emsAPIBaseUrl = "http://10.1.125.58:8082";
-    // this.emsAPIBaseUrl = "http://localhost:8082";
+    // this.emsAPIBaseUrl = "http://10.1.125.58:8082";
+    this.emsAPIBaseUrl = "http://localhost:8082";
     // prodip
   }
 
@@ -124,7 +124,10 @@ export class EmployeeService {
     this.init();
     return this.http.post<any>(`${this.emsAPIBaseUrl}/ems/api/addEmployee`, employee, this.formDataOptions)
   }
- 
+  public addBranch(branch: FormData): Observable<any>{
+    this.init();
+    return this.http.post<any>(`${this.emsAPIBaseUrl}/ems/api/addBranch`, branch, this.formDataOptions)
+  }
   public updateEmployee(data: FormData): Observable<any> {
     this.init();
 
@@ -138,4 +141,13 @@ export class EmployeeService {
     this.init();
     return this.http.get<any>(`${this.emsAPIBaseUrl}/ems/api/getAllSubProcessList`, this.httpOptions)
   }
+  countEmployee(): Observable<any>{
+    this.init();
+    return this.http.get<any>(`${this.emsAPIBaseUrl}/ems/api/countEmployee`, this.httpOptions)
+  }
+  countBranch(): Observable<any>{
+    this.init();
+    return this.http.get<any>(`${this.emsAPIBaseUrl}/ems/api/countBranch`, this.httpOptions)
+  }
+
 }

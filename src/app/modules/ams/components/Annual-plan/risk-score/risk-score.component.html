@@ -1,17 +1,17 @@
-<form #addDivForm="ngForm">
-  <div class="flex flex-col justify-around flex-wrap m-8">
-    <div class="flex flex-row justify-between w-full">
-      <div class="column risk-item">
-        <h6 class="font-bold text-lg underline text-blue-600">Risk Item</h6>
+  <form #addDivForm="ngForm">
+    <div class="flex flex-col justify-around flex-wrap m-8">
+      <div class="flex flex-row justify-between w-full">
+        <div class="column risk-item">
+          <h6 class="font-bold text-lg underline text-blue-600">Risk Item</h6>
+        </div>
+        <div class="column">
+          <h6 class="font-bold text-lg underline text-blue-600">Likelihood</h6>
+        </div>
+        <div class="column">
+          <h6 class="font-bold text-lg underline text-blue-600">Impact</h6>
+        </div>
       </div>
-      <div class="column">
-        <h6 class="font-bold text-lg underline text-blue-600">Likelihood</h6>
-      </div>
-      <div class="column">
-        <h6 class="font-bold text-lg underline text-blue-600">Impact</h6>
-      </div>
-    </div>
-    <div
+      <div
       *ngFor="let riskScore of riskScores; let i = index"
       class="flex flex-row justify-between w-full"
     >
@@ -20,29 +20,35 @@
       </div>
       <div class="column">
         <p-dropdown
-          name="likelihood"
-          [style]="{ width: '90px', height: '45px' }"
-          [options]="options"
-          [(ngModel)]="riskScore.likelihood"
-        ></p-dropdown>
+        name="likelihood"
+        [style]="{ width: '90px', height: '45px' }"
+        [(ngModel)]="riskScore.likelihood"
+        [options]="options"
+        [ngModelOptions]="{standalone: true}"
+     
+      ></p-dropdown>
       </div>
       <div class="column">
         <p-dropdown
-          name="impact"
-          [style]="{ width: '90px', height: '45px' }"
-          [options]="options"
-          [(ngModel)]="riskScore.impact"
-        ></p-dropdown>
+        name="impact"
+        [style]="{ width: '90px', height: '45px' }"
+        [(ngModel)]="riskScore.impact"
+        [options]="options"
+        [ngModelOptions]="{standalone: true}"
+
+      ></p-dropdown>
+      
       </div>
     </div>
-  </div>
-  <div style="margin-top: 10em"></div>
-  <div class="save-button">
-    <p-button
-      label="Save"
-      class="save-button"
-      (click)="saveRiskScores()"
-      type="button"
-    ></p-button>
-  </div>
-</form>
+    
+    </div>
+    <div style="margin-top: 10em"></div>
+    <div class="save-button">
+      <p-button
+        label="Update"
+        class="save-button"
+        (click)="saveRiskScores()"
+        type="button"
+      ></p-button>
+    </div>
+  </form>

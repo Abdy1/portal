@@ -27,30 +27,27 @@ export const navItemMenu = {
 }
 
 export const navItemsAdmin = createNavItem(
-  "System Admin",
+  "Super System Admin",
   "/user",
   [
     createNavItem('Assign Role', '/user/assignRole'),
     createNavItem('Update User', '/user/updateUser'),
     createNavItem('Add Employee', '/ems/addEmployee'),
+    createNavItem('Add Branch', '/ems/addBranch'),
+
   ],
   'cil-settings'
 );
 
 export const navItemsSuperAdmin = createNavItem(
-  'System Admin',
+  'Super Admin',
   '/',
   [
-    createNavItem(
-      'Module',
-      '/module',
-      [
-        createNavItem('Add Module', '/module/addModule'),
-        createNavItem('View Modules', '/module/viewModule'),
-      
-      ]
-    ),
-    // Add more children as needed
+
+
+    createNavItem('Assign Role', '/user/assignRole'),
+    createNavItem('Update User', '/user/updateUser'),
+
   ],
   'cil-settings'
 );
@@ -66,13 +63,13 @@ export const navItemSupervisor = createNavItem(
 
 
 export const navItemsAMSAdmin = createNavItem(
-      'AMS Setting',
-      '/ams',
-      [
-        createNavItem('Auditors', '/ams/audit-staff'),
-        createNavItem('Audit Type', '/ams/audit-type')
-      ],
-      'cil-settings'
+  'AMS Setting',
+  '/ams',
+  [
+    createNavItem('Auditors', '/ams/audit-staff'),
+    createNavItem('Audit Type', '/ams/audit-type')
+  ],
+  'cil-settings'
 );
 
 export const navItemsAMSManager = createNavItem(

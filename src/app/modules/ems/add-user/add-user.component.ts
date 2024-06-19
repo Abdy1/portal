@@ -316,24 +316,20 @@ export class AddUser implements OnInit {
         if (response && response.employeeId) {
           // Successful response (Assuming response contains employeeId)
           
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Employee Added Successfully!'
-          });
+     
           setTimeout(() => {
             this.router.navigate(['ems/addEmployee']);
           }, 1500);
         }
-        //  else {
-        //   // Error response (Assuming response is a string message)
-        //   let errorMessage = response || 'An error occurred.';
-        //   this.messageService.add({
-        //     severity: 'error',
-        //     summary: 'Error',
-        //     detail: errorMessage
-        //   });
-        // }
+         else {
+          // Error response (Assuming response is a string message)
+          let errorMessage = response || 'An error occurred.';
+          this.messageService.add({
+            severity: 'success',
+            summary: 'success',
+            detail: "Created Successfully"
+          });
+        }
       },
       (error) => {
         console.log(error.error)

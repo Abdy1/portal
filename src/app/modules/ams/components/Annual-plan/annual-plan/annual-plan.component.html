@@ -151,7 +151,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-annualPlan let-rowIndex="rowIndex">
       <tr [pSelectableRow]="annualPlan">
-        <td>{{ annualPlan.id}}</td>
+        <td>{{rowIndex + 1}}</td>
         <td>{{ annualPlan?.auditObject?.name }}</td>
         <td>{{ annualPlan?.description }}</td>
         <td>{{ annualPlan?.riskScore }}</td>
@@ -161,20 +161,21 @@
           <div class="flex gap-2">
             <button
             pButton
-            *ngIf="annualPlan?.status == 'Pending'"
+            (click)="show(annualPlan)"
+            [ngClass]="{ updateBlue: true }"
+            class="p-button-sm w-20 h-10 p-2"
+            label="Update"
+          ></button>
+
+            <button
+            pButton
+            *ngIf="annualPlan?.status == 'Pending' && isDirector"
             (click)="approveAnnualPlan(annualPlan.id)"
             [ngClass]="{ updateBlue: true }"
             class="p-button-sm w-20 h-10 p-2"
             label="Approve"
           ></button>
-            <button
-              pButton
-              *ngIf="annualPlan?.status == 'Pending'"
-              (click)="show(annualPlan)"
-              [ngClass]="{ updateBlue: true }"
-              class="p-button-sm w-20 h-10 p-2"
-              label="Update"
-            ></button>
+   
             <button
               pButton
               *ngIf="annualPlan?.status == 'Approved'"
@@ -183,7 +184,6 @@
               class="p-button-sm h-10 p-2 whitespace-nowrap"
               label="Add to schedule"
             ></button>
-            <p *ngIf="annualPlan?.status != 'Pending'">No actions</p>
           </div>
         </td>
       </tr>

@@ -39,6 +39,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AddUser } from './add-user/add-user.component';
+import { AddBranch } from './add-branch/add-branch.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule} from 'primeng/calendar'
@@ -94,7 +95,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     
   ],
   declarations: [
-    AddUser
+    AddUser,
+    AddBranch
+    
   ],
   providers: [ConfirmationService, MessageService]
 })

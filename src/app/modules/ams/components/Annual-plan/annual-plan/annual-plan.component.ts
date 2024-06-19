@@ -33,6 +33,7 @@ interface ExportColumn {
   styleUrls: ['./annual-plan.component.scss'],
 })
 export class AnnualPlanComponent {
+  private roles = JSON.parse(localStorage.getItem("allRoles"));
   public annualPlans: AnnualPlanDTO[] = [];
   public risk: AnnualPlanDTO[] = [];
 
@@ -44,6 +45,7 @@ export class AnnualPlanComponent {
 
   public annualInfo: AnnualPlanDTO;
   selectedAnnualInfo: AnnualPlanDTO;
+  public isDirector:boolean;
 
   exportColumns!: ExportColumn[];
   cols!: Column[];
@@ -66,6 +68,7 @@ export class AnnualPlanComponent {
 
   ngOnInit() {
     this.getAnnualPlans();
+    this.isDirector = this.roles.some(obj => obj.name === "ROLE_AMS_DIRECTOR");
    
     this.cols = [
       { field: 'id', header: 'ID' },
@@ -227,10 +230,23 @@ export class AnnualPlanComponent {
       width: '60%',
       data: { annualPlanInfo: annualPlan },
     });
+
     this.riskScoreDialogRef.onClose.subscribe((savedRiskScores) => {
       if (savedRiskScores) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: savedRiskScores.message,
+        });
         this.savedRiskScores = savedRiskScores;
+        this.getAnnualPlans();
         this.cdref.detectChanges();
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Failed',
+          detail: savedRiskScores.message,
+        });
       }
     });
   }
