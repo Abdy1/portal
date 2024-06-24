@@ -15,39 +15,24 @@
           minlength="3"
         />
       </div>
+      
       <div class="flex flex-row">
         <div class="col mb-4">
-          <label for="hex" class="block mb-2">Audit type: </label>
+          <label for="hex" class="block mb-2">Audit Type: </label>
           <p-dropdown
             [required]="true"
             [options]="auditTypes"
-            name="riskType"
             [filter]="true"
-            [(ngModel)]="riskItemInfo.riskType"
+            [(ngModel)]="riskItemInfo.auditType"
             filterBy="name"
             [showClear]="true"
             placeholder="Choose audit type"
-            styleClass="p-password"
             [style]="{ width: '300px', height: '45px' }"
+            name="auditType"
+            optionLabel="name"
           >
-            <ng-template pTemplate="selectedItem">
-              <div *ngIf="riskItemInfo?.riskType">
-                <div>{{ riskItemInfo.riskType }}</div>
-              </div>
-            </ng-template>
-            <ng-template let-riskType pTemplate="item">
-              <div>
-                <div>{{ riskType }}</div>
-              </div>
-            </ng-template>
           </p-dropdown>
         </div>
-        <!-- <p-button
-          *ngIf="!update"
-          (click)="createAuditType()"
-          class="mt-5"
-          icon="pi pi-plus"
-        ></p-button> -->
       </div>
     </div>
     

@@ -4,16 +4,14 @@ import { AuditUniverseDTO } from "./auditUniverse";
 import { BaseModel } from "./base";
 
 export class AnnualPlanDTO extends BaseModel {
-    name: string;
-    description: string;
     year: string;
-    riskLevel : string;
-    riskScore : number;
-    status : string;
-    rectificationStatus : string;
-    auditObject : AuditObjectDTO;
-    riskScores : RistScoreDTO[];
-    auditeesOrganID:number;
+    riskLevel : string | null;
+    riskScore : number | null;
+    status : string | null;
+    rectificationStatus : string | null;
+    auditObject : AuditObjectDTO ;
+    riskScores : RistScoreDTO[] | null;
+    // auditeesOrganID:number;
 
 }
 

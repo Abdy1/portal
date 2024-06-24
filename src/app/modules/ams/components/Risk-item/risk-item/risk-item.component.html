@@ -62,7 +62,7 @@
           Risk Item<p-sortIcon field="name"></p-sortIcon>
         </th>
         <th pSortableColumn="riskType">
-          Risk Type<p-sortIcon field="riskType"></p-sortIcon>
+          Audit Type<p-sortIcon field="riskType"></p-sortIcon>
         </th>
         <th scope="col">Actions</th>
       </tr>
@@ -97,7 +97,7 @@
       <tr [pSelectableRow]="riskItem">
         <td>{{ rowIndex + 1 }}</td>
         <td>{{ riskItem?.name }}</td>
-        <td>{{ riskItem?.riskType }}</td>
+        <td>{{ riskItem?.auditType?.name }}</td>
         <td>
           <div class="flex gap-2">
             <button

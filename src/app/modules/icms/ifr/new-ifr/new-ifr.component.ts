@@ -344,10 +344,11 @@ export class NewFraudComponent implements OnInit {
       formData.append('inCaseOfClosedOrWrittenOff', addFraudForm.value.inCaseOfClosedOrWrittenOff);
       formData.append('subProcess', JSON.stringify(addFraudForm.value.subProcess));
     
-      
-    const recoveredAmount = addFraudForm.value.amountRecovered;
-  const actualAmount = addFraudForm.value.fraudAmount;
+      const recoveredAmount = Number(addFraudForm.value.amountRecovered);
+      const actualAmount = Number(addFraudForm.value.fraudAmount);
+
   if (recoveredAmount > actualAmount) {
+    
     this.messageService.add({
       severity: 'error',
       summary: 'Error',
