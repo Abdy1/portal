@@ -70,7 +70,8 @@ export class DefaultLayoutComponent {
   // Define a configuration object for roles
   private roleConfig = {
     "ROLE_ICMS_BRANCH_IC": { navItems: navItemsICMSBranch, dashboardRoute: "cc_dashboard" },
-    "ROLE_SUPER_ADMIN": { navItems: navItemsAdmin, dashboardRoute: "default_dashboard" },
+    "ROLE_SUPER_ADMIN": { navItems: navItemsSuperAdmin, dashboardRoute: "ems_dashboard" },
+    "ROLE_SYSTEM_ADMIN": { navItems: navItemsAdmin, dashboardRoute: "ems_dashboard" },
     "ROLE_SUPERVISOR": { navItems: navItemSupervisor, dashboardRoute: "default_dashboard" },
     "ROLE_EMS_ADMIN": { navItems: navItemsEMSAdmin, dashboardRoute: "default_dashboard" },
     "ROLE_EMS_USER": { navItems: navItemsEMSUser, dashboardRoute: "cc_dashboard" },
@@ -127,9 +128,9 @@ export class DefaultLayoutComponent {
 
   private setupNavigationItems() {
     const totalModules = Number(localStorage.getItem('number_of_modules')) + 1;
-    const otp = localStorage.getItem('otp') == "true";
+ 
     this.navItems = [navItemMenu]; // Initialize this.navItems with navItemMenu
-    if (!otp) {
+ 
       for (let i = 0; i <= totalModules; i++) {
         let moduleStatus = localStorage.getItem("module_" + i) === "true"
         if (moduleStatus) {
@@ -146,7 +147,7 @@ export class DefaultLayoutComponent {
           }
         }
       }
-    }
+
     // Add indent classes to navItems
     this.navItems.forEach((navItem: any) => this.addIndentClass(navItem));
   }

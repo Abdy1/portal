@@ -10,6 +10,7 @@ import * as FileSaver from 'file-saver';
 import { Router } from '@angular/router';
 import { AnnualPlanDTO } from '../../../models/annualPlan';
 import { AutoGenerateAnnualPlanComponent } from '../../Annual-plan/auto-geneerate-annualPlan/auto-generate-annualPlan.component';
+import { AnnualPlanService } from '../../../services/annual-plan/annual-plan.service';
 
 interface ExportColumn {
   title: string;
@@ -31,6 +32,8 @@ export class AuditObjectComponent {
 
   public annualPlans: AnnualPlanDTO[] = [];
   public auditObject: AuditObjectDTO[] = [];
+  private roles = JSON.parse(localStorage.getItem("allRoles"));
+  public isDirector:boolean;
 
   public auditObjectInfo: AuditObjectDTO;
   selectedAuditObjectInfo: AuditObjectDTO;
@@ -44,11 +47,13 @@ export class AuditObjectComponent {
     private auditObjectService: AuditObjectService,
     private dialogService: DialogService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private annualPlanService:AnnualPlanService
   ) { }
 
   ngOnInit() {
     this.getAuditObjects();
+    this.isDirector = this.roles.some(obj => obj.name === "ROLE_AMS_DIRECTOR");
     this.cols = [
       { field: 'id', header: 'ID' },
       { field: 'name', header: 'Name' },
@@ -134,12 +139,29 @@ export class AuditObjectComponent {
     });
   }
 
-  approveAuditObject(auditObject:AuditObjectDTO): void {
-    auditObject.status = "Approved"
+  addToAnnualPlan(auditObect: AuditObjectDTO): void {
+    let annual:any = {};
+
+    annual.auditObject = auditObect;
+    annual.createdUser = localStorage.getItem('id')
+    annual.status = "Approved"
+    this.subscriptions.push(
+      this.annualPlanService.registerAnnualPlan(annual).subscribe((response:any) => {
+              this.approveAuditObject(auditObect.id);
+              this.getAuditObjects;
+      })
+    );
+
+
+  }
+
+  approveAuditObject(id:number): void {
+
     this.subscriptions.push(
       this.auditObjectService
-        .updateAuditObject(auditObject)
+        .approveAuditObject(id)
         .subscribe((response: any) => {
+          this.getAuditObjects();
           this.messageService.clear();
   
         })

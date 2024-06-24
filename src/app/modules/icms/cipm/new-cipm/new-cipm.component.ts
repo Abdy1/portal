@@ -201,7 +201,6 @@ public populateSelectedStatus(existingStatus: Status): void {
         setTimeout(() => {
           this.router.navigate(['ICMS/CIPM/viewCIPM']);
         }, 1500);
-        this.getCIPMs(this.branchId);
       },
       (error: HttpErrorResponse) => {
 

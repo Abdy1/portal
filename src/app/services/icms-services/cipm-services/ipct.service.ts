@@ -17,6 +17,7 @@ export class IPCTService {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
       })
     };
+    // this.apiServiceUrl = localStorage.getItem('url_4');
     this.apiServiceUrl = localStorage.getItem('url_4');
   }
   constructor(private http: HttpClient) { }
