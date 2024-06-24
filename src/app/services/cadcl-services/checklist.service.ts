@@ -46,11 +46,13 @@ export class ChecklistService {
 
   public getCaDailyChecklist(id: number): Observable<any>{
     this.init();
+    console.log('correct')
     return this.http.get<any>(`${this.apiServiceUrl}/api/v1/checklists/${id}`, this.httpOptions)
   }
 
   public closeCaDailyChecklist(id: number): Observable<any>{
     this.init();
+    
     return this.http.get<any>(`${this.apiServiceUrl}/api/v1/checklists/close/${id}`, this.httpOptions)
   }
 
