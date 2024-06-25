@@ -165,8 +165,7 @@ export class CIPMTableComponent {
               detail: "Deleted Collateral insurance policy successfully"
             });
             setTimeout(() => {
-              window.location.reload();
-            }, 2000);
+            }, 1000);
     
           },
           (error: HttpErrorResponse) => {

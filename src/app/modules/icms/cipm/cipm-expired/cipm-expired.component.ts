@@ -129,13 +129,13 @@ export class CIPMExpiredComponent {
     );
   }
 
-  calculateDaysLeftToExpire(expiryDate: string): number {
+  calculateDaysLeftToExpire(expiryDate: Date): number {
     let date = new Date(expiryDate);
     let daysLeftToExpire = (date.getTime() - this.currentDate.getTime()) / (1000 * 3600 * 24);
     return Math.ceil(daysLeftToExpire);
   }
 
-  millisFromNowTo(expiryDate: string): string {
+  millisFromNowTo(expiryDate: Date): string {
 
     return (this.calculateDaysLeftToExpire(expiryDate)).toString();
   }

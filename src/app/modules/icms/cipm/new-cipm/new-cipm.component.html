@@ -3,101 +3,239 @@
     <p-messages [value]="msgs"></p-messages>
   </div>
 </div>
-<div *ngIf="newDiv">
-  <form #addCIPMForm="ngForm" (ngSubmit)="addCIPM(addCIPMForm)" required>
+<div>
+  <form #CIPMForm="ngForm" (ngSubmit)="submitCIPM(CIPMForm)" required>
     <div class="flex flex-wrap gap-3 mb-2">
       <div class="flex-auto">
-        <label for="alphabetic" class=" block mb-2"> Borrower Name </label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" ngModel name="borrowerName"
-          [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <label for="alphabetic" class="block mb-2"> Borrower Name </label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          ngModel
+          [(ngModel)]="cipm.borrowerName"
+          name="borrowerName"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
       <div class="flex-auto">
-        <label for="alphabetic" class=" block mb-2"> Mortgagor Name </label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" ngModel name="mortgagorName"
-          [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <label for="alphabetic" class="block mb-2"> Mortgagor Name </label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          ngModel
+          [(ngModel)]="cipm.mortgagorName"
+          name="mortgagorName"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
-    
+
       <div class="flex-auto" *ngIf="this.roles.includes('ROLE_ICMS_IFB')">
         <label for="bbranch" class="block mb-2">Branch</label>
-        <input pInputText id="bbranch" type="text" ngModel
-          name="bbranch" [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <input
+          pInputText
+          id="bbranch"
+          type="text"
+          ngModel
+          [(ngModel)]="cipm.bbranch"
+          name="bbranch"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
       <div class="flex-auto" *ngIf="this.roles.includes('ROLE_ICMS_IFB')">
         <label for="insuranceDistrict" class="block mb-2">District</label>
-        <input pInputText id="insuranceDistrict" type="text" ngModel
-          name="insuranceDistrict" [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
-      </div>
-
-    </div>
-    <div class="flex flex-wrap gap-3 mb-2">
-      <div class="flex-auto">
-        <label for="loanacc" class=" block mb-2"> Loan Account </label>
-        <input pInputText id="loanAccNumber" type="text" ngModel name="loanAccount"
-          [style]="{'width':'30vw','height':'45px'}" required
-          oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13);" pattern="\d{13}" />
-      </div>
-      <div class="flex-auto">
-        <label for="alphabetic" class=" block mb-2"> Insured Name </label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" ngModel name="insuredName"
-          [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <input
+          pInputText
+          id="insuranceDistrict"
+          type="text"
+          ngModel
+          [(ngModel)]="cipm.insuranceDistrict"
+          name="insuranceDistrict"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
     </div>
     <div class="flex flex-wrap gap-3 mb-2">
-     <div class="flex-auto">
-        <label for="alphabetic" class=" block mb-2"> Collateral Estimation Value</label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" ngModel name="collateralEstimationValue"
-          [style]="{'width':'30vw','height':'45px'}" pattern="^[0-9]+(\.[0-9]+)?$" minlength="1" required  />
+      <div class="flex-auto">
+        <label for="loanacc" class="block mb-2"> Loan Account </label>
+        <input
+          pInputText
+          id="loanAccNumber"
+          type="text"
+          ngModel
+          [(ngModel)]="cipm.loanAccount"
+          name="loanAccount"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13);"
+          pattern="\d{13}"
+        />
       </div>
       <div class="flex-auto">
-        <label for="alphabetic" class=" block mb-2"> Sum Insured</label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" ngModel name="sumInsured"
-          [style]="{'width':'30vw','height':'45px'}" pattern="^[0-9]+(\.[0-9]+)?$" minlength="1" required  />
+        <label for="alphabetic" class="block mb-2"> Insured Name </label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          ngModel
+          [(ngModel)]="cipm.insuredName"
+          name="insuredName"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-3 mb-2">
+      <div class="flex-auto">
+        <label for="alphabetic" class="block mb-2">
+          Collateral Estimation Value</label
+        >
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          ngModel
+          [(ngModel)]="cipm.collateralEstimationValue"
+          name="collateralEstimationValue"
+          [style]="{ width: '30vw', height: '45px' }"
+          pattern="^[0-9]+(\.[0-9]+)?$"
+          minlength="1"
+          required
+        />
+      </div>
+      <div class="flex-auto">
+        <label for="alphabetic" class="block mb-2"> Sum Insured</label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          ngModel
+          [(ngModel)]="cipm.sumInsured"
+          name="sumInsured"
+          [style]="{ width: '30vw', height: '45px' }"
+          pattern="^[0-9]+(\.[0-9]+)?$"
+          minlength="1"
+          required
+        />
       </div>
       <div class="flex-auto">
         <label for="policyNumber" class="block mb-2">Policy Number</label>
-        <input pInputText id="policyNumber" ngModel name="policyNumber"
-          [style]="{'width':'30vw','height':'45px'}" pattern=".*" minlength="1" required />
+        <input
+          pInputText
+          id="policyNumber"
+          ngModel
+          [(ngModel)]="cipm.policyNumber"
+          name="policyNumber"
+          [style]="{ width: '30vw', height: '45px' }"
+          pattern=".*"
+          minlength="1"
+          required
+        />
       </div>
       <div class="flex-auto">
         <label for="referenceNumber" class="block mb-2">Reference Number</label>
-        <input pInputText id="referenceNumber" ngModel name="referenceNumber"
-          [style]="{'width':'30vw','height':'45px'}" pattern=".*"  minlength="1" required />
+        <input
+          pInputText
+          id="referenceNumber"
+          ngModel
+          [(ngModel)]="cipm.referenceNumber"
+          name="referenceNumber"
+          [style]="{ width: '30vw', height: '45px' }"
+          pattern=".*"
+          minlength="1"
+          required
+        />
       </div>
     </div>
     <div class="flex flex-wrap gap-3 mb-2">
       <div class="flex-auto">
-        <label for="alphabetic" class=" block mb-2"> Loan Type </label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" ngModel name="loanType"
-          [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <label for="alphabetic" class="block mb-2"> Loan Type </label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          ngModel
+          [(ngModel)]="cipm.loanType"
+          name="loanType"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
       <div class="flex-auto">
-        <label for="alphabetic" class=" block mb-2"> Insurance Expiry Date </label>
-        <p-calendar id="alphabetic" dataType="string" ngModel [(ngModel)]="insuranceExpireDate"
-          name="insuranceExpireDate"  [required]="true" [style]="{'width':'30vw','height':'45px'}" [showIcon]="true"></p-calendar>
+        <label for="alphabetic" class="block mb-2">
+          Insurance Expiry Date
+        </label>
+        <p-calendar
+          id="alphabetic"
+          ngModel
+          [(ngModel)]="cipm.insuranceExpireDate"
+          name="insuranceExpireDate"
+          [required]="true"
+          [style]="{ width: '30vw', height: '45px' }"
+          [showIcon]="true"
+        ></p-calendar>
       </div>
       <div class="flex-auto">
-        <label for="hex" class=" block mb-2"> Collatoral Type </label>
-        <p-dropdown [options]="collatoralTypes" name="collateralType" ngModel [(ngModel)]="selectedcollatoralType"
-          optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select Collatoral Type"
-          class="w-full" styleClass="p-password" [style]="{'width':'30vw','height':'45px'}" [required]="true"
-          (onChange)="onCollateralTypeChange($event)">
+        <label for="hex" class="block mb-2"> Collatoral Type </label>
+        <p-dropdown
+          [options]="collatoralTypes"
+          name="collateralType"
+          ngModel
+          [(ngModel)]="selectedcollatoralType"
+          optionLabel="name"
+          [filter]="true"
+          filterBy="name"
+          [showClear]="true"
+          placeholder="Select Collatoral Type"
+          class="w-full"
+          styleClass="p-password"
+          [style]="{ width: '30vw', height: '45px' }"
+          [required]="true"
+          (onChange)="onCollateralTypeChange($event)"
+        >
           <ng-template pTemplate="selectedItem">
-            <div class="flex align-items-center gap-2" *ngIf="selectedcollatoralType">
+            <div
+              class="flex align-items-center gap-2"
+              *ngIf="selectedcollatoralType"
+            >
               <div>{{ selectedcollatoralType.name }}</div>
             </div>
           </ng-template>
           <ng-template let-collatoralTypee pTemplate="item">
             <div class="flex align-items-center gap-2">
-              <div>{{collatoralTypee.name }}</div>
+              <div>{{ collatoralTypee.name }}</div>
             </div>
           </ng-template>
         </p-dropdown>
       </div>
-      <div class="flex-auto"  [hidden]="true">
-        <label for="hex" class=" block mb-2"> Status </label>
-        <p-dropdown [options]="statuses" name="status" ngModel [(ngModel)]="selectedstatus"
-          optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select  Status"
-          class="w-full" styleClass="p-password" [style]="{'width':'30vw','height':'45px'}" [required]="true" >
+      <div class="flex-auto" [hidden]="true">
+        <label for="hex" class="block mb-2"> Status </label>
+        <p-dropdown
+          [options]="statuses"
+          name="status"
+          ngModel
+          [(ngModel)]="selectedstatus"
+          optionLabel="name"
+          [filter]="true"
+          filterBy="name"
+          [showClear]="true"
+          placeholder="Select  Status"
+          class="w-full"
+          styleClass="p-password"
+          [style]="{ width: '30vw', height: '45px' }"
+          [required]="true"
+        >
           <!-- (onChange)="onCaseStatusChange($event)" -->
           <ng-template pTemplate="selectedItem">
             <div class="flex align-items-center gap-2" *ngIf="selectedstatus">
@@ -112,11 +250,25 @@
         </p-dropdown>
       </div>
       <div class="flex-auto">
-        <label for="hex" class=" block mb-2"> Insurance Policy Coverage Type </label>
-        <p-dropdown [options]="IPCTs" name="insuranceCoverageType" ngModel [(ngModel)]="selectedIPCT"
-          optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
-          placeholder="Select Insurance Policy Coverage Type" class="w-full" styleClass="p-password"
-          [style]="{'width':'30vw','height':'45px'}" [required]="true" (onChange)="onIPCTChange($event)">
+        <label for="hex" class="block mb-2">
+          Insurance Policy Coverage Type
+        </label>
+        <p-dropdown
+          [options]="IPCTs"
+          name="insuranceCoverageType"
+          ngModel
+          [(ngModel)]="selectedIPCT"
+          optionLabel="name"
+          [filter]="true"
+          filterBy="name"
+          [showClear]="true"
+          placeholder="Select Insurance Policy Coverage Type"
+          class="w-full"
+          styleClass="p-password"
+          [style]="{ width: '30vw', height: '45px' }"
+          [required]="true"
+          (onChange)="onIPCTChange($event)"
+        >
           <ng-template pTemplate="selectedItem">
             <div class="flex align-items-center gap-2" *ngIf="selectedIPCT">
               <div>{{ selectedIPCT.name }}</div>
@@ -124,97 +276,177 @@
           </ng-template>
           <ng-template let-icpte pTemplate="item">
             <div class="flex align-items-center gap-2">
-              <div>{{icpte.name }}</div>
+              <div>{{ icpte.name }}</div>
             </div>
           </ng-template>
         </p-dropdown>
       </div>
       <div class="flex-auto" [hidden]="true">
-        <label for="alphabetic" class=" block mb-2"> Branch Name</label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" [(ngModel)]="selectedBranch" name="branch"
-          [readonly]=true [style]="{'width':'30vw','height':'45px'}"   />
+        <label for="alphabetic" class="block mb-2"> Branch Name</label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          [(ngModel)]="selectedBranch"
+          name="branch"
+          [readonly]="true"
+          [style]="{ width: '30vw', height: '45px' }"
+        />
       </div>
       <div class="flex-auto" [hidden]="true">
-        <label for="alphabetic" class=" block mb-2"> District </label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" [(ngModel)]="selectedSubProcess" name="subProcess"
-          [readonly]=true [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <label for="alphabetic" class="block mb-2"> District </label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          [(ngModel)]="selectedSubProcess"
+          name="subProcess"
+          [readonly]="true"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
       <div class="flex-auto">
-        <label for="insuranceCompanyName" class="block mb-2">Insurance Company</label>
-        <input pInputText id="insuranceCompanyName" type="text" ngModel
-          name="insuranceCompanyName" [style]="{'width':'30vw','height':'45px'}"required minlength="3"/>
+        <label for="insuranceCompanyName" class="block mb-2"
+          >Insurance Company</label
+        >
+        <input
+          pInputText
+          id="insuranceCompanyName"
+          type="text"
+          ngModel
+          [(ngModel)]="cipm.insuranceCompanyName"
+          name="insuranceCompanyName"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
       <div class="flex-auto">
         <label for="insuranceBranch" class="block mb-2">Insurance Branch</label>
-        <input pInputText id="insuranceBranch" type="text" ngModel
-          name="insuranceBranch" [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <input
+          pInputText
+          id="insuranceBranch"
+          type="text"
+          ngModel
+          [(ngModel)]="cipm.insuranceBranch"
+          name="insuranceBranch"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
-      <input [hidden]="true" pInputText pKeyFilter="alpha" id="alphabetic" [(ngModel)]="authorizedBy"
-        name="authorizedBy" [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
-      <input [hidden]="true" pInputText pKeyFilter="alpha" id="alphabetic" [(ngModel)]="preparedBy"
-        name="preparedBy" [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
-      <input [hidden]="true" pInputText pKeyFilter="alpha" id="alphabetic" [(ngModel)]="authorizationTimeStamp"
-        name="authorizationTimeStamp" [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+      <input
+        [hidden]="true"
+        pInputText
+        pKeyFilter="alpha"
+        id="alphabetic"
+        [(ngModel)]="authorizedBy"
+        name="authorizedBy"
+        [style]="{ width: '30vw', height: '45px' }"
+        required
+        minlength="3"
+      />
+      <input
+        [hidden]="true"
+        pInputText
+        pKeyFilter="alpha"
+        id="alphabetic"
+        [(ngModel)]="preparedBy"
+        name="preparedBy"
+        [style]="{ width: '30vw', height: '45px' }"
+        required
+        minlength="3"
+      />
+      <input
+        [hidden]="true"
+        pInputText
+        pKeyFilter="alpha"
+        id="alphabetic"
+        [(ngModel)]="authorizationTimeStamp"
+        name="authorizationTimeStamp"
+        [style]="{ width: '30vw', height: '45px' }"
+        required
+        minlength="3"
+      />
     </div>
 
     <div class="flex flex-wrap gap-3 mb-2">
-
       <div class="flex-auto" *ngIf="isOtherCollateralTypeSelected">
-        <label for="alphabetic" class=" block mb-2"> Other Collateral Type </label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" ngModel name="otherCollateralType"
-          [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <label for="alphabetic" class="block mb-2">
+          Other Collateral Type
+        </label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          ngModel
+          name="otherCollateralType"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
 
       <div class="flex-auto" *ngIf="isOtherIPCTSelected">
-        <label for="alphabetic" class=" block mb-2"> Other Insurance Policy Coverage Type </label>
-        <input pInputText pKeyFilter="alpha" id="alphabetic" ngModel name="otherInsuranceCoverageType"
-          [style]="{'width':'30vw','height':'45px'}" required minlength="3" />
+        <label for="alphabetic" class="block mb-2">
+          Other Insurance Policy Coverage Type
+        </label>
+        <input
+          pInputText
+          pKeyFilter="alpha"
+          id="alphabetic"
+          ngModel
+          name="otherInsuranceCoverageType"
+          [style]="{ width: '30vw', height: '45px' }"
+          required
+          minlength="3"
+        />
       </div>
-    </div>
-    <div class="flex flex-wrap gap-3 mt-4">
-      <p-button label="Create Collatoral Insurance Policy " type="submit" [disabled]="addCIPMForm.invalid"
-        class="createButton"></p-button>
-    </div>
-
-  </form>
-</div>
-
-
-<div *ngIf="update">
-  <form #updateCIPMForm="ngForm" (ngSubmit)="updateCIPM(updateCIPMForm)">
-    <input type="hidden" name="id" ngModel [(ngModel)]="idY">
-    <div class="flex flex-wrap gap-3 mb-2">
-    <div class="flex-auto" >
-      <label for="hex" class=" block mb-2"> Status </label>
-      <p-dropdown [options]="statuses" name="status" ngModel [(ngModel)]="selectedstatus"
-        optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select  Status"
-        class="w-full" styleClass="p-password" [style]="{'width':'30vw','height':'45px'}" [required]="true" >
-        (ngOnInit)="populateSelectedstatus(existingStatus)">
-        <!-- (onChange)="onCaseStatusChange($event)" -->
-        <ng-template pTemplate="selectedItem">
-          <div class="flex align-items-center gap-2" *ngIf="selectedstatus">
-            <div>{{ selectedstatus.name }}</div>
-          </div>
-        </ng-template>
-        <ng-template let-selectedstatuse pTemplate="item">
-          <div class="flex align-items-center gap-2">
-            <div>{{ selectedstatuse.name }}</div>
-          </div>
-        </ng-template>
-      </p-dropdown>
-    </div>
+      <div class="flex flex-wrap gap-3 mb-2">
+        <div class="flex-auto">
+          <label for="hex" class="block mb-2"> Status </label>
+          <p-dropdown
+            [options]="statuses"
+            name="status"
+            ngModel
+            [(ngModel)]="selectedstatus"
+            optionLabel="name"
+            [filter]="true"
+            filterBy="name"
+            [showClear]="true"
+            placeholder="Select  Status"
+            class="w-full"
+            styleClass="p-password"
+            [style]="{ width: '30vw', height: '45px' }"
+            [required]="true"
+          >
+            (ngOnInit)="populateSelectedstatus(existingStatus)">
+            <ng-template pTemplate="selectedItem">
+              <div class="flex align-items-center gap-2" *ngIf="selectedstatus">
+                <div>{{ selectedstatus.name }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-selectedstatuse pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <div>{{ selectedstatuse.name }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
   
-
-      <div class="flex-auto">
-        <label for="alphabetic" class=" block mb-2"> Insurance Expiry Date </label>
-        <p-calendar id="alphabetic" dataType="string"  [required]="true"  ngModel name="insuranceExpireDate"
-          [style]="{'width':'30vw','height':'45px'}" [showIcon]="true"></p-calendar>
       </div>
-    
+      <div style="margin-bottom: 20px"></div>
     </div>
-      <div style="margin-bottom: 20px;"></div>
-
-    <p-button label="Update Collateral Insurance Policy" type="submit" [disabled]="updateCIPMForm.invalid"
-      class="updateButton"></p-button>
+    <div class="flex flex-wrap gap-3 mt-4 mb-5">
+      <p-button
+        [label]="update ? 'Update' : 'Create'"
+        type="submit"
+        [disabled]="CIPMForm.invalid"
+        class="createButton"
+      ></p-button>
+    </div>
   </form>
 </div>
+
