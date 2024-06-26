@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllMessagesComponent } from './components/cost-messages/all-messages.component';
-import { AuditUniverseComponent } from '../ams/components/Audit-universe/audit-universe/audit-universe.component';
 import { SentMessagesComponent } from './components/excel-messages/sent-messages.component';
 import { SingleComponent } from './components/send-single/single.component';
 import { GroupComponent } from './components/send-group/group.component';
