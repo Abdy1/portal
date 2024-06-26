@@ -26,7 +26,6 @@ export class NewFinanceComponent implements OnInit {
   public categories: any[] = [];
   public subCategories: any[] = [];
   public update: boolean = false;
-  public idY: number;
   selectedstatus: Status;
   msgs: Message[] = [];
   branchId: number = Number(localStorage.getItem('branchId'));

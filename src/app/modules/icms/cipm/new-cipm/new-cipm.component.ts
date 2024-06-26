@@ -10,41 +10,40 @@ import { ConfirmationService, FilterService, Message, MessageService, PrimeNGCon
 import { CIPM } from "../../../../models/icms-models/cipm-models/cipm";
 import { CollateralType } from '../../../../models/icms-models/cipm-models/collatoral-type';
 import { IPCT } from '../../../../models/icms-models/cipm-models/ipct';
-import { Branch } from 'src/app/models/sso-models/branch';
-import {Status} from '../../../../models/icms-models/cipm-models/status';
-import {StatusService} from '../../../../services/icms-services/cipm-services/status.service'
+// import { Branch } from 'src/app/models/sso-models/branch';
+import { Status } from '../../../../models/icms-models/cipm-models/status';
+import { StatusService } from '../../../../services/icms-services/cipm-services/status.service'
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-accordions',
+  selector: 'new-cipm',
   templateUrl: './new-cipm.component.html',
   styleUrls: ['./new-cipm.component.scss'],
-  providers: [MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService,DatePipe] // Provide DatePipe
 })
 
 export class NewCIPMComponent implements OnInit {
-  public cipms: CIPM[] = [];
-  public cipm: CIPM;
-
+  public cipms: CIPM = new CIPM();
+  public cipm: CIPM = new CIPM();
   roles: string[] = [];
 
   // public selectedBranch: Branch;
   public selectedBranch;
   public selectedSubProcess;
-  public statuses: Status[] = [];
+  statuses: Status[] = [
+    { id: 1, name: 'Open' },
+    { id: 2, name: 'Closed' }
+  ];
   selectedstatus: Status;
-  public cipmR: CIPM[] = [];
-  selectedCIMP: CIPM;
   public collatoralTypes: CollateralType[] = [];
   selectedcollatoralType: CollateralType;
   public IPCTs: IPCT[] = [];
   selectedIPCT: IPCT;
   update: boolean = false;
-  newDiv: boolean = true;
-  public idY: number;
   msgs: Message[] = [];
   value: string;
   branchId: string = localStorage.getItem('branchId');
-  
+
   subProcessId: number = Number(localStorage.getItem('subProcessId'));
   authorizedBy: string = "Not Authorized"
   preparedBy: string = localStorage.getItem('name');
@@ -53,29 +52,29 @@ export class NewCIPMComponent implements OnInit {
   isOtherIPCTSelected: boolean = false;
   insuranceExpireDate: Date;
 
-  constructor(private filterService: FilterService, private primengConfig: PrimeNGConfig, private messageService: MessageService, private cipmService: CIPMService,private statusService :StatusService, private collatoralTypeService: CollateralTypeService, private organizationalUnitService: OrganizationalUnitService, private ipctService: IPCTService, private activatedRoute: ActivatedRoute, private confirmationService: ConfirmationService, private router: Router) { }
+  constructor(private datePipe: DatePipe, private filterService: FilterService, private primengConfig: PrimeNGConfig, private messageService: MessageService, private cipmService: CIPMService, private statusService: StatusService, private collatoralTypeService: CollateralTypeService, private organizationalUnitService: OrganizationalUnitService, private ipctService: IPCTService, private activatedRoute: ActivatedRoute, private confirmationService: ConfirmationService, private router: Router) { }
 
   ngOnInit() {
-    this.getCIPMs(this.branchId);
     this.getCollatoralTypes();
     this.getIPCTs();
     this.getStatus();
     this.populateRoles();
 
-    // alert(this.subProcessId);
-    
-    this.primengConfig.ripple = true;
-    let x = this.activatedRoute.snapshot.paramMap.get("id");
-    this.idY = +x;
+
+    this.activatedRoute.params.subscribe(params => {
+      const id = params['id'];
+      if (id) {
+        this.getCIPM(id);
+        this.update = true;
+      } else {
+        this.selectedstatus = this.statuses.find(status => status.name === 'Active');
+      }
+    });
     this.selectedBranch = JSON.parse(localStorage.getItem("branch"));
-    this.selectedSubProcess =JSON.parse(localStorage.getItem("subProcess"))
+    this.selectedSubProcess = JSON.parse(localStorage.getItem("subProcess"))
 
 
-    if (this.idY) {
-      this.getCIPM(this.idY);
-      this.update = true;
-      this.newDiv = false;
-    }
+
   }
 
   onIPCTChange(event: any) {
@@ -86,16 +85,6 @@ export class NewCIPMComponent implements OnInit {
     this.isOtherCollateralTypeSelected = (event.value.name === 'Other');
   }
 
-  public getCIPMs(branchId: string): void {
-    this.cipmService.getCIPMForBranch(branchId).subscribe(
-      (response: CIPM[]) => {
-        this.cipms = response;
-      },
-      (error: HttpErrorResponse) => {
-
-      }
-    );
-  }
 
   public getCollatoralTypes(): void {
     this.collatoralTypeService.getCollatoralTypes().subscribe(
@@ -119,38 +108,43 @@ export class NewCIPMComponent implements OnInit {
     );
   }
 
-public getStatus(): void {
-  this.statusService.getStatuses().subscribe(
-    (response: Status[]) => {
-      this.statuses = response;
-      // Set the initial selectedActivityStatus to "Open" when adding data
-      this.selectedstatus = this.statuses.find(status => status.name === "Active");
-    },
-    (error: HttpErrorResponse) => {
-      // Handle error
-    }
-  );
-}
-
-populateRoles(): void {
-  let index = 0;
-  let cond = localStorage.getItem('role_' + index);
-  while (cond) {
-
-    this.roles.push(cond);
-    index++;
-    cond = localStorage.getItem('role_' + index);
+  public getStatus(): void {
+    this.statusService.getStatuses().subscribe(
+      (response: Status[]) => {
+        this.statuses = response;
+        // Set the initial selectedActivityStatus to "Open" when adding data
+        this.selectedstatus = this.statuses.find(status => status.name === "Active");
+      },
+      (error: HttpErrorResponse) => {
+        // Handle error
+      }
+    );
   }
-}
 
-public populateSelectedStatus(existingStatus: Status): void {
-  this.selectedstatus = existingStatus;
-}
+  populateRoles(): void {
+    let index = 0;
+    let cond = localStorage.getItem('role_' + index);
+    while (cond) {
+
+      this.roles.push(cond);
+      index++;
+      cond = localStorage.getItem('role_' + index);
+    }
+  }
+
+  public populateSelectedStatus(existingStatus: Status): void {
+    this.selectedstatus = existingStatus;
+  }
 
   public getCIPM(id: number): CIPM {
     this.cipmService.getCIPM(id).subscribe(
       (response: CIPM) => {
         this.cipm = response;
+        this.cipm.insuranceExpireDate = new Date(this.datePipe.transform(this.cipm.insuranceExpireDate, 'MM/dd/yyyy'));
+        this.selectedstatus = this.statuses.find(status => status.name === this.cipm?.status?.name);
+        this.selectedcollatoralType = this.cipm?.collateralType ;
+        this.selectedIPCT = this.cipm?.insuranceCoverageType;
+        this.insuranceExpireDate = new Date(this.cipm?.insuranceExpireDate);
       },
       (error: HttpErrorResponse) => {
 
@@ -159,54 +153,69 @@ public populateSelectedStatus(existingStatus: Status): void {
     return this.cipm;
   }
 
-  public addCIPM(addCIPMForm: NgForm): void {
-    this.cipmService.addCIPM(addCIPMForm.value).subscribe(
-      (response: any) => {
-        this.getCIPMs(this.branchId);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: "Collateral Insurance Policy Monitoring added Successfully!"
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-
-      },
-      (error: HttpErrorResponse) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Failed',
-          detail: "Failed to create"
-        });
-        setTimeout(() => {
-        }, 1000);
-
+  public submitCIPM(CIPMForm: NgForm): void {
+    if (CIPMForm.valid) {
+      const insuranceExpireDate = this.formatDate(this.cipm.insuranceExpireDate);
+      const formValueWithDate = {
+        ...CIPMForm.value,
+        insuranceExpireDate
+      };
+  
+      const otherInsuranceCoverageType = CIPMForm.value.otherInsuranceCoverageType || "";
+      
+      if (this.update) {
+        const updatedValue = {
+          ...this.cipm,
+          insuranceExpireDate: new Date(insuranceExpireDate),
+          status: this.selectedstatus,
+          collateralType: this.selectedcollatoralType,
+          insuranceCoverageType: this.selectedIPCT,
+          otherInsuranceCoverageType
+        };
+  
+        this.cipmService.updateCIPM(updatedValue).subscribe(
+          (response: CIPM) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: "Collateral Insurance Policy Monitoring updated Successfully!"
+            });
+            setTimeout(() => {
+              this.router.navigate(['ICMS/CIPM/viewCIPM']);
+            }, 1500);
+          },
+          (error: HttpErrorResponse) => {
+          }
+        );
+      } else {
+        this.cipmService.addCIPM(formValueWithDate).subscribe(
+          (response: any) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: "Collateral Insurance Policy Monitoring added Successfully!"
+            });
+            setTimeout(() => {
+              this.router.navigate(['ICMS/CIPM/viewCIPM']);
+            }, 1500);
+          },
+          (error: HttpErrorResponse) => {
+            
+          }
+        );
       }
-    );
-  }
-
-  public updateCIPM(updateCIPM: NgForm): void {
-     if (updateCIPM.value.otherInsuranceCoverageType == undefined) {
-      updateCIPM.value.otherInsuranceCoverageType = "";
     }
-    this.cipmService.updateCIPM(updateCIPM.value).subscribe(
-      (response: CIPM) => {
-        this.cipm = response;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: "Collateral Insurance Policy Monitoring updated Successfully!"
-        });
-        setTimeout(() => {
-          this.router.navigate(['ICMS/CIPM/viewCIPM']);
-        }, 1500);
-      },
-      (error: HttpErrorResponse) => {
-
-      }
-    );
   }
+  
+
+  
+  private formatDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+  }
+  
 }
 
 
