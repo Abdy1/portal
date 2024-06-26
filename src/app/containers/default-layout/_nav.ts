@@ -67,7 +67,9 @@ export const navItemsAMSAdmin = createNavItem(
   '/ams',
   [
     createNavItem('Auditors', '/ams/audit-staff'),
-    createNavItem('Audit Type', '/ams/audit-type')
+    createNavItem('Audit Type', '/ams/audit-type'),
+
+
   ],
   'cil-settings'
 );
@@ -76,7 +78,7 @@ export const navItemsAMSManager = createNavItem(
   'AMS',
   '/ams',
   [
-    createNavItem('Annual Plan', '/ams/annual-plan'),
+    createNavItem('Annual Plan', '/ams/annual-plan-approved'),
     createNavItem('Audit Schedule', '/ams/audit-schedule'),
     createNavItem('Audit Engagement', '/ams/audit-engagement'),
     createNavItem('Audit Reports', '/ams/report-list'),
@@ -84,7 +86,7 @@ export const navItemsAMSManager = createNavItem(
       'Setting',
       '/ams',
       [
-        // createNavItem('Audit universe', '/ams/audit-universe'),
+        createNavItem('Annual Plan', '/ams/annual-plan'),
         createNavItem('Audit object', '/ams/audit-object'),
         createNavItem('Risk item', '/ams/risk-item'),
       ],
@@ -138,6 +140,7 @@ export const navItemsAMSDirector = createNavItem(
   [
     createNavItem('Audit Engagement', '/ams/audit-engagement'),
     createNavItem('Audit Schedule', '/ams/audit-schedule'),
+    createNavItem('Annual Plan', '/ams/annual-plan')
   ],
   'cil-drop'
 );

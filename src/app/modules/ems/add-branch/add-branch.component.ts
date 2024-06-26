@@ -109,10 +109,10 @@ export class AddBranch implements OnInit {
 
   ngOnInit() {
     this.addBranchForm = this.fb.group({
-      id: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]],
-      name: ['',      [Validators.required,Validators.pattern('[a-zA-Z\\s]*')]],
-      mnemonic: ['',  [Validators.required,Validators.pattern('[a-zA-Z\\s]*')]],
-      location: ['',  [Validators.required,Validators.pattern('[a-zA-Z\\s]*')]],
+      id: [''],
+      name: [''],
+      mnemonic: [''],
+      location: [''],
     });
   }
 

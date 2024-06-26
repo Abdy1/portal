@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuditUniverseComponent } from './components/Audit-universe/audit-universe/audit-universe.component';
 import { AnnualPlanComponent } from './components/Annual-plan/annual-plan/annual-plan.component';
+import { AnnualPlanApprovedComponent } from './components/Annual-plan/annual-plan-approved/annual-plan-approved.component';
 import { AuditObjectComponent } from './components/Audit-objects/audit-object/audit-object.component';
 import { AuditableAreaComponent } from './components/Auditable-area/auditable-area/auditable-area.component';
 import { CheckListComponent } from './components/Checklist/checklist/checkList.component';
@@ -52,15 +52,6 @@ const routes: Routes = [
           title: 'Audit Object detail',
         },
       },
-
-      {
-        path: 'audit-universe',
-        component: AuditUniverseComponent,
-        data: {
-          title: 'Audit Universe',
-        },
-      },
-
       {
         path: 'checklist',
         component: CheckListComponent,
@@ -80,6 +71,13 @@ const routes: Routes = [
       {
         path: 'annual-plan',
         component: AnnualPlanComponent,
+        data: {
+          title: 'Annual Plan',
+        },
+      },
+      {
+        path: 'annual-plan-approved',
+        component: AnnualPlanApprovedComponent,
         data: {
           title: 'Annual Plan',
         },
