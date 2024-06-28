@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { AuditUniverseComponent } from './components/Audit-universe/audit-universe/audit-universe.component';
 import { AnnualPlanComponent } from './components/Annual-plan/annual-plan/annual-plan.component';
+import { AnnualPlanApprovedComponent } from './components/Annual-plan/annual-plan-approved/annual-plan-approved.component';
 import { NewAnnualPlanComponent } from './components/Annual-plan/new-annual-plan/newAnnualPlan.component';
 import { AuditObjectComponent } from './components/Audit-objects/audit-object/audit-object.component';
 import { AuditObjectDetailComponent } from './components/Audit-objects/audit-object-detail/audit-object-detail.component';
 import { NewAuditObjectComponent } from './components/Audit-objects/new-audit-object/newAuditObject.component';
 import { RiskScoreComponent } from './components/Annual-plan/risk-score/risk-score.component';
-import { NewAuditUniverseComponent } from './components/Audit-universe/new-audit-universe/newAuditUniverse.component';
-import { NewRiskLevel } from './components/Audit-universe/new-risk-level/newRiskLevel.component'
+import { NewRiskLevel } from './components/Annual-plan/new-risk-level/newRiskLevel.component'
 import { AuditableAreaComponent } from './components/Auditable-area/auditable-area/auditable-area.component';
 import { NewAuditableAreaComponent } from './components/Auditable-area/new-auditable-area/newAuditableArea.component';
 import { NewCheckListComponent } from './components/Checklist/new-checklist/newChecklist.component';
@@ -60,8 +59,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
-    AuditUniverseComponent,
-    NewAuditUniverseComponent,
+    AnnualPlanComponent,
     AnnualPlanComponent,
     NewAnnualPlanComponent,
     RiskScoreComponent,
@@ -97,10 +95,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     Report,
     ReportList,
     ReportDisplay,
-    NewRiskLevel
-    
-
-    
+    NewRiskLevel,
+    AnnualPlanApprovedComponent
   ],
   imports: [
     NgApexchartsModule,
