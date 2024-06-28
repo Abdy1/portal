@@ -82,6 +82,7 @@ export class ReportsComponent {
     this.loading = true;
       this.reportsService.getReport(ngForm.value, caseOwner, inquiryType).subscribe(
         (response: any) => {
+          console.log("ooooo", response)
           const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
           const url = window.URL.createObjectURL(blob);
           const link = document.createElement('a');
