@@ -21,13 +21,13 @@ export type ChartOptions = {
   templateUrl: "./branchDonutChart.component.html",
   styleUrls: ["./branchDonutChart.component.scss"]
 })
+
 export class BranchDonutChartComponent {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   branchId: string = localStorage.getItem('branchId');
   private subscription: Subscription;
   public allDoughnutDatas: any;
-
 
   constructor(private icmsdashboardService: ICMSDashboardService) {
     this.chartOptions = {

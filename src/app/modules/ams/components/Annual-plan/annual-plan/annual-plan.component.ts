@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { AuditUniverseService } from '../../../services/auidit-universe/audit-universe.service';
 import { RiskLevelDTO } from '../../../models/RiskLevel';
-import { NewRiskLevel } from '../../Audit-universe/new-risk-level/newRiskLevel.component';
+import { NewRiskLevel } from '../new-risk-level/newRiskLevel.component';
 import { RiskScoreComponent } from '../risk-score/risk-score.component';
 import { RistScoreDTO } from '../../../models/RiskScoreDTO';
 
@@ -288,6 +288,7 @@ export class AnnualPlanComponent {
     ref.onClose.subscribe((response: any) => {
       if (response.status) {
         this.getRiskLevel();
+        this.getAnnualPlans();
         this.messageService.add({
           severity: 'success',
           summary: 'Success',

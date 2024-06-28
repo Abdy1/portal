@@ -59,11 +59,11 @@ export class NewRiskLevel implements OnDestroy {
 
 
 
-  submitRiskLevel(auditUniverseForm: NgForm): void {
+  submitRiskLevel(riskLevelForm: NgForm): void {
     if (this.update) {
-      this.updateRiskLevel(auditUniverseForm);
+      this.updateRiskLevel(riskLevelForm);
     } else {
-      this.addRiskLevel(auditUniverseForm);
+      this.addRiskLevel(riskLevelForm);
     }
   }
 
@@ -83,6 +83,8 @@ export class NewRiskLevel implements OnDestroy {
     let riskLevel: RiskLevelDTO = addDivForm.value;
     riskLevel.modifiedUser = localStorage.getItem('id');
     riskLevel.id = this.riskLevelInfo.id;
+    riskLevel.auditType = this.riskLevelInfo.auditType;
+    console.log(riskLevel);
     this.subscriptions.push(
       this.auditUniverseService
         .updateRiskLevel(riskLevel)

@@ -1,7 +1,10 @@
 import { Branch } from "../../../models/sso-models/branch";
 import { SubProcess } from "../../../models/sso-models/sub-process";
+import { CollateralType } from "./collatoral-type";
+import { IPCT } from "./ipct";
+import { Status } from "./status";
 
-export interface CIPM {
+export class CIPM {
   id: number;
   borrowerName: string;
   mortgagorName: string;
@@ -15,20 +18,15 @@ export interface CIPM {
   policyNumber: string;
   referenceNumber: string;
   authorizationTimeStamp: string;
-  collateralType: {
-    id: number;
-  };
-  status: {
-    id: number;
-  };
+  collateralType: CollateralType;
+  status: Status;
   otherCollateralType: string;
-  insuranceCoverageType: {
-    id: number;
-  };
+  insuranceCoverageType:IPCT 
+
   otherInsuranceCoverageType: string;
   insuredName: string;
   isAuthorized: boolean;
-  insuranceExpireDate: string;
+  insuranceExpireDate: Date;
   branch: Branch;
   subProcess: SubProcess;
   insuranceCompanyName?: string; // Nullable property
