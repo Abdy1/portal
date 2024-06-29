@@ -153,10 +153,10 @@ export class AuthService {
     const userhaveAMS = resp?.user?.roles?.find(obj => obj?.name?.includes("AMS") && !obj?.name?.includes("ROLE_AMS_ADMIN") )
     if (userhaveAMS){
     const auditStaff = await this.auditStaffService?.getAuditStaffByEmployeeId("" + resp?.user?.id,resp?.accessToken).toPromise();
- 
+    console.log("login ", JSON.stringify(auditStaff))
     localStorage.setItem('auditStaff', JSON.stringify(auditStaff))
-
-    localStorage.setItem("ams_ip", "http://10.1.125.58:8099")
+    
+    localStorage.setItem("ams_ip", "http://localhost:8099")
   }
 
 

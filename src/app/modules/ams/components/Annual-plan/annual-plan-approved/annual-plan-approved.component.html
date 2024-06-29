@@ -80,18 +80,6 @@
             pInputText
             type="text"
             (input)="
-              dt1.filter($any($event.target)?.value, 'description', 'contains')
-            "
-            [value]="$any(dt1.filters['description'])?.value"
-            placeholder="Search by Description"
-            class="p-column-filter"
-          />
-        </th>
-        <th scope="col">
-          <input
-            pInputText
-            type="text"
-            (input)="
               dt1.filter($any($event.target)?.value, 'riskScore', 'contains')
             "
             [value]="$any(dt1.filters['type'])?.value"
@@ -135,13 +123,13 @@
         <td>{{ annualPlan?.status }}</td>
         <td>
           <div class="flex gap-2">
-            <button
+            <!-- <button
             pButton
             (click)="show(annualPlan)"
             [ngClass]="{ updateBlue: true }"
             class="p-button-sm w-20 h-10 p-2"
             label="Update"
-          ></button>
+          ></button> -->
 
    
    

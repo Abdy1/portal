@@ -25,8 +25,8 @@ export class AuditStaffService {
       }),
     };
     //prodip
-    //this.apiServiceUrl = 'http://localhost:8099';
-   this.apiServiceUrl = localStorage.getItem('ams_ip');
+    this.apiServiceUrl = 'http://localhost:8099';
+  //  this.apiServiceUrl = localStorage.getItem('ams_ip');
   }
 
   constructor(private http: HttpClient) { }

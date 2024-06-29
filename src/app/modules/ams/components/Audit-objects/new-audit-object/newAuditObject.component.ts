@@ -92,7 +92,7 @@ export class NewAuditObjectComponent implements OnDestroy {
 
   submitAuditObject(objectForm: NgForm): void {
    
-  
+    console.log(JSON.parse(localStorage.getItem("auditStaff")));
     objectForm.value.auditType = JSON.parse(localStorage.getItem("auditStaff")).auditType
     if (this.update) {
       // console.log(objectForm.value)
