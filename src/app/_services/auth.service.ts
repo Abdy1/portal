@@ -156,7 +156,7 @@ export class AuthService {
     console.log("login ", JSON.stringify(auditStaff))
     localStorage.setItem('auditStaff', JSON.stringify(auditStaff))
     
-    localStorage.setItem("ams_ip", "http://localhost:8099")
+    localStorage.setItem("ams_ip", "http://10.1.125.58:8099")
   }
 
 

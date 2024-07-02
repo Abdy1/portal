@@ -85,8 +85,10 @@ export class CheckListComponent implements OnDestroy {
       contentStyle: { 'min-height': 'auto', overflow: 'auto' },
       baseZIndex: 10000,
     });
+    console.log(ref)
 
     ref.onClose.subscribe((response: any) => {
+      console.log("dialog closed with success")
       if (response.status) {
         this.getCheckLists();
         this.messageService.add({

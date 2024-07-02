@@ -42,7 +42,7 @@ export class AuditTypeService {
   public updateAuditType(auditType: AuditType): Observable<any> {
     this.init();
     return this.http.post<any>(
-      `${this.apiServiceUrl}/ams/auditType/update`,auditType,
+      `http://localhost:8099/ams/auditType/update`,auditType,
       this.httpOptions
     );
   }
