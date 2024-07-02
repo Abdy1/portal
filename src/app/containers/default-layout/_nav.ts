@@ -140,7 +140,9 @@ export const navItemsAMSDirector = createNavItem(
   [
     createNavItem('Audit Engagement', '/ams/audit-engagement'),
     createNavItem('Audit Schedule', '/ams/audit-schedule'),
-    createNavItem('Annual Plan', '/ams/annual-plan')
+    createNavItem('Annual Plan', '/ams/annual-plan'),
+    createNavItem('Audit object', '/ams/audit-object'),
+
   ],
   'cil-drop'
 );

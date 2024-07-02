@@ -39,7 +39,7 @@ export class AnnualPlanApprovedComponent {
 
   public annualPlanDisplay: any[] = [];
 
-  public dropdownOptions = this.getYears();
+  // public dropdownOptions = this.getYears();
   public selectedDropdown: string;
   riskScoreDialogRef: DynamicDialogRef;
 
@@ -68,7 +68,7 @@ export class AnnualPlanApprovedComponent {
 
   ngOnInit() {
     this.getAnnualPlans();
-    this.isDirector = this.roles.some(obj => obj.name === "ROLE_AMS_DIRECTOR");
+
    
     this.cols = [
       { field: 'id', header: 'ID' },
@@ -84,7 +84,6 @@ export class AnnualPlanApprovedComponent {
       title: col.header,
       dataKey: col.field,
     }));
-    this.getRiskLevel();
   }
 
   ngAfterContentChecked() {
@@ -112,10 +111,7 @@ export class AnnualPlanApprovedComponent {
 
 
 
-  addToAuditSchedule(annualPlan: AnnualPlanDTO): void {
- 
- 
-  
+  addToAuditSchedule(annualPlan: AnnualPlanDTO): void { 
     const ref = this.dialogService.open(NewAuditScheduleComponent, {
       header: 'Create a new audit schedule',
       draggable: true,
@@ -142,31 +138,7 @@ export class AnnualPlanApprovedComponent {
     });
   }
 
-  createNewAnnualPlan(): void {
-    const ref = this.dialogService.open(NewAnnualPlanComponent, {
-      header: 'Create a new audit plan',
-      width: '50%',
-      contentStyle: { 'min-height': 'auto', overflow: 'auto' },
-      baseZIndex: 10000,
-    });
-
-    ref.onClose.subscribe((response: any) => {
-      if (response.status) {
-        this.getAnnualPlans();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: response.message,
-        });
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Failed',
-          detail: response.message,
-        });
-      }
-    });
-  }
+  
 
   updateAnnualPlan(id: number): void {
     const annualPlan = this.annualPlans.find((plan) => plan.id === id);
@@ -231,74 +203,10 @@ export class AnnualPlanApprovedComponent {
     });
   }
 
-  approveAnnualPlan(addDivForm: number): void {
 
 
-    this.subscriptions.push(
-      this.annualPlanService
-        .approveAnnualPlan(addDivForm)
-        .subscribe(
-          (response: any) => {
-            this.getAnnualPlans();
-          },
-          (error: HttpErrorResponse) => {
-            console.log(error);
-          }
-        )
-    );
-  }
 
-  getYears(): string[] {
-    const startYear = 2024;
-    const endYear = 2050;
-    const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => `${startYear + i}/${startYear + i + 1}`);
-    return years;
-  }
-  updateRiskLevel(riskLevel:RiskLevelDTO): void {
-    
-    const ref = this.dialogService.open(NewRiskLevel, {
-      header: 'Create Risk Level',
-      draggable: true,
-      width: '60%',
-      data: { riskLevel },
-      contentStyle: { 'min-height': 'auto', overflow: 'auto' },
-      baseZIndex: 10000,
-    });
 
-    ref.onClose.subscribe((response: any) => {
-      if (response.status) {
-        this.getRiskLevel();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: response.message,
-        });
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Failed',
-          detail: response.message,
-        });
-      }
-    });
-  }
-  getRiskLevel(): void {
-    this.subscriptions.push(
-      this.auditUniverseService.getRiskLevel().subscribe(
-        (response: any) => {
-          this.riskLevel = response.result;   
-          console.log(this.riskLevel);
-          this.riskLevelNonEmpty = response.status;
-          
-      
-
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-        }
-      )
-    );
-  }
   ngOnDestroy() {
     for (const subscription of this.subscriptions) {
       subscription.unsubscribe();
