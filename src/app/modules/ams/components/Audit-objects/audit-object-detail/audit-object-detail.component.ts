@@ -66,6 +66,7 @@ export class AuditObjectDetailComponent {
       this.checkListService.getChecklistsById(auditableArea).subscribe(
         (response: any) => {
           this.checklist = response.result;
+          console.log(this.checklist,"chelsit iyefelegin ew")
         },
         (error: HttpErrorResponse) => {
           console.log(error);
@@ -152,6 +153,7 @@ export class AuditObjectDetailComponent {
     ref.onClose.subscribe((response: any) => {
       if (response.status) {
         this.getCheckLists(this.selectedArea.id);
+        console.log(this.selectedArea.id);
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
