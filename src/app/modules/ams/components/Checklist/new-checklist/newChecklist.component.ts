@@ -54,19 +54,26 @@ export class NewCheckListComponent implements OnDestroy {
       this.addChecklist(checklistForm);
     }
   }
+   
+
+
 
   public addChecklist(addDivForm: NgForm): void {
     let checkList: CkeckListItemDTO = addDivForm.value;
     checkList.auditableArea = new AuditableAreasDTO();
     checkList.auditableArea.id = this.auditableArea.id;
-    checkList.createdUser = localStorage.getItem('id')
+    checkList.createdUser = localStorage.getItem('id');
+  
     this.subscriptions.push(
-      this.checkListService
-        .addCheckList(checkList)
-        .subscribe((response: any) => {          
-          this.messageService.clear();
-          this.ref.close(response);
-        })
+      this.checkListService.addCheckList(checkList).subscribe((response: any) => {
+        this.messageService.clear();
+        response.status = true;
+        response.result = "result"
+        response.message = "message"
+        console.log(response);
+ 
+        this.ref.close(response);
+      })
     );
   }
   

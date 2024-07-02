@@ -25,6 +25,7 @@
                 <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
                 <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
                 <th pSortableColumn="auditType">Audit type<p-sortIcon field="auditType"></p-sortIcon></th>
+                <th pSortableColumn="auditType">Status <p-sortIcon field="status"></p-sortIcon></th>
                 <th scope="col">Actions</th>
             </tr>
             <tr>
@@ -50,6 +51,8 @@
                 <td>{{auditObject?.name}}</td>
                 <td>{{auditObject?.description}}</td>
                 <td>{{auditObject?.auditType?.name}}</td>
+                <td>{{auditObject?.status}}</td>
+
                 <td class="flex gap-2">
                     <button pButton (click)="updateAuditObject(auditObject.id)" [ngClass]="{updateBlue: true}"
                         class="btns p-button-sm" label="Update"></button>
