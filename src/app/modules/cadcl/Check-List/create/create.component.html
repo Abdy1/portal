@@ -30,7 +30,7 @@
                 <div class="flex-auto">
                     <label for="alphabetic" class=" block mb-2"> Deadline: </label>
                     <p-calendar id="alphabetic" dataType="string" ngModel [(ngModel)]="cDDailyCheckList.deadline"
-                        name="deadline" [style]="{'width':'20vw','height':'45px'}" [showIcon]="true" [minDate]="todayDate"></p-calendar>
+                        name="deadline" [style]="{'width':'20vw','height':'45px'}" [showIcon]="true" [minDate]="todayDate" [required]="true"></p-calendar>
                 </div>
             </div>
         </div>

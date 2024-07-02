@@ -16,6 +16,19 @@
         </a>
       </c-nav-item>
     </c-header-nav>
+    <c-header-nav  alignment="end">
+      <c-nav-item>
+        <a cNavLink routerLinkActive="active">
+          <div>
+            <span>Welcome, {{ user + " " }} </span>
+          </div>
+          <div>
+            <span *ngIf="branch">{{" > " + branch }} </span>
+          </div>
+        </a>
+      </c-nav-item>
+    </c-header-nav>
+
     <c-header-nav class="ms-3">
       <ng-container *ngTemplateOutlet="userManual"></ng-container>
       <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
@@ -25,6 +38,7 @@
   <c-container [fluid]="true">
     <c-breadcrumb-router class="ms-2"></c-breadcrumb-router>
   </c-container>
+  
 </ng-container>
 
 <ng-template #userDropdown>
@@ -38,21 +52,29 @@
         />
       </div> -->
       <div>
-        <span>Welcome, {{ user + " " }} </span>
+        <span>Logout ? </span>
       </div>
-      <div>
-        <span *ngIf="branch">{{" > " + branch }} </span>
-      </div>
+     
     </button>
     <ul cDropdownMenu class="pt-0 pr-4 w-auto">
       <li>
-        <a type="submit" cDropdownItem value="Logout" (click)="logout()"
-          >Logout</a
+        <button
+        value="Logout" (click)="logout()"
+        pButton
+    type="button"
+
+    styleClass="p-button-secondary"
+    [style]="{ 'margin-right': '10px', padding: '10px' }"
         >
+        
+          Logout 
+        </button>
+    
       </li>
     </ul>
   </c-dropdown>
 </ng-template>
+
 
 <ng-template #userManual>
   <button
