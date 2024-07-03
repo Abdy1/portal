@@ -26,7 +26,7 @@ export class AuditTypeService {
   public getAuditTypes(): Observable<any> {
     this.init();
     return this.http.get<any>(
-      `http://localhost:8099/ams/auditType/listAll`,
+      `http://10.1.125.58:8099/ams/auditType/listAll`,
       this.httpOptions
     );
   }
@@ -34,7 +34,7 @@ export class AuditTypeService {
   public addAuditType(auditType: AuditType): Observable<any> {
     this.init();
     return this.http.post<any>(
-      `http://localhost:8099/ams/auditType/register`,auditType,
+      `http://10.1.125.58:8099/ams/auditType/register`,auditType,
       this.httpOptions
     );
   }
@@ -42,7 +42,7 @@ export class AuditTypeService {
   public updateAuditType(auditType: AuditType): Observable<any> {
     this.init();
     return this.http.post<any>(
-      `http://localhost:8099/ams/auditType/update`,auditType,
+      `http://10.1.125.58:8099/ams/auditType/update`,auditType,
       this.httpOptions
     );
   }

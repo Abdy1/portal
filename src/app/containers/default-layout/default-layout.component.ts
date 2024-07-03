@@ -179,7 +179,7 @@ export class DefaultLayoutComponent {
       })
     };
 
-    return this.http.post("http://localhost:9081/authenticate-ews", body.toString(), httpOptions)
+    return this.http.post("http://10.1.125.58:9081/authenticate-ews", body.toString(), httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

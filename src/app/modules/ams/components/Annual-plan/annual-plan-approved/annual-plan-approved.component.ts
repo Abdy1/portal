@@ -8,11 +8,9 @@ import { NewAnnualPlanComponent } from '../new-annual-plan/newAnnualPlan.compone
 import { Subscription } from 'rxjs';
 import * as FileSaver from 'file-saver';
 import { NewAuditScheduleComponent } from '../../Audit-schedule/new-audit-schedule/newAuditSchedule.component';
-import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { AuditUniverseService } from '../../../services/auidit-universe/audit-universe.service';
 import { RiskLevelDTO } from '../../../models/RiskLevel';
-import { NewRiskLevel } from '../new-risk-level/newRiskLevel.component';
 import { RiskScoreComponent } from '../risk-score/risk-score.component';
 import { RistScoreDTO } from '../../../models/RiskScoreDTO';
 
