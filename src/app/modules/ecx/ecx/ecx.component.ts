@@ -39,7 +39,7 @@ export class ECXComponent implements OnInit{
   generateXml() {
     this.loading = true;
     this.progress = 0;
-    this.http.get('http://localhost:8080/xml').subscribe(
+    this.http.get('http://10.1.125.58:8080/xml').subscribe(
       data => {
         this.xmlFile = data;
         this.loading = false;

@@ -22,7 +22,7 @@ export class AnnualPlanService {
     };
   // this.apiServiceUrl = localStorage.getItem('ams_ip');
     // prodip
-    this.apiServiceUrl = 'http://localhost:8099';
+    this.apiServiceUrl = 'http://10.1.125.58:8099';
  
   }
 

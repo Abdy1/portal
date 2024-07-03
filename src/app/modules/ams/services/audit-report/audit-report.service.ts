@@ -47,7 +47,7 @@ export class AuditReportService {
   
   public registerReport(theBigJson: any): Observable<any> {
     this.init();
-    const url = `http://localhost/ams/report/register/byAuditSchedule`;
+    const url = `http://10.1.125.58/ams/report/register/byAuditSchedule`;
     return this.http.post(this.apiServiceUrl+"/ams/report/register/byAuditSchedule", theBigJson,this.httpOptions);
   }
 

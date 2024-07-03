@@ -19,12 +19,12 @@ export class CheckListService {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
       }),
     };
-  this.apiServiceUrl = localStorage.getItem('ams_ip');
-       // prodip
-      //  this.apiServiceUrl = 'http://localhost:8099';
+    this.apiServiceUrl = localStorage.getItem('ams_ip');
+    // prodip
+    //  this.apiServiceUrl = 'http://localhost:8099';
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getChecklists(): Observable<any> {
     this.init();
@@ -37,14 +37,14 @@ export class CheckListService {
   public getChecklistsById(auditableArea: AuditableAreasDTO): Observable<any> {
     this.init();
     return this.http.post<any>(
-      `${this.apiServiceUrl}/ams/checkListItem/byAArea`,auditableArea,
+      `${this.apiServiceUrl}/ams/checkListItem/byAArea`, auditableArea,
       this.httpOptions
     );
   }
 
-  public getCheckListInfo(checkList: CkeckListItemDTO): Observable<any>{
+  public getCheckListInfo(checkList: CkeckListItemDTO): Observable<any> {
     this.init();
-    return this.http.post<any>(`${this.apiServiceUrl}/ams/checkListItem/findById`,checkList, this.httpOptions)
+    return this.http.post<any>(`${this.apiServiceUrl}/ams/checkListItem/findById`, checkList, this.httpOptions)
   }
 
   public addCheckList(checkList: CkeckListItemDTO): Observable<any> {
@@ -56,12 +56,12 @@ export class CheckListService {
     );
   }
 
-  public updateCheckList(checkList: CkeckListItemDTO): Observable<any>{
+  public updateCheckList(checkList: CkeckListItemDTO): Observable<any> {
     this.init();
     return this.http.post(`${this.apiServiceUrl}/ams/checkListItem/update`, checkList, this.httpOptions)
   }
 
-  public deleteCheckList(checkList: CkeckListItemDTO): Observable<any>{
+  public deleteCheckList(checkList: CkeckListItemDTO): Observable<any> {
     this.init();
     return this.http.post(`${this.apiServiceUrl}/ams/checkListItem/delete`, checkList, this.httpOptions)
   }
