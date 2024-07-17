@@ -18,19 +18,20 @@
       constructor(private icmsdashboardService: ICMSDashboardService) {}
 
       ngOnInit() {
-        this.getAllBranchDashboardData();
+        this.getRCMPDashboardDatas();
       }
 
       ngOnDestroy() {
         this.subscription.unsubscribe();
       }
 
-      branchId: string = "ET0010307";
+   
 
-      getAllBranchDashboardData(): void {
-        this.subscription = this.icmsdashboardService.getBranchDashboardDatas(this.branchId).subscribe(
+      getRCMPDashboardDatas(): void {
+        this.subscription = this.icmsdashboardService.getRCMPDashboardDatas().subscribe(
           (response: any) => {
             this.allDatas = response;
+            
           },
           (error) => {
             console.error('Failed to get dashboard data:', error);
