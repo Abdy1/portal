@@ -88,6 +88,8 @@ export class TradeTableComponent implements OnDestroy {
             ...trade,
             daysPastDue: this.daysPastDue(trade.actionPlanDueDate)
           }));
+          console.log("aaa", this.TradeList);
+          
           this.tradeListDisplay = this.TradeList.map(this.formatTradeData.bind(this));
         },
         (error: HttpErrorResponse) => {
