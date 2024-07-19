@@ -11,7 +11,6 @@ const routes: Routes = [
   {
     path: 'login', component: LoginComponent
   },
-
   {
     path: '',
     component: DefaultLayoutComponent, canActivate: [AuthGuard],
@@ -47,7 +46,7 @@ const routes: Routes = [
         path: 'sms_dashboard',
         loadChildren: () =>
           import('./modules/sms/sms.module').then((m) => m.SmsModule)
-      },
+      },  
       {
         path: 'CMS',
         loadChildren: () =>
