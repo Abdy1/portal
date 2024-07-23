@@ -37,11 +37,12 @@ import { ProcurementDonutChartComponent } from './Procurement_dashboard/procurem
 import { ProcurementDashboardComponent } from './Procurement_dashboard/procurement-box-dashboard/procurementDashboard.component';
 import { RCMPDashboardComponent } from './RCMP_users_dashboard/rcmp-box-dashboard/rcmpDashboard.component';
 import { RCMPDonutChartComponent } from './RCMP_users_dashboard/rcmp-donut-chart/rcmpDonutChart.component';
+import { RCMPBarChartComponent } from './RCMP_users_dashboard/rcmp_bar_chart/rcmpBarChart.component';
 import { ShareManagementDashboardComponent } from './share_management_dashboard/share_management_box_dashboard/shareManagementDashboard.component';
 import { ShareManagementDonutChartComponent } from './share_management_dashboard/share_management_donut_chart/shareManagementDonutChart.component';
 import { TradeServiceDashboardComponent } from './trade_service_dashboard/trade_service_box_dashboard/tradeServiceDashboard.component';
 import { TradeServiceDonutChartComponent } from './trade_service_dashboard/trade_service_donut_chart/tradeServiceDonutChart.component';
-
+import { SharedModule } from './../../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { TradeServiceDonutChartComponent } from './trade_service_dashboard/trade
     TableModule,
     ChartModule,
     NgApexchartsModule,
-    WidgetModule
+    WidgetModule,
+    SharedModule
   ],
   declarations: 
   [DashboardComponent,
@@ -82,6 +84,7 @@ import { TradeServiceDonutChartComponent } from './trade_service_dashboard/trade
     ProcurementDashboardComponent,
     RCMPDashboardComponent,
     RCMPDonutChartComponent,
+    RCMPBarChartComponent,
     ShareManagementDashboardComponent,
     ShareManagementDonutChartComponent,
     TradeServiceDashboardComponent,
