@@ -9,7 +9,7 @@ import { AuditEngagementService } from 'src/app/modules/ams/services/audit-engag
 import { AuditEngagementDTO } from 'src/app/modules/ams/models/audit-engagement';
 import { AuditScheduleDTO } from 'src/app/modules/ams/models/auditSchedule';
 import { EwsSimpleMessage } from 'src/app/models/ews-models/ews_simple_message';
-import { Ews } from 'src/app/services/sso-services/ews.service';
+import { EWSService } from 'src/app/services/ews-services/ews-services.service';
 
 @Component({
   selector: 'newAuditEngagement',
@@ -46,7 +46,7 @@ export class NewAuditEngagementComponent implements OnDestroy {
     private config: DynamicDialogConfig,
     public dialogService: DialogService,
     private datePipe: DatePipe,
-    private ews:Ews
+    private ews:EWSService
   ) { }
 
   ngOnInit() {
@@ -95,19 +95,19 @@ export class NewAuditEngagementComponent implements OnDestroy {
      this.outlookMessage.shortCircuit = true;
      auditEngagement.createdUser = localStorage.getItem('id')
    
-
+    console.log(auditEngagement,"im sending this one");
 
     this.subscriptions.push(
       this.auditEngagementService.addToEngagement(auditEngagement).subscribe(
         (response: any) => {
-          // this.ews.sendEmail(this.outlookMessage).subscribe(
-          //   (response: any) => {
-          //     this.ref.close(response);
-          //   },
-          //   (error: HttpErrorResponse) => {
-          //     console.log(error);
-          //   }
-          // )
+          this.ews.sendThis(this.outlookMessage).subscribe(
+            (response: any) => {
+              this.ref.close(response);
+            },
+            (error: HttpErrorResponse) => {
+              console.log(error);
+            }
+          )
           this.ref.close(response);
         },
         (error: HttpErrorResponse) => {

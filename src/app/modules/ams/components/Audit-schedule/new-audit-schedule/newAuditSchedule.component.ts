@@ -84,6 +84,7 @@ export class NewAuditScheduleComponent implements OnDestroy {
         endOn: this.datePipe.transform(this.config.data.auditSchedule.endOn, 'MM/dd/yyyy')
       };
       this.selectedDropdown = this.config.data.auditSchedule.quarter.toString();
+ 
       this.savedAssignmembers = this.config.data.auditSchedule.teamMembers;
       this.update = true;
       this.newDiv = false;
@@ -97,6 +98,8 @@ export class NewAuditScheduleComponent implements OnDestroy {
       this.employeeService.getAllSubProcess().subscribe(
         (response: any) => {          
            this.organOptions = response;
+             this.selectedOrgan = this.organOptions.find(option => option.id ==this.config.data.auditSchedule.auditeesOrganID );
+
         },
         (error: HttpErrorResponse) => {
           console.log(error);
