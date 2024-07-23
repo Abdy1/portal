@@ -70,7 +70,7 @@ export class DefaultLayoutComponent {
   // Define a configuration object for roles
   private roleConfig = {
     "ROLE_ICMS_BRANCH_IC": { navItems: navItemsICMSBranch, dashboardRoute: "cc_dashboard" },
-    "ROLE_SUPER_ADMIN": { navItems: navItemsSuperAdmin, dashboardRoute: "ems_dashboard" },
+    "ROLE_SUPER_ADMIN": { navItems: navItemsSuperAdmin, dashboardRoute: "icms_dashboard/rcmp" },
     "ROLE_SYSTEM_ADMIN": { navItems: navItemsAdmin, dashboardRoute: "ems_dashboard" },
     "ROLE_SUPERVISOR": { navItems: navItemSupervisor, dashboardRoute: "default_dashboard" },
     "ROLE_EMS_ADMIN": { navItems: navItemsEMSAdmin, dashboardRoute: "default_dashboard" },
@@ -78,7 +78,7 @@ export class DefaultLayoutComponent {
     "ROLE_CC_ADMIN": { navItems: navItemsCCAdmin, dashboardRoute: "cc_dashboard" },
     "ROLE_CC_USER": { navItems: navItemsCCUser, dashboardRoute: "cc_dashboard" },
     "ROLE_CC_USER_DELIQUENT": { navItems: navItemsCCUserDeliquent, dashboardRoute: "cc_dashboard" },
-    "ROLE_ICMS_ADMIN": { navItems: navItemsICMSAdmin, dashboardRoute: "icms_dashboard" },
+    "ROLE_ICMS_ADMIN": { navItems: navItemsICMSAdmin, dashboardRoute: "icms_dashboard/rcmp" },
     "ROLE_ICMS_DISTRICT_IC": { navItems: navItemsICMSDistrict, dashboardRoute: "icms_dashboard/district" },
     "ROLE_ICMS_DISTRICT_DIRECTOR": { navItems: navItemsICMSDistrictDirector, dashboardRoute: "icms_dashboard/district" },
     "ROLE_SMS_ADMIN": { navItems: navItemsSMSAdmin, dashboardRoute: "sms_dashboard" },
