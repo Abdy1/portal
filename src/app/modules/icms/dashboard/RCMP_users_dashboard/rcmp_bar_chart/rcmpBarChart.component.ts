@@ -7,7 +7,8 @@ import {
   ApexXAxis,
   ApexGrid,
   ApexPlotOptions,
-  ApexAnnotations
+  ApexAnnotations,
+  ApexYAxis
 } from "ng-apexcharts";
 
 export type ChartOptions = {
@@ -16,6 +17,7 @@ export type ChartOptions = {
   dataLabels: ApexDataLabels;
   plotOptions: ApexPlotOptions;
   xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
   grid: ApexGrid;
   annotations: ApexAnnotations;
 };
@@ -34,7 +36,7 @@ export class RCMPBarChartComponent {
       series: [
         {
           name: "basic",
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380, 470, 540, 580, 266, 888, 90]
+          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380, 470, 540, 580, 266, 888, 200, 333, 222, 444]
         }
       ],
       chart: {
@@ -79,26 +81,38 @@ export class RCMPBarChartComponent {
           show: false,
         },
         axisTicks: {
-          show: false, // Add this line
+          show: false,
         },
       },
+      yaxis: {
+        labels: {
+          show: true, // Ensure labels are visible
+          style: {
+            colors: '#000', // Set label color if needed
+            fontSize: '12px'
+          }
+        },
+        axisBorder: {
+          show: false // Hide the border of the y-axis
+        },
+        axisTicks: {
+          show: true, // Show ticks on y-axis
+        }
+      },
       grid: {
-        strokeDashArray: 0,
+        strokeDashArray: 0, // Solid lines
         xaxis: {
           lines: {
-            show: false,
+            show: false, // Hide vertical grid lines
           },
         },
         yaxis: {
           lines: {
-            show: false,
+            show: true, // Show horizontal grid lines
+            // Configuration for color and width might not be supported directly
           },
         },
       },
-    
-      
-      
-
     };
   }
 }
