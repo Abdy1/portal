@@ -34,7 +34,7 @@ export class RiskScoreComponent {
   }
 
   ngOnInit(){
-    console.log("performing action on ", this.annualPlanInfo?.auditObject?.name)
+    console.log("performing action on ", )
     console.log("score detail",this.riskScores)
 
   }

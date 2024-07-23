@@ -98,7 +98,7 @@
           Status<p-sortIcon field="status"></p-sortIcon>
         </th>
         <th pSortableColumn="auditSchedule.annualPlan.name">
-          Annual plan<p-sortIcon field="auditSchedule.annualPlan.name"></p-sortIcon>
+          Annual plan
         </th>
         <th scope="col">Actions</th>
       </tr>
@@ -166,7 +166,7 @@
         <td>{{ auditEngagement.startOn }}</td>
         <td>{{ auditEngagement.endOn }}</td>
         <td>{{ auditEngagement.auditSchedule?.status }}</td>
-        <td>{{ auditEngagement.auditSchedule?.annualPlan.name }}</td>
+        <td>{{ auditEngagement.auditSchedule?.annualPlan?.auditObject?.name }}</td>
         <td class="flex gap-2">
           <button
           pButton
@@ -182,7 +182,7 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="5">No found.</td>
+        <td colspan="5">No item Found.</td>
       </tr>
     </ng-template>
   </p-table>

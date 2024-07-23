@@ -19,8 +19,6 @@ export class AuditWBSService {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
       }),
     };
-    //prodip
-    // this.apiServiceUrl = 'http://localhost:8099';
   this.apiServiceUrl = localStorage.getItem('ams_ip');
   }
 

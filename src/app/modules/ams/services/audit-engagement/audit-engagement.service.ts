@@ -19,8 +19,6 @@ export class AuditEngagementService {
     };
     // production
   this.apiServiceUrl = localStorage.getItem('ams_ip');
-    // prodip
-    // this.apiServiceUrl = 'http://localhost:8099';
   }
 
   constructor(private http: HttpClient) { }
