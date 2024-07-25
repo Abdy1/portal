@@ -10,7 +10,6 @@ import { WBS_DTO } from '../../models/WBS';
 export class AuditWBSService {
   private httpOptions: any;
   private apiServiceUrl: any;
-  // selectedAuditProgram: AuditProgramDTO;
 
   private init() {
     this.httpOptions = {
@@ -19,8 +18,6 @@ export class AuditWBSService {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
       }),
     };
-    //prodip
-    // this.apiServiceUrl = 'http://localhost:8099';
   this.apiServiceUrl = localStorage.getItem('ams_ip');
   }
 

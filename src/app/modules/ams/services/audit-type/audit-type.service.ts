@@ -17,8 +17,6 @@ export class AuditTypeService {
       }),
     };
   this.apiServiceUrl = localStorage.getItem('ams_ip');
-       // prodip
-      //  this.apiServiceUrl = 'http://localhost:8099';
   }
 
   constructor(private http: HttpClient) {}
@@ -26,7 +24,7 @@ export class AuditTypeService {
   public getAuditTypes(): Observable<any> {
     this.init();
     return this.http.get<any>(
-      `http://10.1.125.58:8099/ams/auditType/listAll`,
+      `${this.apiServiceUrl}/ams/auditType/listAll`,
       this.httpOptions
     );
   }
@@ -34,7 +32,7 @@ export class AuditTypeService {
   public addAuditType(auditType: AuditType): Observable<any> {
     this.init();
     return this.http.post<any>(
-      `http://10.1.125.58:8099/ams/auditType/register`,auditType,
+      `${this.apiServiceUrl}/ams/auditType/register`,auditType,
       this.httpOptions
     );
   }
@@ -42,7 +40,7 @@ export class AuditTypeService {
   public updateAuditType(auditType: AuditType): Observable<any> {
     this.init();
     return this.http.post<any>(
-      `http://10.1.125.58:8099/ams/auditType/update`,auditType,
+      `${this.apiServiceUrl}/ams/auditType/update`,auditType,
       this.httpOptions
     );
   }
