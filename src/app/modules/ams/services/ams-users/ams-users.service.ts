@@ -16,8 +16,8 @@ export class AMSUsersService {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
       }),
     };
-
-    this.apiServiceUrl = this.apiServiceUrl = localStorage.getItem('ams_ip');
+    // this.apiServiceUrl = 'http://localhost:8099';
+    this.apiServiceUrl = localStorage.getItem("ams_ip");
   }
 
   constructor(private http: HttpClient) { }
