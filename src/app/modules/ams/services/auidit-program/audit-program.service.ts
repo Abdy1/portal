@@ -19,7 +19,7 @@ export class AuditProgramService {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
       }),
     };
-    this.apiServiceUrl = this.apiServiceUrl = localStorage.getItem('ams_ip');
+    this.apiServiceUrl = localStorage.getItem('ams_ip');
   }
 
   constructor(private http: HttpClient) {}
