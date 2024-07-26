@@ -18,18 +18,19 @@ export class IFBDashboardComponent {
   constructor(private icmsdashboardService: ICMSDashboardService) {}
 
   ngOnInit() {
-    this.getAllBranchDashboardData();
+    this.getAllIFBDashboardData();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  branchId: string = "ET0010307";
 
-  getAllBranchDashboardData(): void {
-    this.subscription = this.icmsdashboardService.getBranchDashboardDatas(this.branchId).subscribe(
+  getAllIFBDashboardData(): void {
+    this.subscription = this.icmsdashboardService.getIFBDashboardDatas().subscribe(
       (response: any) => {
+        console.log("Abcd",response);
+        
         this.allDatas = response;
       },
       (error) => {
