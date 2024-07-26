@@ -25,11 +25,11 @@ export class TradeServiceDonutChartComponent {
 
   constructor() {
     this.chartOptions = {
-      series: [44, 55, 13, 43, 5545, 45, 2, 2, 434, 2, 44, 55,100],
+      series: [44, 55, 13, 43, 545, 45,65],
       chart: {
         type: "donut"
       },
-      labels: ["Cash Management", "Customer Account Operation", "Suspense Account Management", "Loan and Advances", "Forex Trading", "Expense Management", "Digital Banking", "Branch Opening Requirements", "Key Book and Rubber Stamp", "Interest Free Banking", "Stock and Negotiable Instrument Management", "Fixed Asset Management", "Human Resource Management"],
+      labels: [ "Import", "Export", "Forex Trading", "Foreign Latter of Guarantee", "Forign Transfers", "Correspondent Accounts Reconcilation", "Other"],
       responsive: [
         {
           breakpoint: 480,

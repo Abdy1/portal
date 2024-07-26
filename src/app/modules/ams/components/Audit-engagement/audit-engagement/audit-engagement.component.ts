@@ -209,7 +209,7 @@ export class AuditEngagementComponent implements OnDestroy {
   }
 
   goToDetails(auditEngagement: AuditEngagementDTO): void {
-
+    console.log(auditEngagement);
     localStorage.setItem('currentEngagement', JSON.stringify(auditEngagement));
     this.router.navigate(['ams/audit-engagement-details']);
 

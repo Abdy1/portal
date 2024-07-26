@@ -70,7 +70,7 @@ export class DefaultLayoutComponent {
   // Define a configuration object for roles
   private roleConfig = {
     "ROLE_ICMS_BRANCH_IC": { navItems: navItemsICMSBranch, dashboardRoute: "cc_dashboard" },
-    "ROLE_SUPER_ADMIN": { navItems: navItemsSuperAdmin, dashboardRoute: "icms_dashboard/rcmp" },
+    "ROLE_SUPER_ADMIN": { navItems: navItemsSuperAdmin, dashboardRoute: "icms_dashboard/tradeService" },
     "ROLE_SYSTEM_ADMIN": { navItems: navItemsAdmin, dashboardRoute: "ems_dashboard" },
     "ROLE_SUPERVISOR": { navItems: navItemSupervisor, dashboardRoute: "default_dashboard" },
     "ROLE_EMS_ADMIN": { navItems: navItemsEMSAdmin, dashboardRoute: "default_dashboard" },
@@ -88,8 +88,8 @@ export class DefaultLayoutComponent {
     "ROLE_ICMS_IFB": { navItems: navItemsICMSIFB, dashboardRoute: "icms_dashboard/ifb" },
     "ROLE_ICMS_FINANCE_IC": { navItems: navItemsICMSFinanceIC, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_FINANCE_OWNER": { navItems: navItemsICMSFinanceOWNER, dashboardRoute: "default_dashboard" },
-    "ROLE_ICMS_TRADE_IC": { navItems: navItemsICMSTradeIC, dashboardRoute: "default_dashboard" },
-    "ROLE_ICMS_TRADE_OWNER": { navItems: navItemsICMSTradeOWNER, dashboardRoute: "default_dashboard" },
+    "ROLE_ICMS_TRADE_IC": { navItems: navItemsICMSTradeIC, dashboardRoute: "icms_dashborad/tradeService" },
+    "ROLE_ICMS_TRADE_OWNER": { navItems: navItemsICMSTradeOWNER, dashboardRoute: "icms_dashborad/tradeService" },
     "ROLE_ICMS_PROCUREMENT_IC": { navItems: navItemsICMSProcurementIC, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_PROCUREMENT_OWNER": { navItems: navItemsICMSProcurementOWNER, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_SHARE_IC": { navItems: navItemsICMSShareIC, dashboardRoute: "default_dashboard" },

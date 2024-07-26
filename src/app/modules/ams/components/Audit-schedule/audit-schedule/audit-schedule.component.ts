@@ -176,6 +176,8 @@ export class AuditScheduleComponent implements OnDestroy {
                   memberNames: members.map(member => member.auditStaffDTO?.fullName).join(', ') || ''
                 };
               });
+            } else {
+              this.auditSchedules = null;
             }
           },
           (error: HttpErrorResponse) => {

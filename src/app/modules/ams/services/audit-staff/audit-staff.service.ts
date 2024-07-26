@@ -24,9 +24,7 @@ export class AuditStaffService {
         Authorization: `Bearer ${token}`,
       }),
     };
-    //prodip
-    this.apiServiceUrl = 'http://10.1.125.58:8099';
-  //  this.apiServiceUrl = localStorage.getItem('ams_ip');
+   this.apiServiceUrl = localStorage.getItem('ams_ip');
   }
 
   constructor(private http: HttpClient) { }
@@ -50,7 +48,7 @@ export class AuditStaffService {
   public getAuditStaffByEmployeeId(employeeId: string,access_token?:string): Observable<any> {
     this.init(access_token);
     return this.http.get<any>(
-      `${this.apiServiceUrl}/ams/auditStaff/findByUserId/${employeeId}`, this.httpOptions
+      `http://localhost:8099/ams/auditStaff/findByUserId/${employeeId}`, this.httpOptions
     );
   }
 
