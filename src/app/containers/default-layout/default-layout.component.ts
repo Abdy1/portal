@@ -85,7 +85,7 @@ export class DefaultLayoutComponent {
     "ROLE_ICMS_PROVISION": { navItems: navItemsICMSProvision, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_BRANCH_MANAGER": { navItems: navItemsICMSBranchManager, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_BANKING_OPERATION": { navItems: navItemsICMSBankingOperation, dashboardRoute: "default_dashboard" },
-    "ROLE_ICMS_IFB": { navItems: navItemsICMSIFB, dashboardRoute: "default_dashboard" },
+    "ROLE_ICMS_IFB": { navItems: navItemsICMSIFB, dashboardRoute: "icms_dashboard/ifb" },
     "ROLE_ICMS_FINANCE_IC": { navItems: navItemsICMSFinanceIC, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_FINANCE_OWNER": { navItems: navItemsICMSFinanceOWNER, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_TRADE_IC": { navItems: navItemsICMSTradeIC, dashboardRoute: "default_dashboard" },

@@ -102,7 +102,7 @@ export class AuthService {
     "ROLE_ICMS_PROVISION": 'default_dashboard',
     "ROLE_ICMS_BRANCH_MANAGER": 'default_dashboard',
     "ROLE_ICMS_BANKING_OPERATION": 'default_dashboard',
-    "ROLE_ICMS_IFB": 'default_dashboard',
+    "ROLE_ICMS_IFB": 'icms_dashboard/ifb',
     "ROLE_ICMS_FINANCE_IC": 'default_dashboard',
     "ROLE_ICMS_FINANCE_OWNER": 'default_dashboard',
     "ROLE_ICMS_TRADE_IC": 'default_dashboard',
