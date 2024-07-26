@@ -7,6 +7,11 @@ import {
   ApexChart
 } from "ng-apexcharts";
 
+import { ICMSDashboardService } from "../../services/icms-dashboard.service";
+import { Subscription } from "rxjs";
+import { error } from "console";
+
+
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
@@ -23,13 +28,17 @@ export class TradeServiceDonutChartComponent {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  private subscription: Subscription;
+  public allDoughnutDatas: any;
+  
+
+  constructor(private iCMSDashboardService: ICMSDashboardService  ) {
     this.chartOptions = {
-      series: [44, 55, 13, 43, 545, 45,65],
+      series: [0, 0, 0, 0, 0, 0],
       chart: {
         type: "donut"
       },
-      labels: [ "Import", "Export", "Forex Trading", "Foreign Latter of Guarantee", "Forign Transfers", "Correspondent Accounts Reconcilation", "Other"],
+      labels: [ "Import", "Export", "Foreign Latter of Guarantee", "Forign Transfers", "Correspondent Accounts Reconcilation", "Other"],
       responsive: [
         {
           breakpoint: 480,
@@ -43,4 +52,40 @@ export class TradeServiceDonutChartComponent {
       ]
     };
   }
+    
+  ngOnInit() {
+    this.getTradeDashboardDonutDatas();
+  }
+
+
+  getTradeDashboardDonutDatas(): void {
+     this.subscription = this.iCMSDashboardService.getTradeDashboardDonutDatas().subscribe(
+      (response:any) => {
+        this.allDoughnutDatas = response;
+        console.log("donut", response);
+        
+        //initialise an array with zeros
+        let seriesData = new Array(this.chartOptions.labels.length).fill(0);
+
+       
+        //update the values for the labels that exist in the response
+        for (let label in this.allDoughnutDatas) {
+          let index = this.chartOptions.labels.indexOf(label);
+          if (index !== -1) {
+            seriesData[index] = this.allDoughnutDatas[label];
+          }
+        }
+
+        //update the chart series data
+        this.chartOptions.series = seriesData;
+      },
+       (error) => {
+         console.error('Failed to get dashboard data:', error);
+       }
+      
+     );
+
+  }
+
+  
 }

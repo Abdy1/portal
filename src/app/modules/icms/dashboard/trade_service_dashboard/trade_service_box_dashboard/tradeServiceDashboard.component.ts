@@ -18,7 +18,7 @@ export class TradeServiceDashboardComponent {
   constructor(private icmsdashboardService: ICMSDashboardService) {}
 
   ngOnInit() {
-    this.getAllBranchDashboardData();
+    this.getAllTradeDashboardData();
   }
 
   ngOnDestroy() {
@@ -26,10 +26,18 @@ export class TradeServiceDashboardComponent {
   }
 
 
-  getAllBranchDashboardData(): void {
+  getAllTradeDashboardData(): void {
     this.subscription = this.icmsdashboardService.getTradeDashboardDatas().subscribe(
       (response: any) => {
+        console.log("aaaaaaaaaaa", response);
         this.allDatas = response;
+
+                // Format numbers with commas
+                for (let key in this.allDatas) {
+                  if (typeof this.allDatas[key] === 'number') {
+                    this.allDatas[key] = this.allDatas[key].toLocaleString();
+                  }
+                }
       },
       (error) => {
         console.error('Failed to get dashboard data:', error);

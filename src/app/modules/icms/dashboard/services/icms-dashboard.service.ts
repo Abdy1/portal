@@ -72,6 +72,15 @@ currentDayoutstandingEscalatedCases
       this.httpOptions
     );
   }
+
+
+  public getTradeDashboardDonutDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forTradeDonut`,
+      this.httpOptions
+    );
+  }
  
 }
 
