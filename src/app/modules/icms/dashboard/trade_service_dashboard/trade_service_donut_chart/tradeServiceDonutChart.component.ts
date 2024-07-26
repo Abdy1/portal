@@ -36,9 +36,9 @@ export class TradeServiceDonutChartComponent {
     this.chartOptions = {
       series: [0, 0, 0, 0, 0, 0],
       chart: {
-        type: "donut"
+        type: "pie"
       },
-      labels: [ "Import", "Export", "Foreign Latter of Guarantee", "Forign Transfers", "Correspondent Accounts Reconcilation", "Other"],
+      labels: [ "Import", "Export", "Foreign Letter of Guarantee", "Foreign Transfers", "Correspondent Accounts Reconciliation", "Other"],
       responsive: [
         {
           breakpoint: 480,
