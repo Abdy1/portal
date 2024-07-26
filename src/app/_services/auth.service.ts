@@ -86,7 +86,7 @@ export class AuthService {
   }
 
    roleRouteMapping = {
-    "ROLE_SUPER_ADMIN": 'icms_dashboard/rcmp',
+    "ROLE_SUPER_ADMIN": 'icms_dashboard/tradeService',
     "ROLE_SUPERVISOR": 'default_dashboard',
     "ROLE_SYSTEM_ADMIN": 'ems_dashboard',
     "ROLE_EMS_ADMIN": 'default_dashboard',
@@ -105,8 +105,8 @@ export class AuthService {
     "ROLE_ICMS_IFB": 'icms_dashboard/ifb',
     "ROLE_ICMS_FINANCE_IC": 'default_dashboard',
     "ROLE_ICMS_FINANCE_OWNER": 'default_dashboard',
-    "ROLE_ICMS_TRADE_IC": 'default_dashboard',
-    "ROLE_ICMS_TRADE_OWNER": 'default_dashboard',
+    "ROLE_ICMS_TRADE_IC": 'icms_dashborad/tradeService',
+    "ROLE_ICMS_TRADE_OWNER": 'icms_dashborad/tradeService',
     "ROLE_ICMS_PROCUREMENT_IC": 'default_dashboard',
     "ROLE_ICMS_PROCUREMENT_OWNER": 'default_dashboard',
     "ROLE_ICMS_SHARE_IC": 'default_dashboard',
@@ -156,7 +156,7 @@ export class AuthService {
     console.log("login ", JSON.stringify(auditStaff))
     localStorage.setItem('auditStaff', JSON.stringify(auditStaff))
     
-    localStorage.setItem("ams_ip", "http://10.1.125.58:8099")
+    localStorage.setItem("ams_ip", "http://localhost:8099")
   }
 
 

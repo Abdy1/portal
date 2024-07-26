@@ -25,11 +25,11 @@
         this.subscription.unsubscribe();
       }
 
-   
 
       getRCMPDashboardDatas(): void {
         this.subscription = this.icmsdashboardService.getRCMPDashboardDatas().subscribe(
           (response: any) => {
+            console.log("aaaaaaaaa",response)
             this.allDatas = response;
             
           },

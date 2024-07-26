@@ -44,8 +44,8 @@ export class AuditFindingsDetailComponent implements OnDestroy {
   private subscriptions: Subscription[] = [];
   cols!: Column[];
   file_type:string = ".pdf";
-
-  back_end_url:string = "http://10.1.125.58:8099";
+  
+  back_end_url:string = localStorage.getItem('ams_ip')
   upload_url: string;
   constructor(
     private auditProgramService: AuditProgramService,

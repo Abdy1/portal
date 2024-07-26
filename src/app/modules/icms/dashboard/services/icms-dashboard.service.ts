@@ -81,6 +81,14 @@ export class ICMSDashboardService {
     );
   }
 
+
+  public getTradeDashboardDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forTrade`,
+      this.httpOptions
+    );
+  }
  
 }
 
