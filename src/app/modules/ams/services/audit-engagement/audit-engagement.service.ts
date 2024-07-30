@@ -17,7 +17,6 @@ export class AuditEngagementService {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
       }),
     };
-    // production
   this.apiServiceUrl = localStorage.getItem('ams_ip');
   }
 

@@ -10,6 +10,7 @@ import { loadTranslations } from '@angular/localize';
 export class AuditStaffService {
   private httpOptions: any;
   private apiServiceUrl: any;
+  private amsip:any;
 
   private init(access?:string) {
     let token = ''
@@ -25,6 +26,7 @@ export class AuditStaffService {
       }),
     };
    this.apiServiceUrl = localStorage.getItem('ams_ip');
+   this.amsip = 'http://10.1.125.58:8099';
   }
 
   constructor(private http: HttpClient) { }
@@ -48,7 +50,7 @@ export class AuditStaffService {
   public getAuditStaffByEmployeeId(employeeId: string,access_token?:string): Observable<any> {
     this.init(access_token);
     return this.http.get<any>(
-      `http://localhost:8099/ams/auditStaff/findByUserId/${employeeId}`, this.httpOptions
+      `${this.amsip}/ams/auditStaff/findByUserId/${employeeId}`, this.httpOptions
     );
   }
 

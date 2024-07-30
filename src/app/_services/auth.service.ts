@@ -86,7 +86,7 @@ export class AuthService {
   }
 
    roleRouteMapping = {
-    "ROLE_SUPER_ADMIN": 'icms_dashboard/rcmp',
+    "ROLE_SUPER_ADMIN": 'ems_dashboard',
     "ROLE_SUPERVISOR": 'default_dashboard',
     "ROLE_SYSTEM_ADMIN": 'ems_dashboard',
     "ROLE_EMS_ADMIN": 'default_dashboard',
@@ -94,7 +94,7 @@ export class AuthService {
     "ROLE_CC_ADMIN": 'cc_dashboard',
     "ROLE_CC_USER": 'cc_dashboard',
     "ROLE_CC_USER_DELIQUENT": 'cc_dashboard',
-    "ROLE_ICMS_ADMIN": 'icms_dashboard/rcmp',
+    "ROLE_ICMS_ADMIN": 'default_dashboard',
     "ROLE_ICMS_DISTRICT_IC": 'icms_dashboard/district',
     "ROLE_ICMS_DISTRICT_DIRECTOR": 'icms_dashboard/district',
     "ROLE_ICMS_BRANCH_IC": 'icms_dashboard/branch',
@@ -102,11 +102,11 @@ export class AuthService {
     "ROLE_ICMS_PROVISION": 'default_dashboard',
     "ROLE_ICMS_BRANCH_MANAGER": 'default_dashboard',
     "ROLE_ICMS_BANKING_OPERATION": 'default_dashboard',
-    "ROLE_ICMS_IFB": 'default_dashboard',
+    "ROLE_ICMS_IFB": 'icms_dashboard/ifb',
     "ROLE_ICMS_FINANCE_IC": 'default_dashboard',
     "ROLE_ICMS_FINANCE_OWNER": 'default_dashboard',
-    "ROLE_ICMS_TRADE_IC": 'default_dashboard',
-    "ROLE_ICMS_TRADE_OWNER": 'default_dashboard',
+    "ROLE_ICMS_TRADE_IC": 'icms_dashboard/tradeService',
+    "ROLE_ICMS_TRADE_OWNER": 'icms_dashboard/tradeService',
     "ROLE_ICMS_PROCUREMENT_IC": 'default_dashboard',
     "ROLE_ICMS_PROCUREMENT_OWNER": 'default_dashboard',
     "ROLE_ICMS_SHARE_IC": 'default_dashboard',

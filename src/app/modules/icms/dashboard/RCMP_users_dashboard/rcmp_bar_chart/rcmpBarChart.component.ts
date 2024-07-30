@@ -50,6 +50,20 @@ export class RCMPBarChartComponent {
         bar: {
           horizontal: true,
           barHeight: '50%', // Adjust this value as needed
+          colors: {
+            ranges: [
+              {
+                from: 0,
+                to: 4, // First five data points (indices 0 to 4)
+                color: "#FF4560" // Color for the first five data points
+              },
+              {
+                from: 5,
+                to: 17, // Remaining data points (indices 5 to 17)
+                color: "#008FFB" // Color for the remaining data points
+              }
+            ]
+          }
         }
       },
       dataLabels: {
@@ -78,7 +92,7 @@ export class RCMPBarChartComponent {
           "Adama"
         ],
         labels: {
-          show: false,
+          show: true, // Set to true to show labels
         },
         axisTicks: {
           show: false,
@@ -86,17 +100,7 @@ export class RCMPBarChartComponent {
       },
       yaxis: {
         labels: {
-          show: true, // Ensure labels are visible
-          style: {
-            colors: '#000', // Set label color if needed
-            fontSize: '12px'
-          }
-        },
-        axisBorder: {
-          show: false // Hide the border of the y-axis
-        },
-        axisTicks: {
-          show: true, // Show ticks on y-axis
+          show: true
         }
       },
       grid: {
@@ -113,6 +117,52 @@ export class RCMPBarChartComponent {
           },
         },
       },
+      annotations: {
+        yaxis: [
+          {
+            y: 4.5, // Position the line between the 5th and 6th data points
+            borderColor: "#000000", // Line color
+            borderWidth: 2, // Line width
+            label: {
+              text: "",
+              style: {
+                color: "#000000",
+                background: "#ffffff",
+              },
+            }
+          }
+        ],
+        xaxis: [
+          {
+            x: 0,
+            x2: 4, // Create a colored region for "Head Office"
+            fillColor: "#f2f2f2",
+            label: {
+              text: "Head Office",
+              position: 'top', // Adjust position to 'top' to avoid overlap
+              style: {
+                color: "#333",
+                background: "#f2f2f2",
+              },
+              offsetY: -5, // Adjust the vertical offset
+            }
+          },
+          {
+            x: 5,
+            x2: 17, // Create a colored region for "District"
+            fillColor: "#e6e6e6",
+            label: {
+              text: "District",
+              position: 'top', // Adjust position to 'top' to avoid overlap
+              style: {
+                color: "#333",
+                background: "#e6e6e6",
+              },
+              offsetY: 170, // Adjust the vertical offset
+            }
+          }
+        ]
+      }
     };
   }
 }
