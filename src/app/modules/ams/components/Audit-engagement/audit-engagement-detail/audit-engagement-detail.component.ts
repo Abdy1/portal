@@ -159,6 +159,7 @@ export class AuditEngagementDetailComponent implements OnDestroy {
           if(this.isAuditee){
             this.auditFinding = response.result;
             this.auditFinding = this.auditFinding.filter(auditFinding => auditFinding.isVisibleToAuditees)
+            
       
           } else {
             this.auditFinding = response.result;
@@ -426,19 +427,19 @@ export class AuditEngagementDetailComponent implements OnDestroy {
     localStorage.setItem('currentAuditEngagement', JSON.stringify(auditEngagement));
     this.router.navigate(['ams/report']);
   }
-  addAttachement(auditFinding: any) {
+  // addAttachement(auditFinding: any) {
 
 
-    this.subscriptions.push(
-      this.auditFindingService.addAttachement(auditFinding).subscribe(
-        (response: any) => {
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-        }
-      )
-    );
-  }
+  //   this.subscriptions.push(
+  //     this.auditFindingService.addAttachement(auditFinding).subscribe(
+  //       (response: any) => {
+  //       },
+  //       (error: HttpErrorResponse) => {
+  //         console.log(error);
+  //       }
+  //     )
+  //   );
+  // }
 
   public makeVisible(auditFinding: any) {
     this.subscriptions.push(
