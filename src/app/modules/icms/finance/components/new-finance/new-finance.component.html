@@ -68,17 +68,21 @@
           pattern="^(\d{13}|PL\d{5}|ETB\d{13})$"
         />
       </div>
+
+      ///////
       <div class="flex-auto" *ngIf="!update">
         <label for="amountInvolved" class="block mb-2"> Amount Involved </label>
-        <input
-          pInputText
-          id="amount"
-          [(ngModel)]="Finance.amount"
-          name="amount"
-          [required]="true"
-          [style]="{ width: '30vw', height: '45px' }"
-        />
+        <p-inputNumber
+        [(ngModel)]="Finance.amount"
+        inputId="amount"
+        [useGrouping]="false"
+        [style]="{ width: '30vw', height: '45px' }"
+        name="amount"
+        [required]="true"
+      ></p-inputNumber>
       </div>
+
+
       <div class="flex-auto" *ngIf="!update">
         <label for="irregularity" class="block mb-2"> Irregularity </label>
         <textarea

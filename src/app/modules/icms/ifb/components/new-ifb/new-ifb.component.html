@@ -123,16 +123,17 @@
           [style]="{ width: '30vw', height: '45px' }"
         />
       </div>
+      ////
       <div class="flex-auto" *ngIf="!update">
         <label for="amountInvolved" class="block mb-2"> Amount Involved </label>
-        <input
-          pInputText
-          id="amountInvolved"
-          [(ngModel)]="IFB.amountInvolved"
-          name="amountInvolved"
-          [required]="true"
-          [style]="{ width: '30vw', height: '45px' }"
-        />
+        <p-inputNumber
+        [(ngModel)]="IFB.amountInvolved"
+        inputId="amountInvolved"
+        [useGrouping]="false"
+        [style]="{ width: '30vw', height: '45px' }"
+        name="amountInvolved"
+        [required]="true"
+      ></p-inputNumber>
       </div>
       <div class="flex-auto" *ngIf="!update">
         <label for="responsiblePerson" class="block mb-2">
