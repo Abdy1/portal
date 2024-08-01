@@ -369,7 +369,7 @@ export const navItemsICMSIFB = createNavItem(
 );
 
 export const navItemsICMSFinanceIC = createNavItem(
-  'FInance',
+  'Finance',
   '/ICMS',
   [
     createNavItem('Add data', '/ICMS/Finance/addFinance'),
