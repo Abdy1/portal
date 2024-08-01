@@ -17,8 +17,8 @@ export class ICMSDashboardService {
       }),
     };
     // this.apiServiceUrl = localStorage.getItem('url_8');
-    //this.apiServiceUrl = 'http://localhost:8085';
-     this.apiServiceUrl = 'http://10.1.125.58:8084';
+    this.apiServiceUrl = 'http://localhost:8084';
+    //  this.apiServiceUrl = 'http://10.1.125.58:8084';
   }
 
   constructor(private http: HttpClient) {}
@@ -95,6 +95,20 @@ export class ICMSDashboardService {
     this.init();
     return this.http.get<any>(
       `${this.apiServiceUrl}/view/dashboard/forTradeDonut`,
+      this.httpOptions
+    );
+  }
+  public getProcurmentDashboardDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forProcurment`,
+      this.httpOptions
+    );
+  }
+  public getProcurmentDashboardPieDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forProcurmentPieChart`,
       this.httpOptions
     );
   }
