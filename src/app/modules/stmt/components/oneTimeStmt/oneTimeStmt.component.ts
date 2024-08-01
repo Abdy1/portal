@@ -17,7 +17,7 @@ import { StmtIntegrationService } from '../../services/stmt.integration.service'
 @Component({
   selector: 'app-oneTimeStmt',
   templateUrl: './oneTimeStmt.component.html',
-  styleUrls: ['./OneTimeStmt.component.scss'],
+  styleUrls: ['./oneTimeStmt.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
 export class OneTimeStmt {
