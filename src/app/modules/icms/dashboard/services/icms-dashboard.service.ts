@@ -113,6 +113,26 @@ export class ICMSDashboardService {
     );
   }
  
+
+
+  
+  public getFinanceDashboardDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forFinance`,
+      this.httpOptions
+    );
+  }
+
+
+  public getFinanceDashboardDonutDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forFinanceDonut`,
+      this.httpOptions
+    );
+  }
+
 }
 
 

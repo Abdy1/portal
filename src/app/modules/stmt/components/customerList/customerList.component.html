@@ -1,0 +1,99 @@
+
+
+<p-toast position="top-right"></p-toast>
+<div class="flex justify-end">
+ <p-button label="Add Customer" (click)="addCustomer()"></p-button> &nbsp;&nbsp;&nbsp;&nbsp; 
+ <p-button label="One Time" (click)="oneTime()"></p-button>
+</div>
+
+<div class="card">
+<h5 class="text-2xl font-bold text-blue-600 my-3 pl-4">Customer List</h5>
+<p-table
+#dt2
+[value]="customerList"
+
+
+[exportHeader]="'customExportHeader'"
+selectionMode="single"
+dataKey="id"
+[tableStyle]="{ 'min-width': '50rem' }"
+[rows]="5"
+[rowsPerPageOptions]="[5, 10, 15, 20]"
+[paginator]="true"
+
+>
+
+
+<ng-template pTemplate="header">
+
+ <tr>
+   <th pSortableColumn="id">ID</th>
+   <th pSortableColumn="date">
+     Date<p-sortIcon field="date"></p-sortIcon>
+   </th>
+   <th pSortableColumn="acctNum">
+     Account Number <p-sortIcon field="acctNum"></p-sortIcon>
+   </th>
+   <th pSortableColumn="email">Email<p-sortIcon field="email"></p-sortIcon></th>
+   
+
+ </tr>
+ <tr>
+   <th scope="col"></th>
+   <th scope="col">
+     <input
+       pInputText
+       type="text"
+       (input)="dt2.filter($any($event.target)?.value, 'dateCreatedAt', 'contains')"
+       [value]="$any(dt2.filters['dateCreatedAt'])?.value"
+       placeholder="Search by Created Date"
+       class="p-column-filter"
+     />
+   </th>
+   <th scope="col">
+     <input
+       pInputText
+       type="text"
+       (input)="
+         dt2.filter($any($event.target)?.value, 'acctNum', 'contains')
+       "
+       [value]="$any(dt2.filters['acctNum'])?.value"
+       placeholder="Search by Account Number"
+       class="p-column-filter"
+     />
+   </th>
+   <th scope="col">
+     <input
+       pInputText
+       type="text"
+       (input)="
+         dt2.filter($any($event.target)?.value, 'email', 'contains')
+       "
+       [value]="$any(dt2.filters['emai'])?.value"
+       placeholder="Search by email"
+       class="p-column-filter"
+     />
+   </th>
+  
+ 
+   <th scope="col"></th>
+ </tr>
+</ng-template>
+<ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+ <tr [pSelectableRow]="customer" >
+   <td>{{ rowIndex + 1 }}</td>
+   <td>{{ customer?.dateCreatedAt | date : "MM/dd/yyyy"}}</td>
+   <td>{{ customer?.acctNum }}</td>
+   <td>{{ customer?.email }}</td>
+
+  
+ </tr>
+</ng-template>
+<ng-template pTemplate="emptymessage">
+ <tr>
+   <td colspan="5">No item Found.</td>
+ </tr>
+</ng-template>
+</p-table>
+
+</div>

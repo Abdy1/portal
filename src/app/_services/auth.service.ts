@@ -103,8 +103,8 @@ export class AuthService {
     "ROLE_ICMS_BRANCH_MANAGER": 'default_dashboard',
     "ROLE_ICMS_BANKING_OPERATION": 'default_dashboard',
     "ROLE_ICMS_IFB": 'icms_dashboard/ifb',
-    "ROLE_ICMS_FINANCE_IC": 'default_dashboard',
-    "ROLE_ICMS_FINANCE_OWNER": 'default_dashboard',
+    "ROLE_ICMS_FINANCE_IC": 'icms_dashboard/finance',
+    "ROLE_ICMS_FINANCE_OWNER": 'icms_dashboard/finance',
     "ROLE_ICMS_TRADE_IC": 'icms_dashboard/tradeService',
     "ROLE_ICMS_TRADE_OWNER": 'icms_dashboard/tradeService',
     "ROLE_ICMS_PROCUREMENT_IC": 'icms_dashboard/procurement',
@@ -150,14 +150,14 @@ export class AuthService {
     const employee = await this.emsService.getEmployeeByIdWithAccess(resp?.user?.id,resp?.accessToken).toPromise();
   
     // AUDIT MANAGEMENT HAVE A REQUIREMENT TO PERSIST THEIR USER INFORMATOIN SEPARATELY
-    const userhaveAMS = resp?.user?.roles?.find(obj => obj?.name?.includes("AMS") && !obj?.name?.includes("ROLE_AMS_ADMIN") )
+    const userhaveAMS = resp?.user?.roles?.find(obj => obj?.name?.includes("AMS") && !obj?.name?.includes("ROLE_AMS_ADMIN") && !obj?.name?.includes("ROLE_AMS_AUDITEE")  )
+    localStorage.setItem("ams_ip", "http://10.1.125.58:8099")
     if (userhaveAMS){
     const auditStaff = await this.auditStaffService?.getAuditStaffByEmployeeId("" + resp?.user?.id,resp?.accessToken).toPromise();
     console.log("login ", JSON.stringify(auditStaff))
     localStorage.setItem('auditStaff', JSON.stringify(auditStaff))
     
-   // localStorage.setItem("ams_ip", "http://localhost:8099")
-    localStorage.setItem("ams_ip", "http://10.1.125.58:8099")
+   
   }
 
 

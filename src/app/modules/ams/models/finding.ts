@@ -14,21 +14,15 @@ export class FindingDTO extends BaseModel {
         implementedControls:String;
         impact:String;
         recommendations:String;
-        //im not sure if user insert auditees, auditeesResponse
-        // auditees:String;
+
         auditeesResponse:String;
         justifications:String;
         isVisibleToAuditees:boolean;
-        // no user structure so i can't include registred by and approved by 
-        //registeredBy       
-        //approvedBY
-        //what is responseTime? 
-        //responseTime
+
         rectificationStatus:Boolean;
         rectificationProgress:String;
         rectificationEvidenceAttachmentPath:String;
-        //again what is this?
-        //rectificationTime  
+
         isRectificationApproved:Boolean;
         findingEvidenceFileUploadedToSupplementTheFindings:String; 
 }

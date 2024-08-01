@@ -44,14 +44,9 @@ export class AuditFindingsDetailComponent implements OnDestroy {
   private subscriptions: Subscription[] = [];
   cols!: Column[];
   file_type:string = ".pdf";
-  
-  back_end_url:string = localStorage.getItem('ams_ip')
-  upload_url: string;
+
+  back_end_url:string = localStorage.getItem("ams_ip");
   constructor(
-    private auditProgramService: AuditProgramService,
-    private dialogService: DialogService,
-    private messageService: MessageService,
-    private auditWBSService: AuditWBSService,
     private auditFindingService: AuditFindingService,
   ) { }
 
@@ -60,24 +55,37 @@ export class AuditFindingsDetailComponent implements OnDestroy {
       this.auditFinding[0]  =  JSON.parse(localStorage.getItem("currentFinding"));
       this.getFindingAmmandement(this.auditFinding[0].id);
       this.getFindingComment(this.auditFinding[0].id);
-      this.upload_url = this.back_end_url + `/ams/auditProgram/finding/attachEvidence/${this.auditFinding[0].id}`;
     }  
   }
 
   
-  public onBeforeUpload() {
+  public onBeforeUpload(event:any) {
     this.loading = true;
   }
 
   public messages: Message[] = [];
 
-  public onUpload() {
+  public onUpload(event:any) {
     this.loading = false;
     this.messages = [{ severity: 'success', summary: 'File Uploaded', detail: 'File has been uploaded successfully' ,life: 5000}];
 
   }
+  public customUploader(event:any){
+    const file = event.files[0]; 
+    this.auditFindingService.addAttachement(this.auditFinding[0],file).subscribe(
+      response => {
+        this.loading = false;
+        this.messages = [{ severity: 'success', summary: 'File Uploaded', detail: 'File has been uploaded successfully', life: 5000 }];
+      },
+      error => {
+        this.loading = false;
+        this.messages = [{ severity: 'error', summary: 'File Upload Error', detail: 'An error occurred while uploading the file', life: 5000 }];
+      }
+    );
 
-  public onUploadError() {
+  }
+
+  public onUploadError(event:any) {
     this.loading = false;
     this.messages = [{ severity: 'error', summary: 'File Upload Error', detail: 'An error occurred while uploading the file' ,life:5000}];
   }

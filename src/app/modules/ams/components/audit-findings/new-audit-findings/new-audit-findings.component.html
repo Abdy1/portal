@@ -32,7 +32,7 @@
     </div>
   </div>
 
-         <div *ngIf="isAreaSelected || !isCreate">
+         <div *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
         <label for="name" class="block mb-2"> Finding : </label>
         <textarea
         pInputText
@@ -46,7 +46,7 @@
         </textarea>
          </div>
      
-         <div *ngIf="isAreaSelected || !isCreate">
+         <div *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
         <label for="previousStatus" class="block mb-2"> Criteria: </label>
         <textarea
         pInputText
@@ -62,7 +62,7 @@
 
 
 
-      <div class="col mb-4" *ngIf="isAreaSelected || !isCreate">
+      <div class="col mb-4" *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
         <label for="name" class="block mb-2"> Cause : </label>
 
         <textarea
@@ -84,7 +84,7 @@
           minlength="3"
         /> -->
       </div>
-      <div class="col mb-4" *ngIf="isAreaSelected || !isCreate">
+      <div class="col mb-4" *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
         <label for="implementedControls" class="block mb-2"> Implemented Controls: </label>
         <textarea
         pInputText
@@ -95,20 +95,12 @@
         required
         minlength="3">
      </textarea>
-        <!-- <input
-          pInputText
-          id="implementedControls"
-          [(ngModel)]="findingInfo.implementedControls"
-          name="implementedControls"
-          [style]="{ width: '300px', height: '45px' }"
-          required
-          minlength="3"
-        /> -->
+
       </div>
 
 
 
-      <div  *ngIf="isAreaSelected || !isCreate" class="col mb-4">
+      <div  *ngIf="isAreaSelected || (!isCreate && !isAuditee)" class="col mb-4">
         <label for="impact" class="block mb-2"> Impact : </label>
         <textarea
         pInputText
@@ -119,17 +111,9 @@
         required
         minlength="3">
      </textarea>
-        <!-- <input
-          pInputText
-          id="impact"
-          [(ngModel)]="findingInfo.impact"
-          name="impact"
-          [style]="{ width: '300px', height: '45px' }"
-          required
-          minlength="3"
-        /> -->
+
       </div>
-      <div class="col mb-4" *ngIf="isAreaSelected || !isCreate">
+      <div class="col mb-4" *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
         <label for="recommendations" class="block mb-2"> Recomendations: </label>
         <textarea
         pInputText
@@ -140,21 +124,12 @@
         required
         minlength="3">
      </textarea>
-        <!-- <input
-          pInputText
-          id="recommendations"
-          [(ngModel)]="findingInfo.recommendations"
-          name="recommendations"
-          [style]="{ width: '300px', height: '45px' }"
-          required
-          minlength="3"
-        /> -->
+
       </div>
  
 
 
-    <!-- <div class="row"> -->
-      <!-- <div class="col mb-4">
+    <div *ngIf="isAreaSelected || isAuditee">
         <label for="justifications" class="block mb-2"> Justifications : </label>
         <textarea
         pInputText
@@ -165,21 +140,10 @@
         required
         minlength="3">
      </textarea>
-     
-      </div> -->
-      <!-- <div class="col mb-4">
-        <label for="rectificationProgress" class="block mb-2"> Rectification Progress: </label>
-        <input
-          pInputText
-          id="rectificationProgress"
-          [(ngModel)]="findingInfo.rectificationProgress"
-          name="rectificationProgress"
-          [style]="{ width: '300px', height: '45px' }"
-          required
-          minlength="3"
-        />
-      </div> -->
-    <!-- </div>  -->
+    </div>
+
+
+
 
 
 
