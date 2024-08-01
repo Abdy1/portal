@@ -99,7 +99,6 @@ export class ICMSDashboardService {
     );
   }
 
-  
 
   
   public getFinanceDashboardDatas(): Observable<any> {
@@ -118,7 +117,7 @@ export class ICMSDashboardService {
       this.httpOptions
     );
   }
- 
+
 }
 
 

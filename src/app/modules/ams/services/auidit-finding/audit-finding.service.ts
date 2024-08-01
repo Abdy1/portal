@@ -43,13 +43,31 @@ export class AuditFindingService {
       this.httpOptions
     );
   }
+
+  getPdf(name: string): Observable<Blob> {
+    this.init();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      }),
+      responseType: 'blob' as 'json', // Set the response type to blob
+
+    };
+  
+    return this.http.get(`${this.apiServiceUrl}/ams/auditProgram/finding/getFileAttached/byFileName/${name}`, httpOptions) as Observable<Blob>;
+  }
+  
   
 
-  public addAttachement(finding: FindingDTO): Observable<any> {
-    this.init();
+  public addAttachement(finding: FindingDTO,file:File): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
+    const formData: FormData = new FormData();
+    formData.append('file',file,file.name)
     return this.http.post(
       `${this.apiServiceUrl}/ams/auditProgram/finding/attachEvidence/${finding.id}`,
-      this.httpOptions
+      formData,
+      {headers}
     );
   }
 
@@ -110,15 +128,7 @@ export class AuditFindingService {
     ); 
   }
 
-  getPdf(name: string): Observable<Blob> {
-    this.init();
-    const httpOptions = {
-      responseType: 'blob' as 'json', // Set the response type to blob
-    };
-  
-    return this.http.get(`${this.apiServiceUrl}/ams/auditProgram/finding/getFileAttached/byFileName/${name}`, httpOptions) as Observable<Blob>;
-  }
-  
+
   
 
 
