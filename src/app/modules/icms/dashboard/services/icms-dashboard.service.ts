@@ -17,7 +17,7 @@ export class ICMSDashboardService {
       }),
     };
     // this.apiServiceUrl = localStorage.getItem('url_8');
-    this.apiServiceUrl = 'http://localhost:8084';
+    this.apiServiceUrl = 'http://localhost:8085';
     // this.apiServiceUrl = 'http://10.1.125.58:8084';
   }
 
@@ -118,6 +118,23 @@ export class ICMSDashboardService {
     );
   }
 
+
+  public getShareDashboardDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forShare`,
+      this.httpOptions
+    );
+  }
+
+
+  public getShareDashboardDonutDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forShareDonut`,
+      this.httpOptions
+    );
+  }
 }
 
 
