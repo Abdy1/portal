@@ -1,0 +1,50 @@
+<div>
+  <form #addDivForm="ngForm" (ngSubmit)="generate(addDivForm)">
+    <div class="row" style="margin: 10%;">
+      <div class="col mb-4">
+        <label for="startingDate" class="block mb-2"> Starting Date: </label>
+        <p-calendar     [showIcon]="true" 
+        id="startingDate" ngModel name="startingDate" [style]="{ width: '300px', height: '45px' }"
+          [required]="true"></p-calendar>
+      </div>
+      <div class="col mb-4">
+        <label for="endingDate" class="block mb-2"> Ending Date: </label>
+        <p-calendar     [showIcon]="true" 
+        id="endingDate" ngModel name="endingDate" [style]="{ width: '300px', height: '45px' }"
+          [required]="true"></p-calendar>
+      </div>
+    </div>
+
+
+
+
+    <div class="row" style="margin: 10%;">
+
+      <div class="col mb-4">
+        <label for="acctNum" class="block mb-2"> Account Number : </label>
+        <input pInputText id="acctNum" ngModel name="acctNum" [style]="{ width: '300px', height: '45px' }" [required] = "true"
+          minlength="3" />
+
+      </div>
+      <div class="col mb-4">
+        <label for="email" class="block mb-2"> Email : </label>
+        <input pInputText id="email" ngModel name="email" [style]="{ width: '300px', height: '45px' }"
+          [required]="true" minlength="3" />
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+              
+              <div class="buttonDiv" style="margin-left: 37%;">
+                
+                <p-button label="Send Email" [disabled]="addDivForm.invalid!" type="submit"></p-button>
+              </div>
+</form>
+</div>
