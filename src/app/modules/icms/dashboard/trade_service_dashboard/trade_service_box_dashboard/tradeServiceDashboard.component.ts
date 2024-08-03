@@ -30,6 +30,7 @@ export class TradeServiceDashboardComponent {
     this.subscription = this.icmsdashboardService.getTradeDashboardDatas().subscribe(
       (response: any) => {
         this.allDatas = response;
+        console.log(response,"aaaaaaaaaaaaaaaaa");
 
                 // Format numbers with commas
                 for (let key in this.allDatas) {
