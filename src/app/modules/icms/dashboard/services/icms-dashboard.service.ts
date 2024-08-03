@@ -133,6 +133,23 @@ export class ICMSDashboardService {
     );
   }
 
+
+  public getShareDashboardDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forShare`,
+      this.httpOptions
+    );
+  }
+
+
+  public getShareDashboardDonutDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forShareDonut`,
+      this.httpOptions
+    );
+  }
 }
 
 
