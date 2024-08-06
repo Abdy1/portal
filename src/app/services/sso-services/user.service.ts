@@ -27,7 +27,7 @@ export class UserService {
       })
     };
     this.apiServiceUrl = localStorage.getItem('url_1');
-    //prodip
+    //testip
     // this.apiServiceUrl = 'http://localhost:9081';
   }
 
