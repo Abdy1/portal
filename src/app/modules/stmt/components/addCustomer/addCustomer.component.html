@@ -1,0 +1,38 @@
+<div>
+  <form #addDivForm="ngForm" (ngSubmit)="addCustomer(addDivForm)">
+   
+
+
+
+
+
+    <div class="row" style="margin: 10%;">
+
+      <div class="col mb-4">
+        <label for="acctNum" class="block mb-2"> Account Number : </label>
+        <input pInputText id="acctNum" ngModel name="acctNum" [style]="{ width: '300px', height: '45px' }" required
+          minlength="3" />
+
+      </div>
+      <div class="col mb-4">
+        <label for="email" class="block mb-2"> Email : </label>
+        <input pInputText id="email" ngModel name="email" [style]="{ width: '300px', height: '45px' }"
+          required minlength="3" />
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+              
+              <div class="buttonDiv" style="margin-left: 37%;">
+                
+                <p-button label="Add Customer" [disabled]="addDivForm.invalid!" type="submit"></p-button>
+              </div>
+</form>
+</div>

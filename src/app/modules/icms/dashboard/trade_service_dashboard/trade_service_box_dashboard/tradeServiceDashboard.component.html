@@ -17,12 +17,12 @@
               <p class="text-lg text-black whitespace-nowrap">
                 (In Birr):
               </p>
-              <p class="text-2xl font-bold text-black whitespace-nowrap">
-                Birr {{allDatas?.financialOutstandingCases | numberWithCommas }}
+              <p class="text-lg font-bold text-black whitespace-nowrap">
+                Birr {{allDatas?.financialOutstandingCases  }}
               </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
-              {{ allDatas?.financialChangePercentage  | numberWithCommas }}% From last month
+              {{ allDatas?.financialChangePercentage}}% From last month
             </p>
           </div>
           <div
@@ -64,8 +64,8 @@
               <p class="text-lg text-black whitespace-nowrap">
                 (In Birr):
               </p>
-              <p class="text-2xl font-bold text-black whitespace-nowrap">
-                Birr {{allDatas?.financialIdentifiedCases | numberWithCommas }}
+              <p class="text-lg font-bold text-black whitespace-nowrap">
+                Birr {{allDatas?.financialIdentifiedCases}}
               </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
@@ -110,8 +110,8 @@
               <p class="text-lg text-black whitespace-nowrap">
                 (In Birr):
               </p>
-              <p class="text-2xl font-bold text-black whitespace-nowrap">
-                Birr {{ allDatas?.financialRectifiedCases | numberWithCommas }}
+              <p class="text-lg font-bold text-black whitespace-nowrap">
+                Birr {{ allDatas?.financialRectifiedCases}}
               </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
@@ -184,16 +184,8 @@
       </div>
     </div>
     <div class="flex gap-2 py-2">
-      <div
-        class="whitespace-nowrap text-lg font-medium w-full text-black p-2 bg-[#a5a5a5] rounded-md"
-      >
-        Oustanding Escalated Cases
-      </div>
-      <div
-        class="px-3 bg-[#a5a5a5] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center"
-      >
-        ETB {{ allDatas?.currentDayoutstandingEscalatedCases | numberWithCommas }}
-      </div>
+
+
     </div>
     <div class="flex flex-row justify-between items-center pt-5">
       <div class="flex flex-col items-center">

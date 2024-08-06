@@ -17,7 +17,7 @@ export class ICMSDashboardService {
       }),
     };
     // this.apiServiceUrl = localStorage.getItem('url_8');
-    //this.apiServiceUrl = 'http://localhost:8085';
+    // this.apiServiceUrl = 'http://localhost:8085';
      this.apiServiceUrl = 'http://10.1.125.58:8084';
   }
 
@@ -98,7 +98,58 @@ export class ICMSDashboardService {
       this.httpOptions
     );
   }
+  public getProcurmentDashboardDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forProcurment`,
+      this.httpOptions
+    );
+  }
+  public getProcurmentDashboardPieDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forProcurmentPieChart`,
+      this.httpOptions
+    );
+  }
  
+
+
+  
+  public getFinanceDashboardDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forFinance`,
+      this.httpOptions
+    );
+  }
+
+
+  public getFinanceDashboardDonutDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forFinanceDonut`,
+      this.httpOptions
+    );
+  }
+
+
+  public getShareDashboardDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forShare`,
+      this.httpOptions
+    );
+  }
+
+
+  public getShareDashboardDonutDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forShareDonut`,
+      this.httpOptions
+    );
+  }
 }
 
 

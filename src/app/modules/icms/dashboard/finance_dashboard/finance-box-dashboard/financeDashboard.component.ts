@@ -18,19 +18,20 @@ export class FinanceDashboardComponent {
   constructor(private icmsdashboardService: ICMSDashboardService) {}
 
   ngOnInit() {
-    this.getAllBranchDashboardData();
+    this.getFinanceDashboardDatas();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  branchId: string = "ET0010307";
 
-  getAllBranchDashboardData(): void {
-    this.subscription = this.icmsdashboardService.getBranchDashboardDatas(this.branchId).subscribe(
+
+  getFinanceDashboardDatas(): void {
+    this.subscription = this.icmsdashboardService.getFinanceDashboardDatas().subscribe(
       (response: any) => {
         this.allDatas = response;
+        
       },
       (error) => {
         console.error('Failed to get dashboard data:', error);
