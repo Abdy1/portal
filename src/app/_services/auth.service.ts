@@ -131,6 +131,7 @@ export class AuthService {
     "ROLE_AMS_MEMBER": 'default_dashboard',
     "ROLE_AMS_AUDITEE": 'default_dashboard',
     "ROLE_CIST_ADMIN": 'default_dashboard',
+    "ROLE_MT940_ADMIN": 'default_dashboard',
     "ROLE_SEARCH": 'default_dashboard',
     "ROLE_DELINQUENT": 'default_dashboard',
     "ROLE_WEEKLY_CHECK": 'default_dashboard',
