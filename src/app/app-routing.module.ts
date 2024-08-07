@@ -90,7 +90,7 @@ const routes: Routes = [
       {
         path: 'stmt',
         loadChildren: () =>
-          import('./modules/stmt/stmt.module').then((m) => m.StmtModule),
+          import('./modules/mt940/stmt.module').then((m) => m.StmtModule),
       },
       {
         path: 'ICMS/CIPM',

@@ -57,7 +57,7 @@ customerList:any;
       (response) => {
 
         this.customerList = response.result.reverse();
-        console.log(response.result)
+        
 
       },
       (error: HttpErrorResponse) => {
