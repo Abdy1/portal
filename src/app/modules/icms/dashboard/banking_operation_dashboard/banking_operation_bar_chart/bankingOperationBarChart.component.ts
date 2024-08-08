@@ -1,4 +1,5 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { ICMSDashboardService } from "../../services/icms-dashboard.service";
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -9,6 +10,8 @@ import {
   ApexPlotOptions,
   ApexAnnotations
 } from "ng-apexcharts";
+import { Subscription } from "rxjs";
+import { error } from "console";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -25,29 +28,32 @@ export type ChartOptions = {
   templateUrl: "./bankingOperationBarChart.component.html",
   styleUrls: ["./bankingOperationBarChart.component.scss"]
 })
-export class BankingOperationBarChartComponent {
+export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  private subscription: Subscription;
+  private allDoughnut: any;
+
+  constructor(private iCMSDashboardService: ICMSDashboardService) {
     this.chartOptions = {
       series: [
         {
-          name: "basic",
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380, 470, 540, 580, 266, 888, 90]
+          name: "Operations",
+          data: Array(17).fill(0) // Assuming there are 17 districts as per the categories
         }
       ],
       chart: {
         type: "bar",
         height: 350,
         toolbar: {
-          show: false // This line hides the toolbar
-        },
+          show: false
+        }
       },
       plotOptions: {
         bar: {
           horizontal: true,
-          barHeight: '50%', // Adjust this value as needed
+          barHeight: '50%'
         }
       },
       dataLabels: {
@@ -62,6 +68,7 @@ export class BankingOperationBarChartComponent {
           "Centeral Finfinne",
           "Chiro",
           "Dire Dawa",
+          "East Finfinne",
           "Hawassa",
           "Hossana",
           "Jimma",
@@ -76,26 +83,62 @@ export class BankingOperationBarChartComponent {
           show: false,
         },
         axisTicks: {
-          show: false, // Add this line
-        },
+          show: false
+        }
       },
       grid: {
         strokeDashArray: 0,
         xaxis: {
           lines: {
-            show: false,
-          },
+            show: false
+          }
         },
         yaxis: {
           lines: {
-            show: false,
-          },
-        },
-      },
-    
-      
-      
-
+            show: false
+          }
+        }
+      }
     };
+  }
+
+  ngOnInit() {
+    this.getbankingOperationBarchartDatas();
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  getbankingOperationBarchartDatas() {
+    this.subscription = this.iCMSDashboardService.getBankingOperationBarchartDashboardDatas().subscribe(
+      (response: any) => {
+        this.allDoughnut = response;
+
+        // Initialize an array with zeros
+        let seriesData = new Array(this.chartOptions.xaxis.categories.length).fill(0);
+
+        // Update the values for the categories that exist in the response
+        for (let category in this.allDoughnut) {
+          let index = this.chartOptions.xaxis.categories.indexOf(category);
+          if (index !== -1) {
+            seriesData[index] = this.allDoughnut[category];
+          }
+        }
+
+        // Update the chart series data
+        this.chartOptions.series = [
+          {
+            name: "Operations",
+            data: seriesData
+          }
+        ];
+      },
+      (error) => {
+        console.error('Failed to get dashboard data:', error);
+      }
+    );
   }
 }
