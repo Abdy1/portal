@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 // import { User } from '../../../../models/sso-models/user';
 // import { Role } from "../../../../models/role";
 // import { UserService } from '../../../../services/sso-services/user.service';
@@ -29,7 +29,7 @@ import { UserService } from 'src/app/services/sso-services/user.service';
 export class AddUser implements OnInit {
   addUserForm: FormGroup;
   searchedJob: any;
-  selectedJob:any;
+  selectedJob: any;
   // public users: User[] = [];
   // public user: User;
   // public roles: Role[] = [];
@@ -90,7 +90,7 @@ export class AddUser implements OnInit {
   uploadedFiles: any[] = [];
   myDate = new Date();
 
-  
+
   allProcess: Process[] = [];
   searchedSubProcess: any;
   stateOptions: any[] = [{ label: 'Branch', value: 'branch' }, { label: 'Team', value: 'team' }];
@@ -100,7 +100,7 @@ export class AddUser implements OnInit {
   sex: any[] = [
     { name: 'Male', key: 'M' },
     { name: 'Female', key: 'F' },
-];
+  ];
 
   constructor(
     private timeService: TimeService,
@@ -111,7 +111,7 @@ export class AddUser implements OnInit {
     private roleService: RoleService,
     private fb: FormBuilder,
     private router: Router,
-    private userService:UserService
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -140,8 +140,9 @@ export class AddUser implements OnInit {
       subProcess: [''],
       companyEntryDate: ['', [Validators.required]],
       gender: ['', [Validators.required]],
+      username:['',[Validators.required]]
     });
-    
+
 
   }
 
@@ -224,43 +225,9 @@ export class AddUser implements OnInit {
     this.isClicked = !this.isClicked;
   }
 
-  // public searchEmployees(searchedEmployee: any) {
-  //   if (searchedEmployee == "") {
-  //     this.searchedEmployees = []
-  //   }
-  //   else {
-  //     this.employeeService.getEmployeesByName(searchedEmployee).subscribe(
-  //       (response: any) => {
-  //         this.searchedEmployees = response;
-  //         this.selectedEmployee = this.searchedEmployees[0];
-  //         console.log(this.selectedEmployee.organizationalUnit)
-  //         this.populateEmployeeData();
-  //       },
-  //       (error: HttpErrorResponse) => {
 
-  //       }
-  //     )
-  //   }
-  // }
 
-  // public searchUsernameFromAD(usernametosearch: string): Promise<void> {
-  //   return new Promise((resolve, reject) => {
-  //     this.adUserService.checkIfUserExistsOnAD(usernametosearch).subscribe(
-  //       (response: any) => {
-  //         this.userExists = (this.username == response[0]?.username) || false;
-  //         const dnPattern = /CN=([^,]+)/;
-  //         const matches = response[0].dn.match(dnPattern);
-  //         const name = matches ? matches[1] : '';
-  //         if (this.userExists) this.searchEmployees(name);
-  //         this.fullName = name;
-  //         resolve();  // Resolve the promise
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         reject(error);  // Reject the promise
-  //       }
-  //     )
-  //   });
-  // }
+
 
 
   public getModules(): void {
@@ -274,7 +241,7 @@ export class AddUser implements OnInit {
     );
   }
 
-  
+
 
   checkRole(roleName: string): boolean {
     let result: boolean = false; // declare a variable to store the result
@@ -289,24 +256,24 @@ export class AddUser implements OnInit {
 
 
   async startAdding(): Promise<void> {
-    if (this.addUserForm.valid){
-      if(this.selectedOrganizationalUnit && this.value.includes("branch")){
-        this.addUserForm.value.branch  = this.selectedOrganizationalUnit;
+    if (this.addUserForm.valid) {
+      if (this.selectedOrganizationalUnit && this.value.includes("branch")) {
+        this.addUserForm.value.branch = this.selectedOrganizationalUnit;
       }
 
-      if(this.selectedOrganizationalUnit && this.value.includes("team")){
+      if (this.selectedOrganizationalUnit && this.value.includes("team")) {
         this.addUserForm.value.team = this.selectedOrganizationalUnit;
       }
 
 
-      this.addUserForm.value.supervisorId =this.selectedEmployee.supervisorId;
+      this.addUserForm.value.supervisorId = this.selectedEmployee.supervisorId;
       this.addUserForm.value.supervisorFullName = this.selectedEmployee.employeeFullName;
       this.addUser();
-
+ 
     }
-    
- 
- 
+
+
+
   }
 
   public addUser(): void {
@@ -314,14 +281,13 @@ export class AddUser implements OnInit {
       (response: any) => {
         this.addToSso()
         if (response && response.employeeId) {
-          // Successful response (Assuming response contains employeeId)
-          
-     
+
+
           setTimeout(() => {
             this.router.navigate(['ems/addEmployee']);
           }, 1500);
         }
-         else {
+        else {
           // Error response (Assuming response is a string message)
           let errorMessage = response || 'An error occurred.';
           this.messageService.add({
@@ -335,7 +301,7 @@ export class AddUser implements OnInit {
         console.log(error.error)
         // Handle other errors (e.g., network issues)
         let errorMessage = 'An unexpected error occurred.';
-        if (error.error ) {
+        if (error.error) {
           errorMessage = error.error;
         }
         this.messageService.add({
@@ -346,37 +312,40 @@ export class AddUser implements OnInit {
       }
     );
   }
-  
+
   public addToSso(): void {
     // Create FormData object to send user data
     const formData = new FormData();
 
     // Append user data to FormData
-    formData.append('username','');
+    formData.append('username',this.addUserForm.value.username);
     formData.append('active', 'true');
     formData.append('id', this.addUserForm.value.employeeId);
 
+
+
+
     // Append images if available
     if (this.selectedFiles1) {
-        formData.append('employeeImage', this.selectedFiles1);
-        this.selectedFiles1 = undefined;
+      formData.append('employeeImage', this.selectedFiles1);
+      this.selectedFiles1 = undefined;
     }
 
     if (this.selectedFiles2) {
-        formData.append('signatureImage', this.selectedFiles2);
-        this.selectedFiles2 = undefined;
+      formData.append('signatureImage', this.selectedFiles2);
+      this.selectedFiles2 = undefined;
     }
 
     // Send FormData to userService to add user
     this.userService.addUser(formData).toPromise().then((response: any) => {
-        // If user added successfully, show success message
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is created.' });
-        setTimeout(() => { window.location.reload()}, 1000);
+      // If user added successfully, show success message
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is created.' });
+      setTimeout(() => { window.location.reload() }, 1000);
     }).catch((errors: HttpErrorResponse) => {
-        // If an error occurred, show error message
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: errors.error.message });
+      // If an error occurred, show error message
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: errors.error.message });
     });
-}
+  }
 
 
 
@@ -483,14 +452,14 @@ export class AddUser implements OnInit {
   }
 
   // In your component.ts file
-onSelectEmployee(selectedItem: any) {
-  this.selectedEmployee = selectedItem; // Assign the selected item to selectedEmployee
-}
+  onSelectEmployee(selectedItem: any) {
+    this.selectedEmployee = selectedItem; // Assign the selected item to selectedEmployee
+  }
   // In your component.ts file
   onSelectOU(selectedItem: any) {
     this.selectedOrganizationalUnit = selectedItem; // Assign the selected item to selectedEmployee
   }
-  
+
 
 
 

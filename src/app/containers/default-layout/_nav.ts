@@ -154,18 +154,17 @@ export const navItemsCISTAdmin = createNavItem(
     createNavItem('COB Issues Listt', '/cit/cobIssuesList'),
     createNavItem('Cob Steps', '/cit/cobSteps'),
     createNavItem('Cob Steps Copied', '/cit/cobStepsCopiedList'),
-    createNavItem('STMT Customer List', '/stmt/customerList'),
   ],
   'cil-copy'
 );
-export const navItemsSTMTAdmin = createNavItem(
+export const navItemsMT940Admin = createNavItem(
   'MT940',
   '/mt940',
   [
  
     createNavItem('Customer List', '/stmt/customerList'),
   ],
-  'cil-copy'
+  'cil-file'
 );
 export const navItemsICMSAdmin = createNavItem(
   'Internal Control',
@@ -244,6 +243,7 @@ export const navItemsICMSAdmin = createNavItem(
       [
         createNavItem('View Trade', '/ICMS/Trade/viewTrade'),
       ],
+      
     ),
     createNavItem(
       'Procurement',

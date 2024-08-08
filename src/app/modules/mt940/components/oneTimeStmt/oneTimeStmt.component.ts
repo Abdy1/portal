@@ -26,7 +26,7 @@ export class OneTimeStmt {
 
 
 public generate(addForm:NgForm){
-  console.log(addForm.value);
+
 
   this.service.getStmt(addForm.value).subscribe(
     (response: any) => {
