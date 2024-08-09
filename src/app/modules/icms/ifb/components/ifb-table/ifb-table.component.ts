@@ -75,7 +75,16 @@ export class IFBTableComponent implements OnDestroy {
   //     )
   //   );
   // }
-
+  public daysPastDue(dateString: string): number {
+    let dueDate = new Date(dateString);
+    let today = new Date();
+    let differenceInTime = dueDate.getTime() - today.getTime();
+    let differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+    return differenceInDays;
+  }
+  absoluteValue(number: number): number {
+    return Math.abs(number);
+  } 
   public getIFBList(): void {
     let ifbObservable;
 
