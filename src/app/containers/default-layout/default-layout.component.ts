@@ -115,7 +115,7 @@ export class DefaultLayoutComponent {
     "ROLE_AMS_MEMBER": { navItems: navItemsAMSMember, dashboardRoute: "default_dashboard" },
     "ROLE_AMS_AUDITEE": { navItems: navItemsAMSAuditee, dashboardRoute: "default_dashboard" },
     "ROLE_CIST_ADMIN": { navItems: navItemsCISTAdmin, dashboardRoute: "default_dashboard" },
-    "ROLE_mt940_ADMIN": { navItems: navItemsMT940Admin, dashboardRoute: "default_dashboard" },
+    "ROLE_MT940_ADMIN": { navItems: navItemsMT940Admin, dashboardRoute: "default_dashboard" },
     "ROLE_SEARCH": { navItems: navItemSearch, dashboardRoute: "default_dashboard" },
     "ROLE_DELINQUENT": { navItems: navItemDelinquent, dashboardRoute: "default_dashboard" },
     "ROLE_WEEKLY_CHECK": { navItems: navItemWeeklyCheck, dashboardRoute: "default_dashboard" },
