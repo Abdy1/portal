@@ -98,7 +98,7 @@ export class AuthService {
     "ROLE_ICMS_DISTRICT_IC": 'icms_dashboard/district',
     "ROLE_ICMS_DISTRICT_DIRECTOR": 'icms_dashboard/district',
     "ROLE_ICMS_BRANCH_IC": 'icms_dashboard/branch',
-    "ROLE_SMS_ADMIN": 'sms_dashboard',
+    "ROLE_SMS_ADMIN": 'default_dashboard',
     "ROLE_ICMS_PROVISION": 'default_dashboard',
     "ROLE_ICMS_BRANCH_MANAGER": 'default_dashboard',
     "ROLE_ICMS_BANKING_OPERATION": 'default_dashboard',

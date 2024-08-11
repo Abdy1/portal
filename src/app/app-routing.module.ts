@@ -63,6 +63,11 @@ const routes: Routes = [
           import('./modules/sms/sms.module').then((m) => m.SmsModule)
       },
       {
+        path: 'soc',
+        loadChildren: () =>
+          import('./modules/soc/soc.module').then((m) => m.SocModule)
+      },
+      {
         path: 'user',
         loadChildren: () =>
           import('./modules/sso/user/user.module').then((m) => m.UserModule)

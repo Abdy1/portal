@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="header">
+    <button pButton type="button" label="Delete All Schedules" icon="pi pi-trash" class="p-button-danger custom-button" (click)="deleteAllSchedules()"></button>
+  </div>
+  <p-table [value]="schedules" [rows]="10" [paginator]="true" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="date">
+          Date
+          <p-sortIcon field="date"></p-sortIcon>
+        </th>
+        <th>
+          Shift 1
+        </th>
+        <th>
+          Shift 2
+        </th>
+        <th>
+          Shift 3
+        </th>
+        <th>
+          Day-Off
+        </th>
+        <th>
+          Regular Job
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-schedule>
+      <tr>
+        <td>{{ schedule.date }}</td>
+        <td>{{ schedule.shifts['Shift 1']?.join(', ') || 'No data' }}</td>
+        <td>{{ schedule.shifts['Shift 2']?.join(', ') || 'No data' }}</td>
+        <td>{{ schedule.shifts['Shift 3']?.join(', ') || 'No data' }}</td>
+        <td>{{ schedule.shifts['Day-Off']?.join(', ') || 'No data' }}</td>
+        <td>{{ schedule.shifts['Regular Job']?.join(', ') || 'No data' }}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">No Data found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
