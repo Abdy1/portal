@@ -25,10 +25,9 @@ export class ShareManagementDashboardComponent {
     this.subscription.unsubscribe();
   }
 
-  branchId: string = "ET0010307";
 
   getAllBranchDashboardData(): void {
-    this.subscription = this.icmsdashboardService.getBranchDashboardDatas(this.branchId).subscribe(
+    this.subscription = this.icmsdashboardService.getShareDashboardDatas().subscribe(
       (response: any) => {
         this.allDatas = response;
       },

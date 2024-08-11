@@ -18,18 +18,31 @@ export class ProcurementDashboardComponent {
   constructor(private icmsdashboardService: ICMSDashboardService) {}
 
   ngOnInit() {
-    this.getAllBranchDashboardData();
+    this.getAllProcurmentDashboardData();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  branchId: string = "ET0010307";
+  // branchId: string = "ET0010307";
 
-  getAllBranchDashboardData(): void {
-    this.subscription = this.icmsdashboardService.getBranchDashboardDatas(this.branchId).subscribe(
+  // getAllBranchDashboardData(): void {
+  //   this.subscription = this.icmsdashboardService.getBranchDashboardDatas(this.branchId).subscribe(
+  //     (response: any) => {
+  //       this.allDatas = response;
+  //     },
+  //     (error) => {
+  //       console.error('Failed to get dashboard data:', error);
+  //     }
+  //   );
+  // }
+
+  getAllProcurmentDashboardData(): void {
+    this.subscription = this.icmsdashboardService.getProcurmentDashboardDatas().subscribe(
       (response: any) => {
+        console.log("Abcd",response);
+        
         this.allDatas = response;
       },
       (error) => {

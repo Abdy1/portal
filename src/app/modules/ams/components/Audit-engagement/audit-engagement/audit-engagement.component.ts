@@ -80,8 +80,13 @@ export class AuditEngagementComponent implements OnDestroy {
 
     this.isAuditee = this.roles.some(obj => obj.name === "ROLE_AMS_AUDITEE");
     // this.isMember = this.roles.some(obj => obj.name === "ROLE_AMS_MEMBER")
+    if(!this.isAuditee){
+      this.getAuditStaffId(localStorage.getItem("id"));
 
-    this.getAuditStaffId(localStorage.getItem("id"));
+    }else{
+      this.getAllEngagementOfCurrentYear();
+    }
+
     this.cols = [
       { field: 'id', header: 'ID' },
       { field: 'startOn', header: 'Start on' },

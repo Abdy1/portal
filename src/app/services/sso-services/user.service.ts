@@ -27,7 +27,7 @@ export class UserService {
       })
     };
     this.apiServiceUrl = localStorage.getItem('url_1');
-    //prodip
+    //testip
     // this.apiServiceUrl = 'http://localhost:9081';
   }
 
@@ -52,22 +52,6 @@ export class UserService {
     return this.http.post(`${this.apiServiceUrl}/user/update`, user, this.formDataOptions)
   }
 
-
-  // public updateUser(user: any): Observable<any> {
-  //   this.init();
-
-  //   return this.http.put<User>(`${this.apiServiceUrl}/user/update`, {
-  //     id: user.id,
-  //     username: user.username,
-  //     password: user.password,
-  //     createdAt: user.createdAt,
-  //     updatedAt: new Date().toLocaleDateString(),
-  //     active: user.active,
-  //     employee: { id: user.employee.id },
-  //     roles: [ user.roles ],
-  //     branch: { id: user.branch.id },
-  //   }, this.httpOptions)
-  // }
   public deleteUser(userId: number): Observable<any> {
     this.init();
     return this.http.delete<void>(`${this.apiServiceUrl}/user/delete/${userId}`, this.httpOptions)

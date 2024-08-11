@@ -93,6 +93,11 @@ const routes: Routes = [
           import('./modules/cit/cit.module').then((m) => m.CitModule),
       },
       {
+        path: 'stmt',
+        loadChildren: () =>
+          import('./modules/mt940/stmt.module').then((m) => m.StmtModule),
+      },
+      {
         path: 'ICMS/CIPM',
         loadChildren: () =>
           import('./modules/icms/cipm/cipm.module').then((m) => m.CIPMModule)

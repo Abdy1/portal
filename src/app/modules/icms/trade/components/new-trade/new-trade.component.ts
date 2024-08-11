@@ -195,7 +195,7 @@ export class NewTradeComponent implements OnInit {
           this.selectedstatus = this.statuses.find(status => status.name === this.Trade.tradeStatus.name);
 
         } else {
-          console.error("Status is undefined in the response");
+          console.log("Status is undefined in the response");
         }
       },
       error => {

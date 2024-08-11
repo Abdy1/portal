@@ -1,12 +1,13 @@
 import { Component, ViewChild } from "@angular/core";
 import { ChartComponent } from "ng-apexcharts";
-
+import { ICMSDashboardService } from "../../services/icms-dashboard.service";
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   ApexChart,
   ApexPlotOptions
 } from "ng-apexcharts";
+import { Subscription } from "rxjs";
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -25,9 +26,13 @@ export class BankingOperationDonutChartComponent {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  private subscription: Subscription;
+  private allDoughnutDatas: any;
+
+
+  constructor(private iCMSDashboardService:ICMSDashboardService ) {
     this.chartOptions = {
-      series: [44, 55, 13, 43, 5545, 45, 2, 2, 434, 2, 44, 55,100],
+      series: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0],
       chart: {
         type: "donut"
       },
@@ -50,5 +55,38 @@ export class BankingOperationDonutChartComponent {
         }
       }
     };
+
+
   }
+  ngOnInit(){
+        this.getbankingOperationDonutData();
+  }
+  getbankingOperationDonutData(){
+     this.subscription = this.iCMSDashboardService.getbankingOperationDonutDatas().subscribe(
+      (response:any) => {
+        this.allDoughnutDatas = response;
+      
+ //initialise an array with zero
+ let seriesData = new Array(this.chartOptions.labels.length).fill(0);
+
+              
+        //update the values for the labels that exist in the response
+        for (let label in this.allDoughnutDatas) {
+          let index = this.chartOptions.labels.indexOf(label);
+          if (index !== -1) {
+            seriesData[index] = this.allDoughnutDatas[label];
+          }
+        }
+
+                //update the chart series data
+                this.chartOptions.series = seriesData;
+      },
+
+      
+      (error) => {
+        console.error('Failed to get dashboard data:', error);
+      }
+     );
+  }
+
 }

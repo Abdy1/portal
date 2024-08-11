@@ -3,7 +3,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Subscription } from 'rxjs';
+import { find, Subscription } from 'rxjs';
 import { AuditScheduleService } from 'src/app/modules/ams/services/audit-schedule/audit-schedule.service';
 import { AuditProgramService } from 'src/app/modules/ams/services/auidit-program/audit-program.service';
 import { AuditFindingService } from 'src/app/modules/ams/services/auidit-finding/audit-finding.service';
@@ -28,6 +28,8 @@ export class NewAuditFindingsComponent implements OnDestroy {
   datePipe: any;
   public isCreate:boolean = true;
   isAreaSelected = false; // Initialize as false
+  public isAuditee;
+  private roles = JSON.parse(localStorage.getItem("allRoles"));
 
   public programInfo: AuditProgramDTO = new AuditProgramDTO();
  
@@ -51,6 +53,7 @@ export class NewAuditFindingsComponent implements OnDestroy {
       this.findingInfo = this.config.data.auditFinding;
       this.isCreate = false;
     }
+    this.isAuditee = this.roles.some(obj => obj.name === "ROLE_AMS_AUDITEE");
 
     
   }
@@ -79,9 +82,10 @@ export class NewAuditFindingsComponent implements OnDestroy {
 
   updateFinding(addDivForm: NgForm): void {
     let finding: FindingDTO = this.findingInfo;
-    finding.cause = addDivForm.value.cause;
-    finding.finding = addDivForm.value.finding;
-    finding.modifiedUser = localStorage.getItem('id')
+ 
+    finding.modifiedUser = localStorage.getItem('id');
+    finding.justifications = addDivForm.value.justifications;
+    console.log(finding);
     this.subscriptions.push(
       this.auditFindingService.updateAuditFinding(finding).subscribe(
         (response: any) => {

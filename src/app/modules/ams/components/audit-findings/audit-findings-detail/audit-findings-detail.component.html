@@ -17,9 +17,6 @@
         <th pSortableColumn="area.name">
           Area <p-sortIcon field="area.name"></p-sortIcon>
         </th>
-        <th pSortableColumn="auditiees">
-          Auditees <p-sortIcon field="auditiees"></p-sortIcon>
-        </th>  
         <th pSortableColumn="cause">
           Cause <p-sortIcon field="cause"></p-sortIcon>
         </th>   
@@ -33,7 +30,6 @@
     <ng-template pTemplate="body" let-auditFinding >
       <tr [pSelectableRow]="auditFinding">
         <td>{{ auditFinding.area.name}}</td>
-        <td>{{ auditFinding.auditees}}</td>
         <td>{{ auditFinding.cause}}</td>
         <td>{{ auditFinding.justifications}}</td>
         <td class="flex gap-4">
@@ -161,7 +157,13 @@
 
 
 <p-messages [value]="messages"></p-messages>
-<p-fileUpload #fileUpload name="file" [url]="upload_url"   (onBeforeUpload)="onBeforeUpload()" (onError)="onUploadError()" (onUpload)="onUpload() " 
+<p-fileUpload
+ #fileUpload name="file"  
+ (onBeforeUpload)="onBeforeUpload($event)" 
+ (onError)="onUploadError($event)" 
+ (onUpload)="onUpload($event) " 
+ [customUpload]="true"
+ (uploadHandler)="customUploader($event)"
 ></p-fileUpload>
 <br>
 <br> <br><br>
