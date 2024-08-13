@@ -457,7 +457,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-data let-i="rowIndex">
           <tr>
-            <td>{{ data.customerName }}</td>
+            <td>{{ data.customer_name }}</td>
             <td>
               <p-progressBar [value]="(data.similarity * 100).toFixed(0)"></p-progressBar>
             </td>
@@ -1009,7 +1009,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-data let-i="rowIndex">
           <tr>
-            <td>{{ data.customerName }}</td>
+            <td>{{ data.customer_name }}</td>
             <td>
               <p-progressBar [value]="(data.similarity * 100).toFixed(0)"></p-progressBar>
             </td>

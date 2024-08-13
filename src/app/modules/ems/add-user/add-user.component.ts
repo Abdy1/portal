@@ -370,14 +370,14 @@ export class AddUser implements OnInit {
     }
 
     // Send FormData to userService to add user
-    this.userService.addUser(formData).toPromise().then((response: any) => {
-      // If user added successfully, show success message
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is created.' });
-      setTimeout(() => { window.location.reload() }, 1000);
-    }).catch((errors: HttpErrorResponse) => {
-      // If an error occurred, show error message
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: errors.error.message });
-    });
+    // this.userService.addUser(formData).toPromise().then((response: any) => {
+    //   // If user added successfully, show success message
+    //   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is created.' });
+    //   setTimeout(() => { window.location.reload() }, 1000);
+    // }).catch((errors: HttpErrorResponse) => {
+    //   // If an error occurred, show error message
+    //   this.messageService.add({ severity: 'error', summary: 'Error', detail: errors.error.message });
+    // });
   }
 
 
