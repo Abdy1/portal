@@ -441,36 +441,36 @@ interface NavItem {
     ],
   );
   
-//   export const navItemsSMSAdmin = createNavItem(
-//     'SMS',
-//     '/sms',
-//     [
-//       createNavItem(
-//         'SMS Sending',
-//         '/sms',
-//         [
-//           createNavItem('Excel Messaging', '/sms/bulk'),
-//           createNavItem('Single Messaging', '/sms/single'),
-//           createNavItem('Group Messaging', '/sms/group'),
-//           createNavItem('Customer Messaging', '/sms/customer'),
-//         ],
-//         'cil-send'
-//       ),
-//       createNavItem(
-//         'Reports',
-//         '/sms',
-//         [
-//           createNavItem('Single messages', '/sms/single-messages'),
-//           createNavItem('Group Messages', '/sms/group-messages'),
-//           createNavItem('Excel Messages', '/sms/bulks'),
-//           createNavItem('Cost', '/sms/cost'),
-//           createNavItem('Customer messages', '/sms/customer-messages'),
-//         ],
-//         'cil-bar-chart'
-//       ),
-//     ],
-//     'cil-comment-square'
-//   );
+  export const navItemsSMSSAdmin = createNavItem(
+    'SMS',
+    '/sms',
+    [
+      createNavItem(
+        'SMS Sending',
+        '/sms',
+        [
+          createNavItem('Excel Messaging', '/sms/bulk'),
+          createNavItem('Single Messaging', '/sms/single'),
+          createNavItem('Group Messaging', '/sms/group'),
+          createNavItem('Customer Messaging', '/sms/customer'),
+        ],
+        'cil-send'
+      ),
+      createNavItem(
+        'Reports',
+        '/sms',
+        [
+          createNavItem('Single messages', '/sms/single-messages'),
+          createNavItem('Group Messages', '/sms/group-messages'),
+          createNavItem('Excel Messages', '/sms/bulks'),
+          createNavItem('Cost', '/sms/cost'),
+          createNavItem('Customer messages', '/sms/customer-messages'),
+        ],
+        'cil-bar-chart'
+      ),
+    ],
+    'cil-comment-square'
+  );
 
 
 export const navItemsSMSAdmin = createNavItem(
