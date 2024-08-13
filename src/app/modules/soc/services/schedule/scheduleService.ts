@@ -53,17 +53,32 @@ export class ScheduleService {
     });
   }
   
-  generateSchedule(startDate: string, days: number): Observable<any> {
+  // generateSchedule(startDate: string, days: number): Observable<any> {
+  //   const params = new HttpParams()
+  //     .set('startDate', startDate)
+  //     .set('days', days.toString());
+
+  //   return this.http.post<any>(`${this.apiServiceUrl}/generate`, null, {
+  //     ...this.httpOptions,
+  //     params,
+  //     responseType: 'text' as 'json' 
+  //   });
+  // }
+  
+  generateSchedule(startDate: string, days: number, isThreeShiftScenario: boolean): Observable<any> {
     const params = new HttpParams()
       .set('startDate', startDate)
-      .set('days', days.toString());
-
+      .set('days', days.toString())
+      .set('isThreeShiftScenario', isThreeShiftScenario.toString()); // Convert boolean to string
+  
     return this.http.post<any>(`${this.apiServiceUrl}/generate`, null, {
       ...this.httpOptions,
       params,
-      responseType: 'text' as 'json' // Ensures the response is treated as text
+      responseType: 'text' as 'json'
     });
   }
+  
+  
   
   
 

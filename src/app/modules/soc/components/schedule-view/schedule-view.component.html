@@ -1,22 +1,48 @@
 <div class="card">
   <div class="header">
-    <button pButton type="button" label="Delete All Schedules" icon="pi pi-trash" class="p-button-danger custom-button" (click)="deleteAllSchedules()"></button>
+    <button 
+      pButton 
+      type="button" 
+      label="Delete All Schedules" 
+      icon="pi pi-trash" 
+      class="p-button-danger custom-button" 
+      (click)="deleteAllSchedules()"
+      [disabled]="loading">
+    </button>
   </div>
-  <p-table [value]="schedules" [rows]="10" [paginator]="true" [tableStyle]="{'min-width': '60rem'}">
+
+  <!-- Show loading indicator when deleting schedules -->
+  <div *ngIf="loading" class="loading-container">
+    <p>Deleting all schedules...</p>
+    <p-progressSpinner strokeWidth="5" styleClass="custom-spinner"></p-progressSpinner>
+  </div>
+
+  <p-table 
+    *ngIf="!loading"
+    [value]="schedules" 
+    [rows]="10" 
+    [paginator]="true" 
+    [tableStyle]="{'min-width': '60rem'}">
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="date">
           Date
           <p-sortIcon field="date"></p-sortIcon>
         </th>
-        <th>
+        <th *ngIf="isThreeShiftSchedule">
           Shift 1
         </th>
-        <th>
+        <th *ngIf="isThreeShiftSchedule">
           Shift 2
         </th>
-        <th>
+        <th *ngIf="isThreeShiftSchedule">
           Shift 3
+        </th>
+        <th *ngIf="!isThreeShiftSchedule">
+          Shift 1
+        </th>
+        <th *ngIf="!isThreeShiftSchedule">
+          Shift 2
         </th>
         <th>
           Day-Off
@@ -30,9 +56,11 @@
     <ng-template pTemplate="body" let-schedule>
       <tr>
         <td>{{ schedule.date }}</td>
-        <td>{{ schedule.shifts['Shift 1']?.join(', ') || 'No data' }}</td>
-        <td>{{ schedule.shifts['Shift 2']?.join(', ') || 'No data' }}</td>
-        <td>{{ schedule.shifts['Shift 3']?.join(', ') || 'No data' }}</td>
+        <td *ngIf="isThreeShiftSchedule">{{ schedule.shifts['Shift 1']?.join(', ') || 'No data' }}</td>
+        <td *ngIf="isThreeShiftSchedule">{{ schedule.shifts['Shift 2']?.join(', ') || 'No data' }}</td>
+        <td *ngIf="isThreeShiftSchedule">{{ schedule.shifts['Shift 3']?.join(', ') || 'No data' }}</td>
+        <td *ngIf="!isThreeShiftSchedule">{{ schedule.shifts['Shift 1']?.join(', ') || 'No data' }}</td>
+        <td *ngIf="!isThreeShiftSchedule">{{ schedule.shifts['Shift 2']?.join(', ') || 'No data' }}</td>
         <td>{{ schedule.shifts['Day-Off']?.join(', ') || 'No data' }}</td>
         <td>{{ schedule.shifts['Regular Job']?.join(', ') || 'No data' }}</td>
       </tr>
@@ -40,7 +68,7 @@
 
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="6">No Data found.</td>
+        <td colspan="8">No Data found.</td>
       </tr>
     </ng-template>
   </p-table>

@@ -13,6 +13,30 @@ export class GenerateScheduleComponent implements OnInit {
   days: number;
   msgs: any[] = [];
   loading: boolean = false;
+  formatDate(date: Date | string): string {
+    let dateToFormat: Date;
+  
+    if (typeof date === 'string') {
+      dateToFormat = new Date(date);
+    } else if (date instanceof Date) {
+      dateToFormat = date;
+    } else {
+      return ''; // Handle unexpected date types
+    }
+  
+    // Add one day
+    dateToFormat.setDate(dateToFormat.getDate() + 1);
+  
+    // Return formatted date as yyyy-MM-dd
+    return dateToFormat.toISOString().split('T')[0];
+  }
+  ;
+  shiftTypes = [
+    { label: 'Two Shift', value: 'TWO_SHIFT' },
+    { label: 'Three Shift', value: 'THREE_SHIFT' }
+  ];
+ 
+  shiftType: any;
 
   constructor(
     private scheduleService: ScheduleService,
@@ -22,49 +46,40 @@ export class GenerateScheduleComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit(form: NgForm) {
     if (form.valid) {
-      this.loading = true; // Show loading indicator
-  
-      let formattedStartDate: string;
-  
-      // Check if startDate is a string or Date object and format accordingly
-      if (typeof this.startDate === 'string') {
-        const date = new Date(this.startDate);
-        // Add one day to the date
-        date.setDate(date.getDate() + 1);
-        formattedStartDate = date.toISOString().split('T')[0]; // Format as yyyy-MM-dd
-      } else if (this.startDate instanceof Date) {
-        // Add one day to the date
-        const date = new Date(this.startDate);
-        date.setDate(date.getDate() + 1);
-        formattedStartDate = date.toISOString().split('T')[0]; // Format as yyyy-MM-dd
-      } else {
-        console.error('Invalid startDate format');
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid date format' });
-        this.loading = false;
-        return;
-      }
-  
-      this.scheduleService.generateSchedule(formattedStartDate, this.days).subscribe({
-        next: (response: any) => {
-          // Assuming the response contains a detailed message from the backend
-          console.log('Success:', response);
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message || "Scheduled Successfully" });
-          this.loading = false; // Hide loading indicator
-          this.autoHideMessages();
-        },
-        error: (error: any) => {
-          console.error('Error:', error);
-          // Check if the backend response has a detailed message
-          const errorMessage = error.error?.message || error.message || 'An error occurred';
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: "You have already schedule on these days" });
-          this.loading = false; // Hide loading indicator
-          this.autoHideMessages();
-        }
-      });
+        this.loading = true;
+
+        const formattedStartDate = this.formatDate(this.startDate);
+        const isThreeShiftScenario = this.shiftType?.value === 'THREE_SHIFT';
+
+        this.scheduleService.generateSchedule(formattedStartDate, this.days, isThreeShiftScenario).subscribe({
+            next: (response: any) => {
+                console.log('Response:', response); // Debugging line
+
+                if (response.status === 'success') {
+                    this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
+                } else {
+                    this.messageService.add({ severity: 'success', summary: 'Success', detail: "Schedule generated successfully!" });
+                }
+                this.loading = false;
+            },
+            error: (error: any) => {
+                console.log('Error:', error); // Debugging line
+
+                const errorMessage = error.error?.message || "Already scheduled on the these days";
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: errorMessage });
+                this.loading = false;
+            }
+        });
     } else {
-      this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Please fill out all required fields' });
+        this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Please fill out all required fields.' });
     }
-  }
+}
+
+
+
+
+  
+  
   
   
 

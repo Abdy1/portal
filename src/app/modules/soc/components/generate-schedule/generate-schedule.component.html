@@ -1,52 +1,78 @@
-<div class="relative">
-  <div class="absolute top-0 right-0 z-50">
-    <p-messages [value]="msgs"></p-messages>
-    <!-- Loading Spinner -->
-    <div *ngIf="loading" class="loading-overlay">
-      <div class="spinner"></div>
-      Generating schedule...
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="flex flex-wrap gap-3 mb-2">
+    <!-- Existing form fields here -->
+    <div class="flex-auto">
+      <label for="startDate" class="block mb-2">Start Date:</label>
+      <p-calendar
+        id="startDate"
+        name="startDate"
+        [(ngModel)]="startDate"
+        [style]="{ width: '30vw', height: '45px' }"
+        [showIcon]="true"
+        [dateFormat]="'yy-mm-dd'"
+        [showTime]="false"
+        [selectionMode]="'single'"
+      ></p-calendar>
+    </div>
+
+    <div class="flex-auto">
+      <label for="days" class="block mb-2">Days:</label>
+      <input
+        pInputText
+        id="days"
+        type="number"
+        name="days"
+        [(ngModel)]="days"
+        required
+        [style]="{ width: '30vw', height: '45px' }"
+      />
+    </div>
+
+    <div class="flex-auto">
+      <label for="shiftType" class="block mb-2">Shift Type:</label>
+      <p-dropdown
+        [options]="shiftTypes"
+        name="shiftType"
+        [(ngModel)]="shiftType"
+        optionLabel="label"
+        [filter]="true"
+        filterBy="label"
+        [showClear]="true"
+        placeholder="Select Shift Type"
+        class="w-full"
+        styleClass="p-password"
+        [style]="{ width: '30vw', height: '45px' }"
+        [required]="true"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div class="flex align-items-center gap-2">
+            <div>{{ shiftType?.label }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-shiftType pTemplate="item">
+          <div class="flex align-items-center gap-2">
+            <div>{{ shiftType.label }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
     </div>
   </div>
-</div>
 
-<div>
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-    <div class="flex flex-wrap gap-3 mb-2">
-      <div class="flex-auto">
-        <label for="startDate" class="block mb-2">Start Date:</label>
-        <p-calendar
-          id="startDate"
-          name="startDate"
-          [(ngModel)]="startDate"
-          [style]="{ width: '30vw', height: '45px' }"
-          [showIcon]="true"
-          [dateFormat]="'yy-mm-dd'"
-          [showTime]="false"
-          [selectionMode]="'single'"
-        ></p-calendar>
-      </div>
+  <!-- Show loading indicator when generating schedule -->
+  <div *ngIf="loading" class="loading-container">
+    <p>Generating Schedule...</p>
+    <p-progressSpinner strokeWidth="5" styleClass="custom-spinner"></p-progressSpinner>
+  </div>
 
-      <div class="flex-auto">
-        <label for="days" class="block mb-2">Days:</label>
-        <input
-          pInputText
-          id="days"
-          type="number"
-          name="days"
-          [(ngModel)]="days"
-          required
-          [style]="{ width: '30vw', height: '45px' }"
-        />
-      </div>
-    </div>
+  <!-- Display message using Toast -->
+  <p-toast></p-toast>
 
-    <div class="flex flex-wrap gap-3 mt-4 mb-5">
-      <p-button
-        label="Generate Schedule"
-        type="submit"
-        [disabled]="form.invalid"
-        class="createButton"
-      ></p-button>
-    </div>
-  </form>
-</div>
+  <div class="flex flex-wrap gap-3 mt-4 mb-5">
+    <p-button
+      label="Generate Schedule"
+      type="submit"
+      [disabled]="form.invalid || loading"
+      class="createButton"
+    ></p-button>
+  </div>
+</form>
