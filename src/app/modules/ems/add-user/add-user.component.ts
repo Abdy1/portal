@@ -140,6 +140,7 @@ export class AddUser implements OnInit {
       subProcess: [''],
       companyEntryDate: ['', [Validators.required]],
       gender: ['', [Validators.required]],
+      username:['',[Validators.required]]
     });
 
 
@@ -224,43 +225,9 @@ export class AddUser implements OnInit {
     this.isClicked = !this.isClicked;
   }
 
-  // public searchEmployees(searchedEmployee: any) {
-  //   if (searchedEmployee == "") {
-  //     this.searchedEmployees = []
-  //   }
-  //   else {
-  //     this.employeeService.getEmployeesByName(searchedEmployee).subscribe(
-  //       (response: any) => {
-  //         this.searchedEmployees = response;
-  //         this.selectedEmployee = this.searchedEmployees[0];
-  //         console.log(this.selectedEmployee.organizationalUnit)
-  //         this.populateEmployeeData();
-  //       },
-  //       (error: HttpErrorResponse) => {
 
-  //       }
-  //     )
-  //   }
-  // }
 
-  // public searchUsernameFromAD(usernametosearch: string): Promise<void> {
-  //   return new Promise((resolve, reject) => {
-  //     this.adUserService.checkIfUserExistsOnAD(usernametosearch).subscribe(
-  //       (response: any) => {
-  //         this.userExists = (this.username == response[0]?.username) || false;
-  //         const dnPattern = /CN=([^,]+)/;
-  //         const matches = response[0].dn.match(dnPattern);
-  //         const name = matches ? matches[1] : '';
-  //         if (this.userExists) this.searchEmployees(name);
-  //         this.fullName = name;
-  //         resolve();  // Resolve the promise
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         reject(error);  // Reject the promise
-  //       }
-  //     )
-  //   });
-  // }
+
 
 
   public getModules(): void {
@@ -302,7 +269,7 @@ export class AddUser implements OnInit {
       this.addUserForm.value.supervisorId = this.selectedEmployee.supervisorId;
       this.addUserForm.value.supervisorFullName = this.selectedEmployee.employeeFullName;
       this.addUser();
-
+ 
     }
 
 
@@ -351,12 +318,12 @@ export class AddUser implements OnInit {
     const formData = new FormData();
 
     // Append user data to FormData
-    formData.append('username', '');
+    formData.append('username',this.addUserForm.value.username);
     formData.append('active', 'true');
     formData.append('id', this.addUserForm.value.employeeId);
-    formData.append('username',this.addUserForm.value.username);
 
-    console.log(formData)
+
+
 
     // Append images if available
     if (this.selectedFiles1) {

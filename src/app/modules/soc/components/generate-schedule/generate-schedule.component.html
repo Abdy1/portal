@@ -1,0 +1,52 @@
+<div class="relative">
+  <div class="absolute top-0 right-0 z-50">
+    <p-messages [value]="msgs"></p-messages>
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-overlay">
+      <div class="spinner"></div>
+      Generating schedule...
+    </div>
+  </div>
+</div>
+
+<div>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="flex flex-wrap gap-3 mb-2">
+      <div class="flex-auto">
+        <label for="startDate" class="block mb-2">Start Date:</label>
+        <p-calendar
+          id="startDate"
+          name="startDate"
+          [(ngModel)]="startDate"
+          [style]="{ width: '30vw', height: '45px' }"
+          [showIcon]="true"
+          [dateFormat]="'yy-mm-dd'"
+          [showTime]="false"
+          [selectionMode]="'single'"
+        ></p-calendar>
+      </div>
+
+      <div class="flex-auto">
+        <label for="days" class="block mb-2">Days:</label>
+        <input
+          pInputText
+          id="days"
+          type="number"
+          name="days"
+          [(ngModel)]="days"
+          required
+          [style]="{ width: '30vw', height: '45px' }"
+        />
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3 mt-4 mb-5">
+      <p-button
+        label="Generate Schedule"
+        type="submit"
+        [disabled]="form.invalid"
+        class="createButton"
+      ></p-button>
+    </div>
+  </form>
+</div>

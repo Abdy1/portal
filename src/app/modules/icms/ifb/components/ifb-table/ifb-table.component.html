@@ -108,6 +108,12 @@
           Responsible Person
           <p-sortIcon field="responsiblePerson"></p-sortIcon>
         </th>
+        <th scope="col" pSortableColumn="actionPlanDueDate" style="width: 10%">
+          Action Plan Due Date<p-sortIcon></p-sortIcon>
+        </th>
+        <th scope="col" pSortableColumn="">Past Due</th>
+
+
         <th pSortableColumn="status.name">
           Status
           <p-sortIcon field="status.name"></p-sortIcon>
@@ -128,6 +134,39 @@
         <td>{{ IFBList?.irregularity }}</td>
         <td>{{ IFBList?.amountInvolved }}</td>
         <td>{{ IFBList?.responsiblePerson }}</td>
+        <td>{{ IFBList?.actionPlanDueDate }}</td>
+        <td [ngClass]="{
+            red:
+            IFBList?.status.name === 'Open' &&
+              daysPastDue(IFBList?.actionPlanDueDate) <= 0,
+            'other-color':
+            IFBList?.status.name === 'Open' &&
+              daysPastDue(IFBList?.actionPlanDueDate) > 0,
+            closed:
+            IFBList?.status.name === 'Closed' &&
+              !IFBList?.actionPlanDueDate
+          }">
+          <ng-container *ngIf="
+          IFBList?.status?.name === 'Open' &&
+          IFBList?.actionPlanDueDate !== null;
+              else closedStatus
+            ">
+            <ng-container *ngIf="
+                daysPastDue(IFBList?.actionPlanDueDate) <= 0;
+                else otherText
+              ">
+              {{ absoluteValue(daysPastDue(IFBList?.actionPlanDueDate)) }} days past due
+            </ng-container>
+            <ng-template #otherText> </ng-template>
+          </ng-container>
+          <ng-template #closedStatus>
+            <span *ngIf="IFBList?.actionPlanDueDate" [ngClass]="{
+                red: IFBList?.status?.name === 'Closed'
+              }">
+              Closed!
+            </span>
+          </ng-template>
+        </td>
         <td>{{ IFBList?.status?.name }}</td>
         <td *ngIf="this.roles.includes('ROLE_ICMS_IFB')">
           <div class="flex gap-2" >

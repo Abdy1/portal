@@ -1,0 +1,88 @@
+<div class="relative">
+  <div class="absolute top-0 right-0 z-50">
+    <p-messages [value]="msgs"></p-messages>
+    <div *ngIf="loading" class="loading-overlay">
+      <div class="spinner"></div>
+      Creating analyst...
+    </div>
+  </div>
+</div>
+
+<div>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="flex flex-wrap gap-3 mb-2">
+      <div class="flex-auto">
+        <label for="name" class="block mb-2">Name:</label>
+        <input
+          pInputText
+          id="name"
+          type="text"
+          name="name"
+          [(ngModel)]="user.name"
+          required
+          [style]="{ width: '30vw', height: '45px' }"
+        />
+      </div>
+
+      <div class="flex-auto">
+        <label for="gender" class="block mb-2">Gender:</label>
+        <input
+          pInputText
+          id="gender"
+          type="text"
+          name="gender"
+          [(ngModel)]="user.gender"
+          required
+          [style]="{ width: '30vw', height: '45px' }"
+        />
+      </div>
+
+      <div class="flex-auto">
+        <label for="location" class="block mb-2">Location:</label>
+        <input
+          pInputText
+          id="location"
+          type="text"
+          name="location"
+          [(ngModel)]="user.location"
+          required
+          [style]="{ width: '30vw', height: '45px' }"
+        />
+      </div>
+      <div class="flex-auto">
+        <label for="location" class="block mb-2">Phone Number:</label>
+        <input
+          pInputText
+          id="phoneNumber"
+          type="text"
+          name="phoneNumber"
+          [(ngModel)]="user.location"
+          required
+          [style]="{ width: '30vw', height: '45px' }"
+        />
+      </div>
+
+    
+    </div>
+
+    <div class="flex flex-wrap gap-3 mt-4 mb-5">
+     
+      <div class="flex-auto"> <p-button
+        label="Create Analyst"
+        type="submit"
+        [disabled]="form.invalid"
+        class="createButton"
+      ></p-button>
+      </div>
+      <div class="flex-auto">
+        <label for="isAvailable" class="block mb-2">Available:</label>
+        <input
+          type="checkbox"
+          id="isAvailable"
+          name="isAvailable"
+          [(ngModel)]="user.isAvailabel"
+        />
+      </div>
+    </div>
+  </form>
+</div>

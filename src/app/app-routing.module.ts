@@ -63,6 +63,11 @@ const routes: Routes = [
           import('./modules/sms/sms.module').then((m) => m.SmsModule)
       },
       {
+        path: 'soc',
+        loadChildren: () =>
+          import('./modules/soc/soc.module').then((m) => m.SocModule)
+      },
+      {
         path: 'user',
         loadChildren: () =>
           import('./modules/sso/user/user.module').then((m) => m.UserModule)
@@ -90,7 +95,7 @@ const routes: Routes = [
       {
         path: 'stmt',
         loadChildren: () =>
-          import('./modules/stmt/stmt.module').then((m) => m.StmtModule),
+          import('./modules/mt940/stmt.module').then((m) => m.StmtModule),
       },
       {
         path: 'ICMS/CIPM',

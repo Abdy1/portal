@@ -154,18 +154,17 @@ export const navItemsCISTAdmin = createNavItem(
     createNavItem('COB Issues Listt', '/cit/cobIssuesList'),
     createNavItem('Cob Steps', '/cit/cobSteps'),
     createNavItem('Cob Steps Copied', '/cit/cobStepsCopiedList'),
-    createNavItem('STMT Customer List', '/stmt/customerList'),
   ],
   'cil-copy'
 );
-export const navItemsSTMTAdmin = createNavItem(
+export const navItemsMT940Admin = createNavItem(
   'MT940',
   '/mt940',
   [
  
     createNavItem('Customer List', '/stmt/customerList'),
   ],
-  'cil-copy'
+  'cil-file'
 );
 export const navItemsICMSAdmin = createNavItem(
   'Internal Control',
@@ -244,6 +243,7 @@ export const navItemsICMSAdmin = createNavItem(
       [
         createNavItem('View Trade', '/ICMS/Trade/viewTrade'),
       ],
+      
     ),
     createNavItem(
       'Procurement',
@@ -450,7 +450,7 @@ export const navItemsICMSShareOWNER = createNavItem(
   ],
 );
 
-export const navItemsSMSAdmin = createNavItem(
+export const navItemsSMSSAdmin = createNavItem(
   'SMS',
   '/sms',
   [
@@ -480,6 +480,41 @@ export const navItemsSMSAdmin = createNavItem(
   ],
   'cil-comment-square'
 );
+
+export const navItemsSMSAdmin = createNavItem(
+  'SOC',
+  '/soc',
+  [
+      createNavItem(
+          'SOC Schedule',
+          '/soc',
+          [
+            createNavItem('View', '/soc/view-schedule'),
+            createNavItem('Generate', '/soc/generate-schedule'),
+          ],
+          'cil-calendar'
+        ),
+    createNavItem(
+      'SOC Shift',
+      '/soc',
+      [
+        createNavItem('View', '/soc/view-shift'),
+      ],
+      'cil-clock'
+    ),
+    createNavItem(
+      'SOC Analysts',
+      '/soc',
+      [
+        createNavItem('View', '/soc/view-analyst'),
+        createNavItem('Create', '/soc/create-analyst'),
+      ],
+      'cil-people'
+    ),
+  ],
+  'cil-briefcase'
+);
+
 
 export const navItemsICMSBranchManager = createNavItem(
   'Internal Control',

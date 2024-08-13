@@ -16,6 +16,7 @@ import {
   navItemsAMSTeamLeader,
   navItemsAMSDirector,
   navItemsCISTAdmin,
+  navItemsMT940Admin,
   navItemsICMSAdmin,
   navItemsICMSBranch,
   navItemsICMSDistrict,
@@ -55,7 +56,9 @@ import {
   navItemWeeklyCheck,
   complianceCheckMenu,
 
-} from './_nav';
+} 
+from './_nav';
+
 import { AuditStaffService } from 'src/app/modules/ams/services/audit-staff/audit-staff.service';
 
 @Component({
@@ -86,8 +89,8 @@ export class DefaultLayoutComponent {
     "ROLE_ICMS_BRANCH_MANAGER": { navItems: navItemsICMSBranchManager, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_BANKING_OPERATION": { navItems: navItemsICMSBankingOperation, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_IFB": { navItems: navItemsICMSIFB, dashboardRoute: "icms_dashboard/ifb" },
-    "ROLE_ICMS_FINANCE_IC": { navItems: navItemsICMSFinanceIC, dashboardRoute: "icms_dashboard/finance" },
-    "ROLE_ICMS_FINANCE_OWNER": { navItems: navItemsICMSFinanceOWNER, dashboardRoute: "icms_dashboard/finance" },
+    "ROLE_ICMS_FINANCE_IC": { navItems: navItemsICMSFinanceIC, dashboardRoute: "icms_dashboard/bankingOperation" },
+    "ROLE_ICMS_FINANCE_OWNER": { navItems: navItemsICMSFinanceOWNER, dashboardRoute: "icms_dashboard/bankingOperation" },
     "ROLE_ICMS_TRADE_IC": { navItems: navItemsICMSTradeIC, dashboardRoute: "icms_dashborad/tradeService" },
     "ROLE_ICMS_TRADE_OWNER": { navItems: navItemsICMSTradeOWNER, dashboardRoute: "icms_dashborad/tradeService" },
     "ROLE_ICMS_PROCUREMENT_IC": { navItems: navItemsICMSProcurementIC, dashboardRoute: "icms_dashboard/procurement" },
@@ -114,6 +117,7 @@ export class DefaultLayoutComponent {
     "ROLE_AMS_MEMBER": { navItems: navItemsAMSMember, dashboardRoute: "default_dashboard" },
     "ROLE_AMS_AUDITEE": { navItems: navItemsAMSAuditee, dashboardRoute: "default_dashboard" },
     "ROLE_CIST_ADMIN": { navItems: navItemsCISTAdmin, dashboardRoute: "default_dashboard" },
+    "ROLE_MT940_ADMIN": { navItems: navItemsMT940Admin, dashboardRoute: "default_dashboard" },
     "ROLE_SEARCH": { navItems: navItemSearch, dashboardRoute: "default_dashboard" },
     "ROLE_DELINQUENT": { navItems: navItemDelinquent, dashboardRoute: "default_dashboard" },
     "ROLE_WEEKLY_CHECK": { navItems: navItemWeeklyCheck, dashboardRoute: "default_dashboard" },

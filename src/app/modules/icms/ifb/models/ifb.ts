@@ -14,4 +14,5 @@ export class IFB {
     amountInvolved: string; 
     responsiblePerson: string; 
     status: any; 
+    actionPlanDueDate: string;
 }

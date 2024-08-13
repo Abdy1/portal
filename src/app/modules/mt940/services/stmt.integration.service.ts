@@ -10,8 +10,8 @@ import { addCustomerDTO } from '../models/addCustomerDTO';
 export class StmtIntegrationService {
 
 
-  private baseUrl="http://localhost:8003/api/stmt";
-
+  // private baseUrl="http://localhost:8003/api/stmt";
+  private baseUrl="http://10.1.125.58:8003/api/stmt";
   constructor(private http:HttpClient) { }
 
   public addCustomer(addCustomer :any):Observable<any>{
