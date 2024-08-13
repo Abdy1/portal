@@ -27,7 +27,7 @@ export class ShiftService {
       })
     };
     // this.apiServiceUrl = localStorage.getItem('url_4');
-     this.apiServiceUrl = 'http://localhost:8093/api/shifts';
+     this.apiServiceUrl = 'http://10.1.125.58:8093/api/shifts';
     //  this.apiServiceUrl = 'http://10.1.11.145:8092/api/v1';
 
   }
