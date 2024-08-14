@@ -1,0 +1,81 @@
+:host ::ng-deep .accordion-custom {
+  .accordion-button {
+    background-color: var(--cui-dark);
+    color: var(--cui-white);
+  }
+}
+
+::ng-deep .p-dialog .p-dialog-header {
+  background: #3b82f6;
+  color: white;
+  font-size: 24px;
+}
+.custom-button {
+  background-color: #007bff; /* Blue color */
+  border-color: #007bff; /* Border color to match the background */
+}
+
+.custom-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  border-color: #0056b3;
+}
+.header {
+  position: relative;
+  padding: 10px;
+}
+
+.custom-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: blue; /* Button color */
+  color: white; /* Text color */
+  border: none;
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 5px; /* Optional: to make the corners rounded */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.custom-button .pi {
+  color: white; /* Icon color */
+}
+
+
+
+::ng-deep .p-dialog {
+  border: 1px solid #3b82f6;
+  animation: fadeIn 0.5s, fadeOut 0.5s;
+}
+.truncat {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px; 
+}
+
+
+::ng-deep .p-dialog .p-dialog-header .p-dialog-header-icon {
+  color: white;
+}
+
+th input {
+  padding: 0.5em;
+}
+
+p-button {
+  padding: 0.5em;
+}
+
+.card {
+  margin-top: 10px;
+}
+
+
+
+.table-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 15px;
+}
+

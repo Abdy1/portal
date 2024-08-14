@@ -491,6 +491,8 @@ export const navItemsSMSAdmin = createNavItem(
           [
             createNavItem('View', '/soc/view-schedule'),
             createNavItem('Generate', '/soc/generate-schedule'),
+            createNavItem('Analyst-Hours', '/soc/analyst-hours'),
+
           ],
           'cil-calendar'
         ),
@@ -514,6 +516,41 @@ export const navItemsSMSAdmin = createNavItem(
   ],
   'cil-briefcase'
 );
+
+export const navItemsSMSUser = createNavItem(
+  'SOC',
+  '/soc',
+  [
+      createNavItem(
+          'SOC Schedule',
+          '/soc',
+          [
+            createNavItem('View', '/soc/view-schedule'),
+            createNavItem('Analyst-Hours', '/soc/analyst-hours'),
+
+          ],
+          'cil-calendar'
+        ),
+    createNavItem(
+      'SOC Shift',
+      '/soc',
+      [
+        createNavItem('View', '/soc/view-shift'),
+      ],
+      'cil-clock'
+    ),
+    createNavItem(
+      'SOC Analysts',
+      '/soc',
+      [
+        createNavItem('View', '/soc/view-analyst'),
+      ],
+      'cil-people'
+    ),
+  ],
+  'cil-briefcase'
+);
+
 
 
 export const navItemsICMSBranchManager = createNavItem(

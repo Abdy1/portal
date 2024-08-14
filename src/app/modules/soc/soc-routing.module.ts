@@ -6,6 +6,7 @@ import { AnalystViewComponent } from './components/analyst-view/analyst-view.com
 import {GenerateScheduleComponent} from './components/generate-schedule/generate-schedule.component';
 import { ShiftViewComponent } from './components/shift-view/shift-view.component';
 import { CreateAnalystComponent } from './components/create-analyst/create-analyst.component';
+import { UserHoursComponent } from './components/user-hours/user-hours.component';
 const routes: Routes = [
   {
     path: '',
@@ -37,6 +38,13 @@ const routes: Routes = [
         component: GenerateScheduleComponent,
         data: {
           title: 'Generate-Schedule',
+        },
+      },
+      {
+        path: 'analyst-hours',
+        component: UserHoursComponent,
+        data: {
+          title: 'Analyst-Hours',
         },
       },
       {

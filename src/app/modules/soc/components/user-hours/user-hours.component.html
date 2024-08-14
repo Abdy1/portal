@@ -1,0 +1,83 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="flex flex-wrap gap-3 mb-2">
+    <!-- Start Date -->
+    <div class="flex-auto">
+      <label for="startDate" class="block mb-2">Start Date:</label>
+      <p-calendar
+        id="startDate"
+        name="startDate"
+        [(ngModel)]="startDate"
+        [style]="{ width: '30vw', height: '45px' }"
+        [showIcon]="true"
+        [dateFormat]="'yy-mm-dd'"
+        [showTime]="false"
+        [selectionMode]="'single'"
+        [required]="true"
+        #startDateField="ngModel"
+      ></p-calendar>
+      <div *ngIf="startDateField.invalid && startDateField.touched" class="error-message">
+        Start Date is required.
+      </div>
+    </div>
+
+    <!-- End Date -->
+    <div class="flex-auto">
+      <label for="endDate" class="block mb-2">End Date:</label>
+      <p-calendar
+        id="endDate"
+        name="endDate"
+        [(ngModel)]="endDate"
+        [style]="{ width: '30vw', height: '45px' }"
+        [showIcon]="true"
+        [dateFormat]="'yy-mm-dd'"
+        [showTime]="false"
+        [selectionMode]="'single'"
+        [required]="true"
+        #endDateField="ngModel"
+      ></p-calendar>
+      <div *ngIf="endDateField.invalid && endDateField.touched" class="error-message">
+        End Date is required.
+      </div>
+    </div>
+  </div>
+
+  <!-- Show loading indicator when fetching user hours -->
+  <div *ngIf="loading" class="loading-container">
+    <p>Fetching User Hours...</p>
+    <p-progressSpinner strokeWidth="5" styleClass="custom-spinner"></p-progressSpinner>
+  </div>
+
+  <!-- Display message using Toast -->
+  <p-toast></p-toast>
+
+  <div class="flex flex-wrap gap-3 mt-4 mb-5">
+    <p-button
+      label="Fetch User Hours"
+      type="submit"
+      [disabled]="form.invalid || loading"
+      class="fetchButton"
+    ></p-button>
+  </div>
+</form>
+
+<!-- Display User Hours in a Table -->
+<div *ngIf="!loading && userHours.length > 0">
+  <p-table [value]="userHours" [paginator]="true" [rows]="10" [sortField]="'userName'" [sortOrder]="1">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="userName">User
+          <p-sortIcon field="userName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="totalHours">Total Hours
+          <p-sortIcon field="totalHours"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.userName }}</td>
+        <td>{{ user.totalHours }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

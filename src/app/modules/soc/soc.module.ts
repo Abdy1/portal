@@ -36,6 +36,7 @@ import {GenerateScheduleComponent} from './components/generate-schedule/generate
 import { CreateAnalystComponent} from './components/create-analyst/create-analyst.component'
 import {ShiftViewComponent} from './components/shift-view/shift-view.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {UserHoursComponent} from './components/user-hours/user-hours.component'
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     AnalystViewComponent,
     ShiftViewComponent,
     GenerateScheduleComponent,
+    UserHoursComponent,
     CreateAnalystComponent
   
   ],

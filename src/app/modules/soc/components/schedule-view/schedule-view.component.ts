@@ -11,6 +11,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class ScheduleViewComponent implements OnInit {
   loading: boolean = false;
   schedules: Schedule[] = [];
+  roles: string[] = [];
+  isAdmin: boolean = false;
   isThreeShiftSchedule: boolean = false; // Flag to determine if the schedule is three-shift
 
   constructor(
@@ -21,8 +23,18 @@ export class ScheduleViewComponent implements OnInit {
 
   ngOnInit() {
     this.loadSchedules();
+    this.populateRoles();
+    this.isAdmin = this.roles.includes('ROLE_SMS_ADMIN');
   }
-
+  populateRoles(): void {
+    let index = 0;
+    let cond = localStorage.getItem('role_' + index);
+    while (cond) {
+      this.roles.push(cond);
+      index++;
+      cond = localStorage.getItem('role_' + index);
+    }
+  }
   loadSchedules() {
     this.scheduleService.getSchedules().subscribe((data: any) => {
       console.log('Received data:', data);

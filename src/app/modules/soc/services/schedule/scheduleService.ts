@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { NgForm } from '@angular/forms'
 import {Schedule} from '../../models/schedule';
+// import {UserHours} from '../../models/user-hours';
 
 
 @Injectable({
@@ -53,17 +54,6 @@ export class ScheduleService {
     });
   }
   
-  // generateSchedule(startDate: string, days: number): Observable<any> {
-  //   const params = new HttpParams()
-  //     .set('startDate', startDate)
-  //     .set('days', days.toString());
-
-  //   return this.http.post<any>(`${this.apiServiceUrl}/generate`, null, {
-  //     ...this.httpOptions,
-  //     params,
-  //     responseType: 'text' as 'json' 
-  //   });
-  // }
   
   generateSchedule(startDate: string, days: number, isThreeShiftScenario: boolean): Observable<any> {
     const params = new HttpParams()
@@ -77,6 +67,18 @@ export class ScheduleService {
       responseType: 'text' as 'json'
     });
   }
+
+  getUserHours(startDate: string, endDate: string): Observable<any> {
+    const params = new HttpParams()
+      .set('startDate', startDate)
+      .set('endDate', endDate);
+
+    return this.http.get<any[]>(`${this.apiServiceUrl}/user-hours`, {
+      ...this.httpOptions,
+      params
+    });
+  }
+  
   
   
   
