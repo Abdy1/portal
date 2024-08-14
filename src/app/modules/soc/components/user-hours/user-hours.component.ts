@@ -10,7 +10,7 @@ interface UserHours {
 @Component({
   selector: 'app-user-hours',
   templateUrl: './user-hours.component.html',
-  styleUrls: ['./user-hours.component.css'],
+  // styleUrls: ['./user-hours.component.css'],
   providers: [DatePipe]
 })
 export class UserHoursComponent {
