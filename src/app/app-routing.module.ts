@@ -173,6 +173,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/memo/memo.module').then((m) => m.MemoModule)
       },
+      {
+        path: 'scheduling',
+        loadChildren: () => import('./modules/scheduling/scheduling.module').then(m => m.SchedulingModule)
+      },
     ]
   },
   {

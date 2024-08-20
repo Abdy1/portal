@@ -1,0 +1,44 @@
+<div>
+  <form #addDivForm="ngForm" (ngSubmit)="addMessage(addDivForm)">
+    <div class="row" style="margin: 10%">
+      <div class="col mb-4">
+        <label for="scheduleType" class="block mb-2"> Schedule Type: </label>
+        <p-dropdown
+          [options]="scheduleType"
+          [(ngModel)]="selectedScheduleType"
+          optionLabel="name"
+          id="scheduleType"
+          name="scheduleType"
+          placeholder="Select a Schedule Type"
+          style="width: 300px; height: 45px"
+          [required]
+        >
+        </p-dropdown>
+      </div>
+      
+      <div class="col mb-4">
+        <label for="messageTemplate" class="block mb-2">
+          Message Template:
+        </label>
+        <input
+          pInputText
+          id="messageTemplate"
+          ngModel
+          name="messageTemplate"
+          [style]="{ width: '300px', height: '45px' }"
+          required
+          placeholder="message template"
+          minlength="3"
+        />
+      </div>
+    </div>
+
+    <div class="buttonDiv" style="margin-left: 37%">
+      <p-button
+        label="Add Message"
+        [disabled]="addDivForm.invalid!"
+        type="submit"
+      ></p-button>
+    </div>
+  </form>
+</div>

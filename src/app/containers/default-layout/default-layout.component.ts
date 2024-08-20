@@ -56,6 +56,7 @@ import {
   navItemAdmin,
   navItemWeeklyCheck,
   complianceCheckMenu,
+  navItemsSCHEDULINGAdmin
 
 } 
 from './_nav';
@@ -123,7 +124,8 @@ export class DefaultLayoutComponent {
     "ROLE_SEARCH": { navItems: navItemSearch, dashboardRoute: "default_dashboard" },
     "ROLE_DELINQUENT": { navItems: navItemDelinquent, dashboardRoute: "default_dashboard" },
     "ROLE_WEEKLY_CHECK": { navItems: navItemWeeklyCheck, dashboardRoute: "default_dashboard" },
-    "ROLE_COMPLIANCE_CHECK_MENU": { navItems: complianceCheckMenu, dashboardRoute: "default_dashboard"}
+    "ROLE_COMPLIANCE_CHECK_MENU": { navItems: complianceCheckMenu, dashboardRoute: "default_dashboard"},
+    "ROLE_SCHEDULING_ADMIN": { navItems: navItemsSCHEDULINGAdmin, dashboardRoute: "default_dashboard" },
   };
 
 

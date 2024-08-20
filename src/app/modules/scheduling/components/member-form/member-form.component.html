@@ -1,0 +1,38 @@
+<div>
+  <form #addDivForm="ngForm" (ngSubmit)="addMember(addDivForm)">
+    <div class="row" style="margin: 10%">
+      <div class="col mb-4">
+        <label for="name" class="block mb-2"> Name : </label>
+        <input
+          pInputText
+          id="name"
+          ngModel
+          name="name"
+          [style]="{ width: '300px', height: '45px' }"
+          [required] = "true"
+          minlength="3"
+        />
+      </div>
+      <div class="col mb-4">
+        <label for="phone" class="block mb-2"> Phone Number : </label>
+        <input
+          pInputText
+          id="phone"
+          ngModel
+          name="phone"
+          [style]="{ width: '300px', height: '45px' }"
+          required
+          minlength="3"
+        />
+      </div>
+    </div>
+
+    <div class="buttonDiv" style="margin-left: 37%">
+      <p-button
+        label="Add Member"
+        [disabled]="addDivForm.invalid!"
+        type="submit"
+      ></p-button>
+    </div>
+  </form>
+</div>

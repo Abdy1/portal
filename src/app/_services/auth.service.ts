@@ -135,7 +135,8 @@ export class AuthService {
     "ROLE_SEARCH": 'default_dashboard',
     "ROLE_DELINQUENT": 'default_dashboard',
     "ROLE_WEEKLY_CHECK": 'default_dashboard',
-    "ROLE_COMPLIANCE_CHECK_MENU": 'default_dashboard'
+    "ROLE_COMPLIANCE_CHECK_MENU": 'default_dashboard',
+    "ROLE_SCHEDULING_ADMIN": 'default_dashboard'
 };
 
 

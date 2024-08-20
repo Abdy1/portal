@@ -1,0 +1,75 @@
+<div>
+    <form #addDivForm="ngForm" (ngSubmit)="setSchedule(addDivForm)">
+       
+      <div class="row" style="margin: 10%;">
+
+        <div class="col mb-4">
+          <label for="member" class="block mb-2"> Member: </label>
+          <p-dropdown 
+            [options]="members" 
+            [(ngModel)]="selectedMembers" 
+            optionLabel="name" 
+            id="member" 
+            name="member"
+            placeholder="Select a Member"
+            style="width: 300px; height: 45px;" 
+            [required]
+            (onChange)="onMembersChange($event)">
+          </p-dropdown>
+        </div>
+        
+
+        <div class="col mb-4">
+          <label for="scheduleType" class="block mb-2"> Schedule Type: </label>
+          <p-dropdown 
+            [options]="scheduleType" 
+            [(ngModel)]="selectedScheduleType" 
+            optionLabel="name" 
+            id="scheduleType" 
+            name="scheduleType"
+            placeholder="Select a Schedule Type"
+            style="width: 300px; height: 45px;" 
+            [required]
+            (onChange)="onScheduleTypeChange($event)">
+          </p-dropdown>
+        </div>
+
+        <div class="col mb-4">
+            <label for="dayNumber" class="block mb-2">Day Number:</label>
+            <p-dropdown
+              [options]="daysOfWeek"
+              [(ngModel)]="selectedDay"
+              name="dayNumber"
+              placeholder="Select a Day of Week"
+              [style]="{ width: '300px', height: '45px' }"
+              [required]>
+            </p-dropdown>
+        </div>
+        <div class="col mb-4">
+          <div class="form-group">
+            <label for="scheduledTime" class="form-label">Scheduled Time:</label>
+            <div class="input-group">
+              <input 
+                type="time" 
+                id="scheduledTime" 
+                name="scheduledTime" 
+                class="form-control" 
+                ngModel 
+                required
+              />
+              <div class="input-group-append">
+                <span class="input-group-text" id="timeHelp">HH:MM</span>
+              </div>
+            </div>
+            <small id="timeHelp" class="form-text text-muted text-xs">
+              Select the time when the SMS should be sent.
+            </small>
+          </div>
+        </div>
+      </div>
+
+          <div class="buttonDiv" style="margin-left: 37%;">
+            <p-button label="Set Schedule" [disabled]="addDivForm.invalid!" type="submit"></p-button>
+          </div>
+    </form>
+  </div>

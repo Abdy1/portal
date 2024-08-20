@@ -61,6 +61,13 @@ export const navItemSupervisor = createNavItem(
   ]
 );
 
+export const navItemsSCHEDULINGAdmin = createNavItem(
+  'Scheduling',
+  '/scheduling',
+  [
+    createNavItem('View Schedule','/scheduling/today-schedules'),
+], 'cil-calendar'
+);
 
 export const navItemsAMSAdmin = createNavItem(
   'AMS Setting',

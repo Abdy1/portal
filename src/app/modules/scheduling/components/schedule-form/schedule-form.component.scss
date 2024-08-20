@@ -1,0 +1,35 @@
+:host {
+    .legend {
+      small {
+        font-size: x-small;
+      }
+    }
+  }
+
+  /* Custom styles for the time input */
+.input-group {
+  position: relative;
+}
+
+.input-group .form-control {
+  border-radius: 0.25rem;
+}
+
+.input-group-append .input-group-text {
+  background-color: #f1f1f1;
+  border: 1px solid #ced4da;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.form-label {
+  font-weight: 200;
+  color: #333;
+}
+
+.form-text {
+  color: #6c757d;
+}
+/* Custom extra small text style */
+.text-xs {
+  font-size: 0.75rem; /* Adjust size as needed */
+}
