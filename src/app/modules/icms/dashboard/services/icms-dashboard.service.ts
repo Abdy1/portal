@@ -155,14 +155,14 @@ export class ICMSDashboardService {
   public getBankingOperationDashboardDatas(): Observable<any> {
     this.init();
     return this.http.get<any>(
-      `${this.apiServiceUrl}/view/dashboard/forBankingOperationDonut`,
+      `${this.apiServiceUrl}/view/dashboard/forBankingOperation`,
       this.httpOptions
     );
   }
   public getBankingOperationBarchartDashboardDatas(): Observable<any> {
     this.init();
     return this.http.get<any>(
-      `${this.apiServiceUrl}/view/dashboard/forBankingOperationBarchart`,
+      `${this.apiServiceUrl}/view/dashboard/forBankingOperationBar`,
       this.httpOptions
     );
   } 

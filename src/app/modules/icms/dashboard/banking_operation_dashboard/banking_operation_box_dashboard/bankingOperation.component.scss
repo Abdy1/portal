@@ -5,3 +5,33 @@
   }
 
 }
+.shortened {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  opacity: 0;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* Position the tooltip above the text */
+  left: 50%;
+  margin-left: -60px;
+  width: auto; /* Adjust width as needed */
+  max-width: 200px; /* Adjust max width to fit content */
+  white-space: nowrap; /* Prevent text from wrapping */
+  transition: opacity 0.3s;
+  text-overflow: ellipsis; /* Add ellipsis if text overflows */
+}
+
+.shortened:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
