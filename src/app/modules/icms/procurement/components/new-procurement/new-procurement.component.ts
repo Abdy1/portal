@@ -183,7 +183,7 @@ export class NewProcurementComponent implements OnInit {
       (response: any[]) => {
         this.irregularities = response;
       },
-      (error: HttpErrorResponse) => {
+      (error: HttpErrorResponse) => { 
       }
     )
   }
