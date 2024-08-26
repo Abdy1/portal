@@ -3,15 +3,14 @@ import { ICMSDashboardService } from "../../services/icms-dashboard.service";
 import {
   ApexAxisChartSeries,
   ApexChart,
-  ChartComponent,
   ApexDataLabels,
   ApexXAxis,
   ApexGrid,
   ApexPlotOptions,
-  ApexAnnotations
+  ApexAnnotations,
+  ChartComponent
 } from "ng-apexcharts";
 import { Subscription } from "rxjs";
-import { error } from "console";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -43,7 +42,7 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
           data: Array(17).fill(0) // Assuming there are 17 districts as per the categories
         }
       ],
-      chart: {
+      chart: { 
         type: "bar",
         height: 350,
         toolbar: {
@@ -61,23 +60,23 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
       },
       xaxis: {
         categories: [
-          "Adama",
-          "Assela",
-          "Bahirdar Area",
-          "Bale",
-          "Centeral Finfinne",
-          "Chiro",
-          "Dire Dawa",
-          "East Finfinne",
-          "Hawassa",
-          "Hossana",
-          "Jimma",
-          "Mekele Area",
-          "Nekemte",
-          "North Finfinne",
-          "Shashemane",
-          "South Finfinne",
-          "West Finfinne"
+          "ADAMA DISTRICT",
+          "ASELLA DISTRICT",
+          "BAHIR DAR RELATIONSHIP OFFICE",
+          "BALE DISTRICT",
+          "CENTRAL FINFINNE DISTRICT",
+          "CHIRO DISTRICT",
+          "DIRE DAWA DISTRICT",
+          "EAST FINFINNE DISTRICT",
+          "HAWASSA DISTRICT",
+          "HOSANNA DISTRICT",
+          "JIMMA DISTRICT",
+          "MEKELLE RELATIONSHIP OFFICE",
+          "NEKEMTE DISTRICT",
+          "NORTH FINFINNE DISTRICT ",
+          "SHASHEMANE DISTRICT",
+          "SOUTH FINFINNE DISTRICT",
+          "WESTERN FINFINNE DISTRICT"
         ],
         labels: {
           show: false,
@@ -98,6 +97,22 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
             show: false
           }
         }
+      },
+      annotations: {
+        xaxis: [
+          {
+            x: "HAWASSA DISTRICT", // The category where you want the vertical line
+            borderColor: "#FF4560", // Color of the vertical line
+            borderWidth: 2, // Width of the vertical line
+            label: {
+              text: "Vertical Line",
+              style: {
+                color: "#fff",
+                background: "#FF4560"
+              }
+            }
+          }
+        ]
       }
     };
   }
@@ -116,10 +131,11 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
     this.subscription = this.iCMSDashboardService.getBankingOperationBarchartDashboardDatas().subscribe(
       (response: any) => {
         this.allDoughnut = response;
-
+        console.log('Received data:', this.allDoughnut);
+  
         // Initialize an array with zeros
         let seriesData = new Array(this.chartOptions.xaxis.categories.length).fill(0);
-
+  
         // Update the values for the categories that exist in the response
         for (let category in this.allDoughnut) {
           let index = this.chartOptions.xaxis.categories.indexOf(category);
@@ -127,7 +143,10 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
             seriesData[index] = this.allDoughnut[category];
           }
         }
-
+  
+        console.log('Categories:', this.chartOptions.xaxis.categories);
+        console.log('Series Data:', seriesData);
+  
         // Update the chart series data
         this.chartOptions.series = [
           {
@@ -135,6 +154,7 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
             data: seriesData
           }
         ];
+
       },
       (error) => {
         console.error('Failed to get dashboard data:', error);

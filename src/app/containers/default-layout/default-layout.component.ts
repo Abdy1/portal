@@ -83,17 +83,17 @@ export class DefaultLayoutComponent {
     "ROLE_CC_ADMIN": { navItems: navItemsCCAdmin, dashboardRoute: "cc_dashboard" },
     "ROLE_CC_USER": { navItems: navItemsCCUser, dashboardRoute: "cc_dashboard" },
     "ROLE_CC_USER_DELIQUENT": { navItems: navItemsCCUserDeliquent, dashboardRoute: "cc_dashboard" },
-    "ROLE_ICMS_ADMIN": { navItems: navItemsICMSAdmin, dashboardRoute: "default_dashboard" },
+    "ROLE_ICMS_ADMIN": { navItems: navItemsICMSAdmin, dashboardRoute: "icms_dashboard/rcmp" },
     "ROLE_ICMS_DISTRICT_IC": { navItems: navItemsICMSDistrict, dashboardRoute: "icms_dashboard/district" },
     "ROLE_ICMS_DISTRICT_DIRECTOR": { navItems: navItemsICMSDistrictDirector, dashboardRoute: "icms_dashboard/district" },
     "ROLE_SMS_USER": { navItems: navItemsSMSUser, dashboardRoute: "default_dashboard" },
     "ROLE_SMS_ADMIN": { navItems: navItemsSMSAdmin, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_PROVISION": { navItems: navItemsICMSProvision, dashboardRoute: "default_dashboard" },
     "ROLE_ICMS_BRANCH_MANAGER": { navItems: navItemsICMSBranchManager, dashboardRoute: "default_dashboard" },
-    "ROLE_ICMS_BANKING_OPERATION": { navItems: navItemsICMSBankingOperation, dashboardRoute: "default_dashboard" },
+    "ROLE_ICMS_BANKING_OPERATION": { navItems: navItemsICMSBankingOperation, dashboardRoute: "icms_dashboard/bankingOperation" },
     "ROLE_ICMS_IFB": { navItems: navItemsICMSIFB, dashboardRoute: "icms_dashboard/ifb" },
-    "ROLE_ICMS_FINANCE_IC": { navItems: navItemsICMSFinanceIC, dashboardRoute: "icms_dashboard/bankingOperation" },
-    "ROLE_ICMS_FINANCE_OWNER": { navItems: navItemsICMSFinanceOWNER, dashboardRoute: "icms_dashboard/bankingOperation" },
+    "ROLE_ICMS_FINANCE_IC": { navItems: navItemsICMSFinanceIC, dashboardRoute: "icms_dashboard/finance" },
+    "ROLE_ICMS_FINANCE_OWNER": { navItems: navItemsICMSFinanceOWNER, dashboardRoute: "icms_dashboard/finance" },
     "ROLE_ICMS_TRADE_IC": { navItems: navItemsICMSTradeIC, dashboardRoute: "icms_dashborad/tradeService" },
     "ROLE_ICMS_TRADE_OWNER": { navItems: navItemsICMSTradeOWNER, dashboardRoute: "icms_dashborad/tradeService" },
     "ROLE_ICMS_PROCUREMENT_IC": { navItems: navItemsICMSProcurementIC, dashboardRoute: "icms_dashboard/procurement" },
@@ -126,6 +126,7 @@ export class DefaultLayoutComponent {
     "ROLE_WEEKLY_CHECK": { navItems: navItemWeeklyCheck, dashboardRoute: "default_dashboard" },
     "ROLE_COMPLIANCE_CHECK_MENU": { navItems: complianceCheckMenu, dashboardRoute: "default_dashboard"},
     "ROLE_SCHEDULING_ADMIN": { navItems: navItemsSCHEDULINGAdmin, dashboardRoute: "default_dashboard" },
+   
   };
 
 

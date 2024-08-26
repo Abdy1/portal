@@ -43,6 +43,7 @@ import { ShareManagementDonutChartComponent } from './share_management_dashboard
 import { TradeServiceDashboardComponent } from './trade_service_dashboard/trade_service_box_dashboard/tradeServiceDashboard.component';
 import { TradeServiceDonutChartComponent } from './trade_service_dashboard/trade_service_donut_chart/tradeServiceDonutChart.component';
 import { SharedModule } from './../../../shared/shared.module';
+import { NumberShortenPipe } from './number-shorten.pipe';
 
 @NgModule({
   imports: [
@@ -88,7 +89,8 @@ import { SharedModule } from './../../../shared/shared.module';
     ShareManagementDashboardComponent,
     ShareManagementDonutChartComponent,
     TradeServiceDashboardComponent,
-    TradeServiceDonutChartComponent
+    TradeServiceDonutChartComponent,
+    NumberShortenPipe
   ]
 
 })

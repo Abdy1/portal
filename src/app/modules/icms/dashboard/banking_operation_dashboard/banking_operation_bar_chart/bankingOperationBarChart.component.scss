@@ -10,7 +10,7 @@
   top: 10px; /* Adjust this value to move the text to the top */
   left: 50%;
   transform: translate(-50%, 0); /* This line makes the text horizontal */
-  font-size: 15px; /* Adjust font size as needed */
+  font-size: 20px; /* Adjust font size as needed */
   color: #616668; /* This line makes the text black */
   font-weight: bold;
   text-align: center;
@@ -21,3 +21,11 @@
   position: relative;
 }
 
+
+.chart-footer {
+  margin-top: 0px; /* Space between the chart and the text */
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+}
