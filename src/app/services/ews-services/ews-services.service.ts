@@ -23,7 +23,7 @@ export class EWSService {
     // for production
     // this.apiServiceUrl = localStorage.getItem('url_1');
     // forprod
-    this.apiServiceUrl ="http://10.1.125.52:9090";
+    this.apiServiceUrl ="http://10.1.125.52:9081";
   }
   constructor(private http: HttpClient) { }
 

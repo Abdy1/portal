@@ -196,6 +196,7 @@ export class AuditObjectComponent {
 
 
   detailAuditObject(auditObject: AuditObjectDTO) {
+    localStorage.setItem('auditObjectForDetail',JSON.stringify(auditObject))
     if (auditObject && auditObject.id !== undefined) {
       this.auditObjectService.changeAuditObject(auditObject);
       this.router.navigate(['ams/audit-object-detail']);

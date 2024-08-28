@@ -140,7 +140,10 @@ export class AddUser implements OnInit {
       subProcess: [''],
       companyEntryDate: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      username:['',[Validators.required]]
+      username:['',[Validators.required]],
+      phoneNumber:[''],
+      temenosId:['']
+
     });
 
 
@@ -283,9 +286,9 @@ export class AddUser implements OnInit {
         if (response && response.employeeId) {
 
 
-          setTimeout(() => {
-            this.router.navigate(['ems/addEmployee']);
-          }, 1500);
+          // setTimeout(() => {
+          //   this.router.navigate(['ems/addEmployee']);
+          // }, 1500);
         }
         else {
           // Error response (Assuming response is a string message)
@@ -314,6 +317,7 @@ export class AddUser implements OnInit {
   }
 
   public addToSso(): void {
+    console.log('zeleke')
     // Create FormData object to send user data
     const formData = new FormData();
 
@@ -337,14 +341,14 @@ export class AddUser implements OnInit {
     }
 
     // Send FormData to userService to add user
-    // this.userService.addUser(formData).toPromise().then((response: any) => {
-    //   // If user added successfully, show success message
-    //   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is created.' });
-    //   setTimeout(() => { window.location.reload() }, 1000);
-    // }).catch((errors: HttpErrorResponse) => {
-    //   // If an error occurred, show error message
-    //   this.messageService.add({ severity: 'error', summary: 'Error', detail: errors.error.message });
-    // });
+    this.userService.addUser(formData).toPromise().then((response: any) => {
+      // If user added successfully, show success message
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User is created.' });
+      // setTimeout(() => { window.location.reload() }, 1000);
+    }).catch((errors: HttpErrorResponse) => {
+      // If an error occurred, show error message
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: errors.error.message });
+    });
   }
 
 

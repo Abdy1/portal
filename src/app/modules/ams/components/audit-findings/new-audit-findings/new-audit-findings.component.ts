@@ -55,7 +55,7 @@ export class NewAuditFindingsComponent implements OnDestroy {
     }
     this.isAuditee = this.roles.some(obj => obj.name === "ROLE_AMS_AUDITEE");
 
-    
+     console.log(" you are auditee",this.isAuditee)
   }
   submit(data : NgForm){
         if(this.config.data?.auditFinding){
@@ -85,7 +85,6 @@ export class NewAuditFindingsComponent implements OnDestroy {
  
     finding.modifiedUser = localStorage.getItem('id');
     finding.justifications = addDivForm.value.justifications;
-    console.log(finding);
     this.subscriptions.push(
       this.auditFindingService.updateAuditFinding(finding).subscribe(
         (response: any) => {

@@ -8,8 +8,8 @@
   </h5>
 </div>
 
-<div class="flex flex-row justify-between">
-  <div class="w-1/2 p-2">
+
+  <div >
     <div class="flex justify-end">
       <p-button
         label="Create a new auditable area"
@@ -61,6 +61,12 @@
               class="p-button-sm"
               label="Delete"
             ></button>
+            <button
+            pButton
+            label="Add checklist"
+            class="p-button-sm"
+            (click)="createNewChecklist(auditableArea)"
+          ></button>
             </td>
           </tr>
         </ng-template>
@@ -68,12 +74,9 @@
     </div>
   </div>
 
-  <div class="w-1/2 p-2">
+  <div >
     <div class="flex justify-end">
-      <p-button
-        label="Create a new checklist"
-        (click)="createNewChecklist()"
-      ></p-button>
+
     </div>
     <div class="card">
       <h5 class="text-2xl font-bold text-blue-600 my-3 pl-4">CheckList</h5>
@@ -124,4 +127,5 @@
       </p-table>
     </div>
   </div>
-</div>
+
+
