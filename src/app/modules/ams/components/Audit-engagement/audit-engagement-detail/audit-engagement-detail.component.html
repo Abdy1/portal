@@ -38,7 +38,7 @@
         <td class="flex gap-2">
           <button
             pButton
-            *ngIf="auditEngagement?.status == 'Engagement'"
+            *ngIf="!programExists"
             (click)="addToProgram(auditEngagement)"
             [ngClass]="{ updateBlue: true }"
             class="p-button-sm h-10 whitespace-nowrap"
@@ -170,10 +170,11 @@
 <div class="flex justify-end">
   <p-button
   *ngIf="auditPrograms[0]?.status == 'Approved'"
-    label="Add Finding"
+   [label]="isAuditee ? 'Add Justification' : 'Add Finding'"
     (click)="addFinding(auditPrograms[0])"
   ></p-button>
 </div>
+
 <div class="card"   *ngIf="auditPrograms[0]?.status == 'Approved'">
   <h5 class="text-2xl font-bold text-blue-600 my-3 pl-4"> Findings </h5>
   <p-table

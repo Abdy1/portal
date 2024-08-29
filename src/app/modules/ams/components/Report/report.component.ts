@@ -115,8 +115,9 @@ export class Report {
   } else {
     if (localStorage.getItem("thebigjson")) {
       this.thebigjson  =  JSON.parse(localStorage.getItem("thebigjson"));
-    } else{
-    }
+      console.log("in",this.thebigjson)
+    } 
+    console.log("out",this.thebigjson)
 
     this.thebigjson.result.findings = this.selectedFindings;
     this.thebigjson.result.introduction = this.introInput;

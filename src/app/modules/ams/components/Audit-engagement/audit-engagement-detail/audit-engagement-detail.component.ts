@@ -56,6 +56,7 @@ export class AuditEngagementDetailComponent implements OnDestroy {
   public isLeader: boolean = false;
   public isMember: boolean = false;
   public isAuditee: boolean;
+  public programExists:boolean;
   public loggedInUser =  localStorage.getItem("id").toString().trim();
 
   private roles = JSON.parse(localStorage.getItem("allRoles"));
@@ -103,6 +104,7 @@ export class AuditEngagementDetailComponent implements OnDestroy {
     }
     this.isManager = this.roles.some(obj => obj.name === "ROLE_AMS_MANAGER");
     this.isDirector = this.roles.some(obj => obj.name === "ROLE_AMS_DIRECTOR");
+    this.isAuditee = this.roles.some(obj => obj.name === "ROLE_AMS_AUDITEE");
 
   }
   identifyRole(engagement:AuditEngagementDTO){
@@ -128,6 +130,9 @@ export class AuditEngagementDetailComponent implements OnDestroy {
       this.auditProgramService.getAuditProgramByEngagementId(id).subscribe(
         (response: any) => {
           this.auditPrograms[0] = response.result[0];
+          if(this.auditPrograms){
+            this.programExists = true;
+          }
           this.getAuditWBS(this.auditPrograms[0].id);
           this.getFinding(this.auditPrograms[0].id)
         },
@@ -307,7 +312,7 @@ export class AuditEngagementDetailComponent implements OnDestroy {
     this.sendMeIgo.subject = "Engagement Letter";
     
        this.employeeService.getDirectorBySubProcessId(JSON.parse(localStorage.getItem("subProcess")).id).subscribe(data => {
-      //  this.recipents.push(data.employeeId.toString()); //to send to actual director
+          this.recipents.push(data.employeeId.toString()); //to send to actual director
           this.ewsService.sendThis(this.sendMeIgo).subscribe(data1 => {
           },
           error => {
@@ -445,6 +450,7 @@ export class AuditEngagementDetailComponent implements OnDestroy {
     this.subscriptions.push(
       this.auditFindingService.makeVisible(auditFinding.id).subscribe(
         (response: any) => {
+          //to get rid of the button once its true 
             auditFinding.isVisibleToAuditees = true;
         },
         (error: HttpErrorResponse) => {

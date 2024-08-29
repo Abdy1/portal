@@ -35,13 +35,16 @@ export class AuditObjectDetailComponent {
   ) { }
 
   ngOnInit() {
-    this.auditObjectService.currentAuditObject.subscribe(auditObject => {
-      if (auditObject) {
-        this.auditObject = auditObject;
-        const id = this.auditObject.id;
-        this.getAuditableAreas(id);
-      }
-    });
+    // this.auditObjectService.currentAuditObject.subscribe(auditObject => {
+    //   if (auditObject) {
+    //     this.auditObject = auditObject;
+    //     const id = this.auditObject.id;
+    //     this.getAuditableAreas(id);
+    //   }
+    // });
+    this.auditObject = JSON.parse(localStorage.getItem('auditObjectForDetail'))
+    const id = this.auditObject.id;
+    this.getAuditableAreas(id);
   }
 
   getAuditableAreas(id?: number): void {
@@ -140,12 +143,12 @@ export class AuditObjectDetailComponent {
     });
   }
 
-  createNewChecklist(): void {
-
+  createNewChecklist(auditableArea:AuditableAreasDTO): void {
+ 
     const ref = this.dialogService.open(NewCheckListComponent, {
       header: 'Create a new checklist',
       width: '50%',
-      data: { auditableArea: this.selectedArea },
+      data: { auditableArea },
       contentStyle: { 'min-height': 'auto', overflow: 'auto' },
       baseZIndex: 10000,
     });

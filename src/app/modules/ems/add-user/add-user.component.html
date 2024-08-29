@@ -52,6 +52,16 @@
     </div>
   </div>
 
+  <div class="flex flex-wrap gap-2 mb-4">
+    <div class="flex-auto">
+      <label for="alphabetic" class="block mb-2"> Phone Number: </label>
+      <input type="text" pInputText id="phoneNumber" formControlName="phoneNumber" [style]="{'width':'30vw','height':'45px'}"  pKeyFilter="int"/>
+    </div>
+    <div class="flex-auto">
+      <label for="alphabetic" class="block mb-2"> Temenos User Id: </label>
+      <input type="text" pInputText id="temenosId" formControlName="temenosId" [style]="{'width':'30vw','height':'45px'}" />
+    </div>
+  </div>
 
 
   <div class="flex flex-wrap gap-2 mb-10">

@@ -32,7 +32,7 @@
     </div>
   </div>
 
-         <div *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
+         <div *ngIf="!isAuditee &&( isAreaSelected || !isCreate) ">
         <label for="name" class="block mb-2"> Finding : </label>
         <textarea
         pInputText
@@ -46,7 +46,7 @@
         </textarea>
          </div>
      
-         <div *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
+         <div *ngIf="!isAuditee &&( isAreaSelected || !isCreate) ">
         <label for="previousStatus" class="block mb-2"> Criteria: </label>
         <textarea
         pInputText
@@ -62,7 +62,7 @@
 
 
 
-      <div class="col mb-4" *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
+    <div *ngIf="!isAuditee &&( isAreaSelected || !isCreate) ">
         <label for="name" class="block mb-2"> Cause : </label>
 
         <textarea
@@ -84,7 +84,7 @@
           minlength="3"
         /> -->
       </div>
-      <div class="col mb-4" *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
+      <div *ngIf="!isAuditee &&( isAreaSelected || !isCreate) ">
         <label for="implementedControls" class="block mb-2"> Implemented Controls: </label>
         <textarea
         pInputText
@@ -100,7 +100,7 @@
 
 
 
-      <div  *ngIf="isAreaSelected || (!isCreate && !isAuditee)" class="col mb-4">
+      <div *ngIf="!isAuditee &&( isAreaSelected || !isCreate) ">
         <label for="impact" class="block mb-2"> Impact : </label>
         <textarea
         pInputText
@@ -113,7 +113,7 @@
      </textarea>
 
       </div>
-      <div class="col mb-4" *ngIf="isAreaSelected || (!isCreate && !isAuditee)">
+      <div *ngIf="!isAuditee &&( isAreaSelected || !isCreate) ">
         <label for="recommendations" class="block mb-2"> Recomendations: </label>
         <textarea
         pInputText
@@ -129,7 +129,7 @@
  
 
 
-    <div *ngIf="isAreaSelected || isAuditee">
+    <div *ngIf="isAreaSelected && isAuditee">
         <label for="justifications" class="block mb-2"> Justifications : </label>
         <textarea
         pInputText
