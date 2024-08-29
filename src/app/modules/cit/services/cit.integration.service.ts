@@ -9,16 +9,16 @@ import { CobIssueDTO } from '../models/CobIssueDTO';
 })
 export class CitIntegrationService {
 
-  private localUrl="http://localhost:8102/cobIssue";
-  private localStepUrl="http://localhost:8102/cobSteps";
+  //   private localUrl="http://localhost:8102/cobIssue";
+  // private localStepUrl="http://localhost:8102/cobSteps";
 
   private baseUrl="http://10.1.125.58:8102/cobIssue";
   private stepUrl="http://10.1.125.58:8102/cobSteps";
-  
+
   constructor(private http:HttpClient) { }
   public getListCobDTO():Observable<any>{
     const headers = { 'Authorization': 'Bearer '+localStorage.getItem('access_token') };
-    return this.http.get<any>(`${this.localUrl}/getAll`,{headers});
+    return this.http.get<any>(`${this.baseUrl}/getAll`,{headers});
 
   }
   public addCobDTO(CobIssueDTO :CobIssueDTO):Observable<CobIssueDTO>{
@@ -32,15 +32,16 @@ export class CitIntegrationService {
   public listCopiedSteps():Observable<any>{
 
     const headers = {'Authorization':'Bearer '+localStorage.getItem('access_token')};
-    return this.http.get<any>(`${this.localStepUrl}/getAll`,{headers});
+    return this.http.get<any>(`${this.stepUrl}/getAll`,{headers});
 
 
   }
 
   public copyRecord(step :Step):Observable<any>{
   
-    
-   return this.http.post<any>(`${this.stepUrl}/recorder`,step);
+    const headers = {'Authorization':'Bearer '+localStorage.getItem('access_token')};
+    console.log(step);
+    return this.http.post<any>(`${this.stepUrl}/recorder`,step,{headers});
 
 
   }

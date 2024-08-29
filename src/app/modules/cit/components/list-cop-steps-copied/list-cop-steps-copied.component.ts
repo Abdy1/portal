@@ -31,7 +31,7 @@ export class ListCopStepsCopiedComponent {
   public getCopiedStepsList(): void {
     this.service.listCopiedSteps().subscribe(
       (response) => {
-
+          console.log(response)
         this.cobStepsCopiedList = response.result.reverse();
 
       },
