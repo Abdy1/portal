@@ -17,13 +17,15 @@
               <p class="text-lg font-bold text-black whitespace-nowrap">
                 Birr 
                 <span class="shortened">
-                  {{ allDatas?.financialOutstandingCases | numberShorten }}
-                  <span class="tooltiptext">{{ allDatas?.financialOutstandingCases | numberWithCommas }}</span>
+                  {{ allDatas?.totalFinancialOutstandingCases | numberShorten }}
+                  <span class="tooltiptext">
+                    {{ allDatas?.totalFinancialOutstandingCases | numberWithCommas }}
+                  </span>
                 </span>
               </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
-              {{allDatas?.financialChangePercentage | numberWithCommas }}% From last month
+              {{allDatas?.financialPercentageFromLastOutstanding | numberWithCommas }}% From last month
             </p>
         </div>
        
@@ -34,11 +36,11 @@
               <p class="text-lg text-black whitespace-nowrap">Non-Financial</p>
               <p class="text-lg text-black whitespace-nowrap">(In Number):</p>
               <p class="text-lg font-bold text-black whitespace-nowrap">
-                {{allDatas?.nonFinancialOutstandingCases | numberWithCommas }}
+                {{allDatas?.totalNonFinancialOutstandingCases | numberWithCommas }}
               </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
-              {{allDatas?.nonFinancialChangePercentage | numberWithCommas }}% From last month
+              {{allDatas?.nonFinancialPercentageFromLastOutstanding | numberWithCommas }}% From last month
             </p>
           </div>
         </div>
@@ -67,15 +69,15 @@
               <p class="text-lg font-bold text-black whitespace-nowrap">
                   Birr
               <span class="shortened">{{
-                allDatas?.financialIdentifiedCases | numberShorten }}
+                allDatas?.totalFinancialIdentifiedCases | numberShorten }}
                <span class="tooltiptext">{{
-                allDatas?. financialIdentifiedCases | numberWithCommas }}
+                allDatas?. totalFinancialIdentifiedCases | numberWithCommas }}
               </span>
               </span>
             </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
-              {{allDatas?.financialChangePercentageForIdentified | numberWithCommas }}% From last month
+              {{allDatas?.financialPercentageFromLastIdentified | numberWithCommas }}% From last month
             </p>
           </div>
           <div
@@ -85,11 +87,11 @@
               <p class="text-lg text-black whitespace-nowrap">Non-Financial</p>
               <p class="text-lg text-black whitespace-nowrap">(In Number):</p>
               <p class="text-lg font-bold text-black whitespace-nowrap">
-                {{allDatas?.nonFinancialIdentifiedCases | numberWithCommas }}
+                {{allDatas?.totalNonFinancialIdentifiedCases | numberWithCommas }}
               </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
-              {{allDatas?.nonFinancialChangePercentageForidentified | numberWithCommas }}% From last month
+              {{allDatas?.nonFinancialPercentageFromLastIdentified | numberWithCommas }}% From last month
             </p>
           </div>
         </div>
@@ -119,15 +121,15 @@
               <p class="text-lg font-bold text-black whitespace-nowrap">
                 Birr
                 <span class="shortened">
-                 {{allDatas?.financialRectifiedCases | numberShorten }}
+                 {{allDatas?.totalFinancialRectifiedCases | numberShorten }}
                  <span class="tooltiptext">
-                 {{allDatas?.financialRectifiedCases | numberWithCommas }}
+                 {{allDatas?.totalFinancialRectifiedCases | numberWithCommas }}
                  </span>
                 </span>
               </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
-              {{allDatas?.financialChangePercentageForRectified | numberWithCommas }}% From last month
+              {{allDatas?.financialPercentageFromLastRectified | numberWithCommas }}% From last month
             </p>
           </div>
           <div
@@ -137,11 +139,11 @@
               <p class="text-lg text-black whitespace-nowrap">Non-Financial</p>
               <p class="text-lg text-black whitespace-nowrap">(In Number):</p>
               <p class="text-lg font-bold text-black whitespace-nowrap">
-                {{allDatas?.nonFinancialRectifiedCases | numberWithCommas }}
+                {{allDatas?.totalNonFinancialRectifiedCases | numberWithCommas }}
               </p>
             </div>
             <p class="text-xs text-center text-black mt-auto whitespace-nowrap">
-              {{allDatas?.nonFinancialChangePercentageForRectified | numberWithCommas }}% From last month
+              {{allDatas?.nonFinancialPercentageFromLastRectified | numberWithCommas }}% From last month
             </p>
           </div>
         </div>
@@ -166,7 +168,7 @@
       <div
         class="px-3 bg-[#f5b094] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center "
       >
-      {{allDatas?.insuranceTotalActivePolicies | numberWithCommas }}
+      {{inshuranceDatas?.totalActivePolicies | numberWithCommas }}
       </div>
     </div>
     <div class="flex gap-2 p-2">
@@ -178,10 +180,12 @@
       <div
         class="px-3 bg-[#f5b094] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center "
       >
-      {{allDatas?.insuranceExpiringIn30Days | numberWithCommas }}
+      {{inshuranceDatas?.expiringIn30Days | numberWithCommas }}
       </div>
     </div>
     <div class="flex gap-2 p-2">
+ 
+
       <div
         class="whitespace-nowrap text-lg font-medium w-full text-black p-2 bg-[#f5b094] rounded-md"
       >
@@ -190,7 +194,7 @@
       <div
         class="px-3 bg-[#f5b094] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center "
       >
-      {{allDatas?.insuranceExpiredPolicies | numberWithCommas }}
+      {{inshuranceDatas?.expiredPolicies | numberWithCommas }}
       </div>
     </div>
     <div class="flex gap-2 p-2">
@@ -201,10 +205,15 @@
       </div>
       <div
         class="px-3 bg-[#ed7d31] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center ">
-      ETB {{allDatas?.insuranceEstimatedLossAmount | numberWithCommas }}
-      
+      <span class="shortened">
+        ETB&nbsp;
+         {{inshuranceDatas?.estimatedLossAmount | numberShorten }}
+        <span class="tooltiptext">
+         {{inshuranceDatas?.estimatedLossAmount | numberWithCommas }}
+        </span>
+      </span>
       </div>
-    </div>0
+    </div>
   </div>
 
   <div class="flex-auto md:w-1/2 lg:w-1/3 p-2 min-w-[23rem]">
@@ -218,7 +227,7 @@
       <div
         class="px-3 bg-[#a5c2e5] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center"
       >
-      {{allDatas?.fraudOutstandingCases | numberWithCommas }}
+      {{fraudDatas?.totalOutstandingCases | numberWithCommas }}
       </div>
     </div>
     <div class="flex gap-2 p-2">
@@ -230,7 +239,7 @@
       <div
         class="px-3 bg-[#a5c2e5] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center "
       >
-      {{allDatas?.fraudNewCasesDuringQuarter | numberWithCommas }}
+      {{fraudDatas?.newCases | numberWithCommas }}
       </div>
     </div>
     <div class="flex gap-2 p-2">
@@ -242,7 +251,7 @@
       <div
         class="px-3 bg-[#a5c2e5] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center"
       >
-      {{allDatas?.fraudClosedCases | numberWithCommas }}
+      {{fraudDatas?.closedCases | numberWithCommas }}
       
       </div> 
     </div>
@@ -253,9 +262,14 @@
         Outstanding in amount
       </div>
       <div
-        class="px-3 bg-[#5b9bd5] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center"
-      >
-      ETB {{allDatas?.fraudOutstandingCasesAmount | numberWithCommas }}
+        class="px-3 bg-[#5b9bd5] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center">
+      ETB&nbsp;
+      <span class="shortened">
+        {{fraudDatas?.outstandingCasesAmount | numberShorten }}
+       <span class="tooltiptext">
+        {{fraudDatas?.outstandingCasesAmount | numberWithCommas }}
+       </span>
+     </span>
       </div>
     </div>
   </div>
@@ -273,7 +287,7 @@
       <div
         class="px-3 bg-[#add09d] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center"
       >
-      {{allDatas?.fireTotalFireExtinguishers | numberWithCommas }}
+      {{extinguisherDatas?.totalFireExtinguishers | numberWithCommas }}
       </div>
     </div>
     <div class="flex gap-2 p-2">
@@ -285,7 +299,7 @@
       <div
         class="px-3 bg-[#add09d] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center"
       >
-      {{allDatas?.fireExpiringIn30DaysExtinguishers | numberWithCommas }}
+      {{extinguisherDatas?.expiringIn30Days | numberWithCommas }}
       </div>
     </div>
     <div class="flex gap-2 p-2">
@@ -297,7 +311,7 @@
       <div
         class="px-3 bg-[#add09d] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center"
       >
-      {{allDatas?.fireExpiredExtinguishers | numberWithCommas }}
+      {{extinguisherDatas?.expired | numberWithCommas }}
       </div>
     </div>
     <div class="flex gap-2 p-2">
@@ -307,9 +321,14 @@
         Estimated fine
       </div>
       <div
-        class="px-3 bg-[#70ad47] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center"
-      >
-        ETB {{allDatas?.fireEstimatedFineAmount | numberWithCommas }}
+        class="px-3 bg-[#70ad47] font-bold text-black rounded-md whitespace-nowrap flex items-center justify-center">
+        ETB&nbsp;
+        <span class="shortened">
+          {{extinguisherDatas?.estimatedFineAmount | numberShorten }}
+         <span class="tooltiptext">
+          {{extinguisherDatas?.estimatedFineAmount | numberWithCommas }}
+         </span>
+       </span>
       </div>
     </div>
   </div>
@@ -319,5 +338,21 @@
   <div class="flex w-full" >
     <bankingOperationBarChart class="w-1/2"></bankingOperationBarChart>
     <bankingOperationDonutChart class="w-1/2"></bankingOperationDonutChart>
+  </div>
+</div>
+<div class="chart-footer">
+  Dishonored Cheques During The Week
+  <div class="number-box">
+    {{chequeDatas }} 
+  </div>
+</div>
+<div class="flex flex-row items-center pt-2 gap-x-15">
+  <div class="flex flex-col items-center group relative">
+    <a href="http://10.1.125.215/Portal/Home/" class="no-underline">
+      <i class="pi pi-book text-7xl pb-2 cursor-pointer" style="padding-left: 115px;"></i>
+      <p class="text-lg font-bold text-center">
+        Directives, Policies, and Procedures
+      </p>
+    </a>
   </div>
 </div>

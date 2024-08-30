@@ -35,3 +35,29 @@
   visibility: visible;
   opacity: 1;
 }
+
+.chart-footer {
+  margin-top: 0px; /* Space between the chart and the text */
+  font-size: 20px;
+  margin-bottom: 40px;
+  color: #333;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+}
+
+.number-box {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc; // Border color and width
+  border-radius: 0.25rem; // Rounded corners, can be adjusted
+  background-color: #f9f9f9; // Background color
+  font-weight: bold;      // Bold text for emphasis
+  color: #333;            // Text color
+  min-width: 6rem;        // Minimum width for the box to ensure a rectangular shape
+  height: 2.25rem;           // Fixed height for the rectangular shape
+  text-align: center;     // Center the text inside the box
+  white-space: nowrap;    // Prevent the text from wrapping to a new line
+  line-height: 2rem;      // Align text vertically
+}

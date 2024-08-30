@@ -44,7 +44,7 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
       ],
       chart: { 
         type: "bar",
-        height: 350,
+        height: 450,
         toolbar: {
           show: false
         }
