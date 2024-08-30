@@ -97,10 +97,14 @@ export class CobListComponent {
 
 
   public getCobDTOList(): void {
+    const accessToken = localStorage.getItem('access_token');
+    console.log('Access Token:', accessToken);
+
     this.service.getListCobDTO().subscribe(
       (response) => {
 
         this.cobDTOList = response.result.reverse();
+        // console.log(response)
 
       },
       (error: HttpErrorResponse) => {

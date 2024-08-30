@@ -37,25 +37,21 @@ export class CobStepsComponent {
     copyToClipboard(text: string) {
      
         this.clipboardService.copyFromContent(text);
+        let currentDateTime = new Date().toISOString();
+
    
-   let step:Step={id:-1,type:"copied",userName:this.username,dateTime:new Date('2024-02-04T10:35:26.000Z'),commandCopied:text};
-    this.service.copyRecord(step).subscribe(
+     let step:Step={type:"copied",userName:this.username,dateTime:currentDateTime, commandCopied:text};
+     this.service.copyRecord(step).subscribe(
       (response: any) => {
-      
+       console.log(currentDateTime)
       
         if (response.message != "success"){
           alert("something went wrong, Please try again later")
         }
         
-  
-        
       },
       (error: HttpErrorResponse) => { alert(error.message ); }
-  
-  
-  
-  
-  
+ 
   
     );
       
@@ -64,9 +60,10 @@ export class CobStepsComponent {
     }
     checkBox(text: string) {
      
-    
+      let currentDateTime = new Date().toISOString();
+   
  
- let step:Step={id:-1,type:"checked",userName:this.username,dateTime:new Date('2024-02-04T10:35:26.000Z'),commandCopied:text};
+    let step:Step={type:"checked",userName:this.username,dateTime:currentDateTime,commandCopied:text};
     
   this.service.copyRecord(step).subscribe(
     (response: any) => {
