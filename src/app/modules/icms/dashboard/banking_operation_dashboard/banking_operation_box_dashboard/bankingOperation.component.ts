@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ICMSDashboardService } from '../../services/icms-dashboard.service';
-import {NotificationService} from '../../services/dashboardnotification.service';
+
 
 
 import { COBHistoryDTO } from 'src/app/models/cms-models/cob-history';
@@ -25,9 +25,7 @@ export class BankingOperationDashboardComponent {
   private subscription: Subscription;
   
 
-  constructor(private icmsdashboardService: ICMSDashboardService,
-              private notificationService:NotificationService
-  ) {}
+  constructor(private icmsdashboardService: ICMSDashboardService  ) {}
 
   ngOnInit() {
   
@@ -40,21 +38,6 @@ export class BankingOperationDashboardComponent {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-  togglePopup() {
-    this.showPopup = !this.showPopup;  // Toggle the visibility of the popup
-  }
-  closePopup() {
-    this.showPopup = false;  // Hide the popup
-  }
-  addNotification() {
-    if (this.newNotification.trim()) {
-      this.notificationService.addNotification(this.newNotification).subscribe(() => {
-        this.newNotification = '';
-        this.closePopup(); // Hide the popup after adding notification
-        console.log('Notification added successfully!');
-      });
-    }
   }
 
 
