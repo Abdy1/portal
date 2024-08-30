@@ -422,6 +422,7 @@ export class AuditEngagementDetailComponent implements OnDestroy {
   }
 
   goToGenerateReport(auditEngagement: AuditEngagementDTO) {
+    console.log("you touched me")
     this.auditReportService.generateReport1(auditEngagement?.auditSchedule?.id).subscribe(data => {
       localStorage.setItem('thebigjson', JSON.stringify(data));
      
