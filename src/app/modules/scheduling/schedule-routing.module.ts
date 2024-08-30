@@ -5,6 +5,7 @@ import { ScheduleTypeFormComponent } from './components/schedule-type-form/sched
 import { MemberFormComponent } from './components/member-form/member-form.component';
 import { ScheduleFormComponent } from './components/schedule-form/schedule-form.component';
 import { TodaySchedulesComponent } from './components/today-schedules/today-schedules.component';
+import { ViewSchedulesComponent } from './view-schedules/view-schedules.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,13 @@ const routes: Routes = [
         path: 'today-schedules',
         component: TodaySchedulesComponent,
         data: {
+          title: 'Todays Schedule',
+        },
+      },
+      {
+        path: 'view-schedules',
+        component: ViewSchedulesComponent,
+        data: {
           title: 'View Schedule',
         },
       },
@@ -46,6 +54,7 @@ const routes: Routes = [
           title: 'Add Schedule Type',
         },
       },
+      
     ],
   },
 ];

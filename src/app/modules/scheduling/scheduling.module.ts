@@ -38,6 +38,7 @@ import {
 } from '@coreui/angular';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { AnimateModule } from 'primeng/animate';
+import { ViewSchedulesComponent } from './view-schedules/view-schedules.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AnimateModule } from 'primeng/animate';
     MemberFormComponent,
     ScheduleFormComponent,
     TodaySchedulesComponent,
-    MessageFormComponent
+    MessageFormComponent,
+    ViewSchedulesComponent
   ],
   imports: [
     CommonModule,
