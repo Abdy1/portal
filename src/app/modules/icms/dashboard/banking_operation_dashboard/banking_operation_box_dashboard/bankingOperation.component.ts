@@ -3,11 +3,6 @@ import { Subscription } from 'rxjs';
 import { ICMSDashboardService } from '../../services/icms-dashboard.service';
 
 
-
-import { COBHistoryDTO } from 'src/app/models/cms-models/cob-history';
-import { error, log } from 'console';
-import { subscribe } from 'diagnostics_channel';
-
 @Component({
   selector: 'bankingOperation',
   templateUrl: './bankingOperation.component.html',
@@ -15,8 +10,8 @@ import { subscribe } from 'diagnostics_channel';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class BankingOperationDashboardComponent {
-  newNotification: string = '';
-  showPopup: boolean = false;
+  // newNotification: string = '';
+  // showPopup: boolean = false;
   public allDatas: any;
   public inshuranceDatas:any;
   public fraudDatas: any;
