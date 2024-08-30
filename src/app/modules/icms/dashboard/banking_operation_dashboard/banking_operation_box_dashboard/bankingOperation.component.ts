@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ICMSDashboardService } from '../../services/icms-dashboard.service';
+import {NotificationService} from '../../services/dashboardnotification.service';
+
+
 import { COBHistoryDTO } from 'src/app/models/cms-models/cob-history';
 import { error, log } from 'console';
 import { subscribe } from 'diagnostics_channel';
@@ -12,6 +15,8 @@ import { subscribe } from 'diagnostics_channel';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class BankingOperationDashboardComponent {
+  newNotification: string = '';
+  showPopup: boolean = false;
   public allDatas: any;
   public inshuranceDatas:any;
   public fraudDatas: any;
@@ -20,7 +25,9 @@ export class BankingOperationDashboardComponent {
   private subscription: Subscription;
   
 
-  constructor(private icmsdashboardService: ICMSDashboardService) {}
+  constructor(private icmsdashboardService: ICMSDashboardService,
+              private notificationService:NotificationService
+  ) {}
 
   ngOnInit() {
   
@@ -34,6 +41,23 @@ export class BankingOperationDashboardComponent {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+  togglePopup() {
+    this.showPopup = !this.showPopup;  // Toggle the visibility of the popup
+  }
+  closePopup() {
+    this.showPopup = false;  // Hide the popup
+  }
+  addNotification() {
+    if (this.newNotification.trim()) {
+      this.notificationService.addNotification(this.newNotification).subscribe(() => {
+        this.newNotification = '';
+        this.closePopup(); // Hide the popup after adding notification
+        console.log('Notification added successfully!');
+      });
+    }
+  }
+
+
 
   getBankingOperationDashboardupperthree(){
     this.subscription = this.icmsdashboardService.getBankingOperationDashboardUpperThreeDatas().subscribe(
@@ -106,4 +130,5 @@ export class BankingOperationDashboardComponent {
       return dateString;
     }
   }
+
 }
