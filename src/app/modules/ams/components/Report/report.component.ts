@@ -116,13 +116,14 @@ export class Report {
     if (localStorage.getItem("thebigjson")) {
       this.thebigjson  =  JSON.parse(localStorage.getItem("thebigjson"));
       console.log("in",this.thebigjson)
-    } 
-    console.log("out",this.thebigjson)
 
-    this.thebigjson.result.findings = this.selectedFindings;
-    this.thebigjson.result.introduction = this.introInput;
-    this.thebigjson.result.summary = this.summaryInput;
-    this.thebigjson.result.dateGenerated = this.date;
+      this.thebigjson.result.findings = this.selectedFindings;
+      this.thebigjson.result.introduction = this.introInput;
+      this.thebigjson.result.summary = this.summaryInput;
+      this.thebigjson.result.dateGenerated = this.date;
+  
+    } 
+
 
  
 
