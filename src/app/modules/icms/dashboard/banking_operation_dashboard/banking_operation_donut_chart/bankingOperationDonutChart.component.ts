@@ -36,11 +36,19 @@ export class BankingOperationDonutChartComponent {
       chart: {
         type: "donut"
       },
-      labels: ["Cash Management", "Customer Account Operation", "Suspense Account Management", 
-        "Loan and Advances", "Forex Trading", "Expense Management", "Digital Banking",
-          "Branch Opening Requirements", "Key Book and Rubber Stamp", "Interest Free Banking",
-        "Stock and Negotiable Instrument Management", "Fixed Asset Management",
-        "Human Resource Management"],
+      labels: ["Cash Management",
+               "Customer Account Operation",
+               "Suspense Account Management", 
+               "Loan and Advances",
+               "Forex Trading", 
+               "Expense Management", 
+               "Digital Banking",
+               "Branch Opening Requirements", 
+               "Key Book and Rubber Stamp",
+               "Interest Free Banking",
+               "Stock and Negotiable Instrument Management", 
+               "Fixed Asset Management",
+               "Human Resource Management"],
       responsive: [
         {
           breakpoint: 480,
