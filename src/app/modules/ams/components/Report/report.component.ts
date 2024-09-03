@@ -16,6 +16,8 @@ import { AuditReportService } from '../../services/audit-report/audit-report.ser
 import { FindingDTO } from '../../models/finding';
 import { Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {OtherServices} from '../../services/others/other.service';
+import {ReportTemplateDTO} from '../../models/reportTemplate'
 
 interface Column {
   field: string;
@@ -48,6 +50,8 @@ export class Report {
   summaryInput: string;
   public date: Date;
   editMode:Boolean = false;
+  templates = []
+
 
 
 
@@ -55,7 +59,8 @@ export class Report {
     private auditProgramService: AuditProgramService,
     private auditFindingService: AuditFindingService,
     private auditReportService: AuditReportService,
-    private router:Router
+    private router:Router,
+    private otherServices:OtherServices
   ) {}
 
   ngOnInit() {
@@ -69,14 +74,34 @@ export class Report {
       this.introInput = this.thebigjsonForEditing.introduction;
       this.summaryInput = this.thebigjsonForEditing.summary;
       this.date = this.thebigjsonForEditing.dateGenerated;
-      this.selectedFindings = this.thebigjsonForEditing.findings;
-
-    
-   
+      this.selectedFindings = this.thebigjsonForEditing.findings;   
       this.editMode = true;
     }  
+    this.getReportTemplate();
+  
 
 
+
+  }
+  populateTextFieldsByTemplate(val:ReportTemplateDTO){
+
+      this.introInput = val.introduction;
+      this.summaryInput = val.summary;
+     
+  }
+
+  getReportTemplate(): void {
+    this.subscriptions.push(
+      this.otherServices.getReportTemplates().subscribe(
+        (response: any) => {
+          this.templates = response.result;
+          console.log(this.templates)
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      )
+    );
   }
 
   getAuditProgram(id:number): void {

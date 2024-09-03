@@ -7,7 +7,10 @@
 
  
   <form >
-
+    <p-dropdown [style]="{'min-width':'500px', 'margin':'10px'}" [options]="templates" id="templates"
+    optionLabel="name" placeholder="Select Template" class="template" name="template" [filter]="true"
+    (onChange)="populateTextFieldsByTemplate($event.value)" ngModel [required]="true"></p-dropdown>
+    
     <h5 class="text-2xl font-bold text-blue-600 my-3 pl-4 ">Introduction</h5>
     <ckeditor class="ckeditor" [editor]="Editor" name="introduction" ngModel [(ngModel)]="introInput"
     [required]="true" ></ckeditor>

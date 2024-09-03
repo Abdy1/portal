@@ -63,7 +63,7 @@
                         [ngClass]="{ updateBlue: true }" class="p-button-sm w-20 h-10 p-2" label="Approve"></button>
 
                         
-                    <button pButton *ngIf="auditObject?.status != 'Approved'" (click)="addToAnnualPlan(auditObject)"
+                    <button pButton *ngIf="auditObject?.status != 'Approved' && isDirector" (click)="addToAnnualPlan(auditObject)"
                     [ngClass]="{ updateBlue: true }" class="p-button-sm w-20 h-10 p-2" label="Add to Plan"></button>
                     
                 </td>
