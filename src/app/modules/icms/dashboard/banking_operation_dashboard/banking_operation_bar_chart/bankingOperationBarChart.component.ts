@@ -44,7 +44,7 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
       ],
       chart: { 
         type: "bar",
-        height: 350,
+        height: 450,
         toolbar: {
           show: false
         }
@@ -73,7 +73,7 @@ export class BankingOperationBarChartComponent implements OnInit, OnDestroy {
           "JIMMA DISTRICT",
           "MEKELLE RELATIONSHIP OFFICE",
           "NEKEMTE DISTRICT",
-          "NORTH FINFINNE DISTRICT ",
+          "NORTH FINFINNE DISTRICT", 
           "SHASHEMANE DISTRICT",
           "SOUTH FINFINNE DISTRICT",
           "WESTERN FINFINNE DISTRICT"

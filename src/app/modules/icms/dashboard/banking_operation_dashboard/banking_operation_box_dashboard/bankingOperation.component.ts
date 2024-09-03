@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ICMSDashboardService } from '../../services/icms-dashboard.service';
-import { COBHistoryDTO } from 'src/app/models/cms-models/cob-history';
-import { log } from 'console';
+
 
 @Component({
   selector: 'bankingOperation',
@@ -11,24 +10,35 @@ import { log } from 'console';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class BankingOperationDashboardComponent {
+  // newNotification: string = '';
+  // showPopup: boolean = false;
   public allDatas: any;
+  public inshuranceDatas:any;
+  public fraudDatas: any;
+  public extinguisherDatas:any;
+  public chequeDatas:any
   private subscription: Subscription;
   
 
-  constructor(private icmsdashboardService: ICMSDashboardService) {}
+  constructor(private icmsdashboardService: ICMSDashboardService  ) {}
 
   ngOnInit() {
-    this.getBankingOperationDashboardData();
+  
+    this.getBankingOperationDashboardupperthree();
+    this.getBankingOperationDashboardinshurance();
+    this.getBankingOperationDashboardextinguisher();
+    this.getBankingOperationDashboardfraud();
+    this.getBankingOperationsDashboardCheque();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  
 
-  getBankingOperationDashboardData(): void {
-    this.subscription = this.icmsdashboardService.getBankingOperationDashboardDatas().subscribe(
+
+  getBankingOperationDashboardupperthree(){
+    this.subscription = this.icmsdashboardService.getBankingOperationDashboardUpperThreeDatas().subscribe(
       (response: any) => {
         this.allDatas = response;
       },
@@ -37,7 +47,52 @@ export class BankingOperationDashboardComponent {
       }
     );
   }
+  
+  getBankingOperationDashboardinshurance(){
+     this.subscription = this.icmsdashboardService.getBankingOperationDashboardInshuranceDatas().subscribe(
+      (response:any) =>{
+        this.inshuranceDatas = response;
+      },
+      (error) => {
+        console.error('Failed to get Inshurance data:', error);
+      }
+     )
+  }
 
+  getBankingOperationDashboardfraud(){
+    this.subscription = this.icmsdashboardService.getBankingOperationDashboardFraudDatas().subscribe(
+      (response:any) =>{
+        this.fraudDatas = response;
+      },
+      (error) => {
+        console.error('Failed to get Fraud data:', error);
+      }
+     )
+  }
+
+  getBankingOperationDashboardextinguisher(){
+    this.subscription = this.icmsdashboardService.getBankingOperationDashboardExtingisherDatas().subscribe(
+      (response:any) =>{
+        this.extinguisherDatas = response;
+      },
+      (error) => {
+        console.error('Failed to get Fraud data:', error);
+      }
+     )
+  }
+
+   getBankingOperationsDashboardCheque(){
+     this.subscription = this.icmsdashboardService.getBankingOperationsDashboardChequeDatas().subscribe(
+      (response:any) => {
+        this.chequeDatas = response;
+      },
+      (error) =>{
+        console.error('Failed to get Dishonoured Cheque Datas', error);
+        
+      }
+     )
+
+   }
   formatDate(dateString: string): string {
     if (dateString && dateString.length >= 11) {
       const year = dateString.substring(3, 7);
@@ -53,4 +108,5 @@ export class BankingOperationDashboardComponent {
       return dateString;
     }
   }
+
 }

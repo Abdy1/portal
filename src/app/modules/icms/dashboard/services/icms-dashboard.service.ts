@@ -17,11 +17,11 @@ export class ICMSDashboardService {
       }),
     };
     // this.apiServiceUrl = localStorage.getItem('url_8');
-     this.apiServiceUrl = 'http://localhost:8084';
-   //  this.apiServiceUrl = 'http://10.1.125.58:8084';
+    //this.apiServiceUrl = 'http://localhost:8084';
+      this.apiServiceUrl = 'http://10.1.125.58:8084';
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getBranchDashboardDatas(branchId: string): Observable<any> {
     this.init();
@@ -64,8 +64,8 @@ export class ICMSDashboardService {
       this.httpOptions
     );
   }
- 
-  
+
+
   public getIFBDashboardDatas(): Observable<any> {
     this.init();
     return this.http.get<any>(
@@ -112,10 +112,10 @@ export class ICMSDashboardService {
       this.httpOptions
     );
   }
- 
 
 
-  
+
+
   public getFinanceDashboardDatas(): Observable<any> {
     this.init();
     return this.http.get<any>(
@@ -152,12 +152,42 @@ export class ICMSDashboardService {
   }
 
   //for banking operations
-  public getBankingOperationDashboardDatas(): Observable<any> {
+  public getBankingOperationDashboardUpperThreeDatas(): Observable<any> {
     this.init();
     return this.http.get<any>(
-      `${this.apiServiceUrl}/view/dashboard/forBankingOperation`,
+      `${this.apiServiceUrl}/view/dashboard/forBankingOperation/dailyActivityGapControlData`,
       this.httpOptions
     );
+  }
+  public getBankingOperationDashboardInshuranceDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forBankingOperation/insuranceData`,
+      this.httpOptions
+    );
+  }
+
+  public getBankingOperationDashboardFraudDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forBankingOperation/fraudData`,
+      this.httpOptions
+    );
+  }
+  public getBankingOperationDashboardExtingisherDatas(): Observable<any> {
+    this.init();
+    return this.http.get<any>(
+      `${this.apiServiceUrl}/view/dashboard/forBankingOperation/fireExtinguisherData`,
+      this.httpOptions
+    )
+  }
+
+  public getBankingOperationsDashboardChequeDatas(){
+    this.init();
+      return this.http.get<number>(
+        `${this.apiServiceUrl}/view/dashboard/forBankingOperation/cheque`,
+        this.httpOptions 
+      ) 
   }
   public getBankingOperationBarchartDashboardDatas(): Observable<any> {
     this.init();
@@ -165,7 +195,7 @@ export class ICMSDashboardService {
       `${this.apiServiceUrl}/view/dashboard/forBankingOperationBar`,
       this.httpOptions
     );
-  } 
+  }
   public getbankingOperationDonutDatas(): Observable<any> {
     this.init();
     return this.http.get<any>(

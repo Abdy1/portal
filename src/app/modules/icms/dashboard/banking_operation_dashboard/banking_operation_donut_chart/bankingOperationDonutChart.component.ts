@@ -36,7 +36,19 @@ export class BankingOperationDonutChartComponent {
       chart: {
         type: "donut"
       },
-      labels: ["Cash Management", "Customer Account Operation", "Suspense Account Management", "Loan and Advances", "Forex Trading", "Expense Management", "Digital Banking", "Branch Opening Requirements", "Key Book and Rubber Stamp", "Interest Free Banking", "Stock and Negotiable Instrument Management", "Fixed Asset Management", "Human Resource Management"],
+      labels: ["Cash Management",
+               "Customer Account Operation",
+               "Suspense Account Management", 
+               "Loan and Advances",
+               "Forex Trading", 
+               "Expense Management", 
+               "Digital Banking",
+               "Branch Opening Requirements", 
+               "Key Book and Rubber Stamp",
+               "Interest Free Banking",
+               "Stock and Negotiable Instrument Management", 
+               "Fixed Asset Management",
+               "Human Resource Management"],
       responsive: [
         {
           breakpoint: 480,
@@ -50,7 +62,7 @@ export class BankingOperationDonutChartComponent {
       plotOptions: {
         pie: {
           donut: {
-            size: '30px' // Adjust this value to change the donut radius. Smaller values make the donut radius smaller.
+            size: '70%' // Adjust this value to change the donut radius. Smaller values make the donut radius smaller.
           }
         }
       }
